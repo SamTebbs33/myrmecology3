@@ -10,9 +10,9 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent
 @Mod(modid = Myrmecology.MOD_ID, modLanguage = "scala", version = Myrmecology.MOD_VERSION, name = Myrmecology.MOD_NAME)
 object Myrmecology {
 
-  final val MOD_ID = "Mymecology"
+  final val MOD_ID = "mymecology"
   final val MOD_VERSION = "0.0.0"
-  final val MOD_NAME = MOD_ID
+  final val MOD_NAME = "Myrmecology"
 
   @EventHandler
   def init(e : FMLInitializationEvent): Unit = {
