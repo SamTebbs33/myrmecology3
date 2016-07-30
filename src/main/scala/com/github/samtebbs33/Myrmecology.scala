@@ -15,8 +15,8 @@ object Myrmecology {
   final val MOD_NAME = "Myrmecology"
 
   @EventHandler
-  def init(e : FMLInitializationEvent): Unit = {
-    println("myrmecology init");
-  }
+  def init(e : FMLInitializationEvent): Unit =
+    println("myrmecology init")
+
 
 }
