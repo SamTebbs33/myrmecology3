@@ -1,0 +1,12 @@
+sudo: false
+language: scala
+scala: 2.11.1
+jdk: oraclejdk8
+
+notifications:
+  email: false
+env:
+  global: TERM=dumb
+
+install: gradle setupCIWorkspace
+script: gradle build
