@@ -8,5 +8,5 @@ notifications:
 env:
   global: TERM=dumb
 
-install: gradle setupCIWorkspace
-script: gradle build
+install: ./gradlew setupCIWorkspace
+script: ./gradlew build
