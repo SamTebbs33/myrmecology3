@@ -16,7 +16,7 @@ object Registry {
     final val species : List[AntSpecies] = new ArrayList[AntSpecies]
     final val testSpecies = new AntSpecies("test_species")
 
-    def registerSpecies(): Unit {
+    def registerSpecies(): Unit = {
       registerSpecies(testSpecies)
     }
 
