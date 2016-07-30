@@ -2,7 +2,7 @@ package com.github.samtebbs33
 
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.Mod.EventHandler
-import net.minecraftforge.fml.common.event.FMLInitializationEvent
+import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
 
 /**
   * Created by samtebbs on 30/07/2016.
@@ -15,8 +15,12 @@ object Myrmecology {
   final val MOD_NAME = "Myrmecology"
 
   @EventHandler
-  def init(e : FMLInitializationEvent): Unit =
-    println("myrmecology init")
+  def preInit(e : FMLPreInitializationEvent) = println("myrmecology preInit")
 
+  @EventHandler
+  def init(e : FMLInitializationEvent) = println("myrmecology init")
+
+  @EventHandler
+  def init(e : FMLPostInitializationEvent) = println("myrmecology postInit")
 
 }
