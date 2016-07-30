@@ -3,6 +3,7 @@ package com.github.samtebbs33.init
 import java.util.{ArrayList, List}
 
 import com.github.samtebbs33.ant.AntSpecies
+import com.github.samtebbs33.block.BlockAntHill
 import net.minecraft.block.Block
 import net.minecraftforge.fml.common.registry.GameRegistry
 
@@ -11,20 +12,37 @@ import net.minecraftforge.fml.common.registry.GameRegistry
   */
 object Registry {
 
-  final val species : List[AntSpecies] = new ArrayList[AntSpecies]
+  object AntSpeciesRegistry {
+    final val species : List[AntSpecies] = new ArrayList[AntSpecies]
+    final val testSpecies = new AntSpecies("test_species")
 
-  def registerSpecies(): Unit = {
-    // TODO
+    def registerSpecies(): Unit {
+      registerSpecies(testSpecies)
+    }
+
+    def registerSpecies(s : AntSpecies): Unit = species.add(s)
+
   }
 
-  def registerBlocks(): Unit = {
-    registerAntHills()
+  object BlockRegistry {
+    final val testHill = new BlockAntHill("test_hill", AntSpeciesRegistry.testSpecies)
+
+    def registerBlocks(): Unit = {
+      registerAntHills()
+    }
+
+    private def registerAntHills(): Unit = {
+      registerBlock(testHill)
+    }
+
+    private def registerBlock(block : Block): Unit = GameRegistry.register(block)
+
   }
 
-  private def registerAntHills(): Unit = {
-    // TODO
+  object ItemRegistry {
+    def registerItems(): Unit = {
+      // TODO
+    }
   }
-
-  private def registerBlock(block : Block) = GameRegistry.register(block)
 
 }

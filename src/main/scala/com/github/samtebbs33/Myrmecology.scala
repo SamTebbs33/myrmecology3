@@ -1,5 +1,6 @@
 package com.github.samtebbs33
 
+import com.github.samtebbs33.init.Registry.{AntSpeciesRegistry, BlockRegistry, ItemRegistry}
 import net.minecraftforge.fml.common.Mod
 import net.minecraftforge.fml.common.Mod.EventHandler
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
@@ -15,7 +16,12 @@ object Myrmecology {
   final val MOD_NAME = "Myrmecology"
 
   @EventHandler
-  def preInit(e : FMLPreInitializationEvent) = println("myrmecology preInit")
+  def preInit(e : FMLPreInitializationEvent) {
+    println("myrmecology preInit")
+    BlockRegistry.registerBlocks()
+    AntSpeciesRegistry.registerSpecies()
+    ItemRegistry.registerItems()
+  }
 
   @EventHandler
   def init(e : FMLInitializationEvent) = println("myrmecology init")
