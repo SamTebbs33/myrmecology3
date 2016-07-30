@@ -8,5 +8,6 @@ notifications:
 env:
   global: TERM=dumb
 
+before_install: chmod +x gradlew
 install: ./gradlew setupCIWorkspace
 script: ./gradlew build
