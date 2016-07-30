@@ -1,9 +1,10 @@
 package com.github.samtebbs33
 
 import com.github.samtebbs33.init.Registry.{AntSpeciesRegistry, BlockRegistry, ItemRegistry}
-import net.minecraftforge.fml.common.Mod
+import net.minecraftforge.fml.common.{FMLCommonHandler, Mod}
 import net.minecraftforge.fml.common.Mod.EventHandler
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
+import net.minecraftforge.fml.relauncher.Side
 
 /**
   * Created by samtebbs on 30/07/2016.
@@ -28,5 +29,9 @@ object Myrmecology {
 
   @EventHandler
   def init(e : FMLPostInitializationEvent) = println("myrmecology postInit")
+
+  def onClient() = FMLCommonHandler.instance.getSide() == Side.CLIENT
+
+  def onServer() = !onClient()
 
 }
