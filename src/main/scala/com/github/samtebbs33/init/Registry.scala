@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry
   */
 object Registry {
 
-  final val species : List[AntSpecies] = ArrayList[AntSpecies]
+  final val species : List[AntSpecies] = new ArrayList[AntSpecies]
 
   def registerSpecies(): Unit = {
     // TODO
