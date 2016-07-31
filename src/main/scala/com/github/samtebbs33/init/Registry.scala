@@ -1,12 +1,13 @@
 package com.github.samtebbs33.init
 
-import java.util.{Set, HashSet}
+import java.util.{HashSet, Set}
 
 import com.github.samtebbs33.Myrmecology
 import com.github.samtebbs33.ant.AntSpecies
 import com.github.samtebbs33.block.{BlockAntHill, MyrmecologyBlock}
 import com.github.samtebbs33.item.MyrmecologyItem
 import net.minecraft.client.Minecraft
+import net.minecraft.client.renderer.RenderItem
 import net.minecraft.client.renderer.block.model.ModelResourceLocation
 import net.minecraft.item.Item
 import net.minecraftforge.fml.common.registry.GameRegistry
@@ -16,7 +17,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry
   */
 object Registry {
 
-  val renderItem = if(Myrmecology.onClient()) Some(Minecraft.getMinecraft().getRenderItem()) else None
+  var renderItem : Option[RenderItem] = None
 
   object AntSpeciesRegistry {
     final val species : Set[AntSpecies] = new HashSet[AntSpecies]
@@ -31,7 +32,7 @@ object Registry {
   }
 
   object BlockRegistry {
-    final val testHill = new BlockAntHill("test_hill", AntSpeciesRegistry.testSpecies)
+    final val testHill = new BlockAntHill("testHill", AntSpeciesRegistry.testSpecies)
 
     def registerBlocks(): Unit = {
       registerAntHills()
@@ -47,7 +48,10 @@ object Registry {
       //val itemBlock = new ItemBlock(block)
       //itemBlock.setRegistryName(Myrmecology.MOD_ID, block.getUnlocalisedName() + "_item")
       //GameRegistry.register(itemBlock)
-      if(Myrmecology.onClient()) renderItem.get.getItemModelMesher().register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Myrmecology.MOD_ID + ":" + block.getUnlocalisedName(), "inventory"))
+      if(renderItem.isDefined) renderItem
+        .get
+        .getItemModelMesher()
+        .register(Item.getItemFromBlock(block), 0, new ModelResourceLocation(Myrmecology.MOD_ID + ":" + block.getUnlocalisedName(), "inventory"))
     }
 
   }
@@ -58,10 +62,13 @@ object Registry {
     }
 
     private def registerItem(item : MyrmecologyItem): Unit = {
+      item.setRegistryName(Myrmecology.MOD_ID, item.getUnlocalisedName())
       GameRegistry.register(item)
-      if(Myrmecology.onClient()) renderItem.get.getItemModelMesher().register(item, 0, new ModelResourceLocation(Myrmecology.MOD_ID + ":" + item.getUnlocalisedName(), "inventory"));
+      if(renderItem.isDefined) renderItem.get.getItemModelMesher().register(item, 0, new ModelResourceLocation(Myrmecology.MOD_ID + ":" + item.getUnlocalisedName(), "inventory"));
     }
 
   }
+
+  def init(): Unit = (renderItem = if(Myrmecology.onClient()) Option(Minecraft.getMinecraft().getRenderItem()) else None)
 
 }

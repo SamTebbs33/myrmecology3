@@ -1,5 +1,6 @@
 package com.github.samtebbs33
 
+import com.github.samtebbs33.init.Registry
 import com.github.samtebbs33.init.Registry.{AntSpeciesRegistry, BlockRegistry, ItemRegistry}
 import net.minecraftforge.fml.common.{FMLCommonHandler, Mod}
 import net.minecraftforge.fml.common.Mod.EventHandler
@@ -12,12 +13,13 @@ import net.minecraftforge.fml.relauncher.Side
 @Mod(modid = Myrmecology.MOD_ID, modLanguage = "scala", version = Myrmecology.MOD_VERSION, name = Myrmecology.MOD_NAME)
 object Myrmecology {
 
-  final val MOD_ID = "mymecology"
+  final val MOD_ID = "myrmecology"
   final val MOD_VERSION = "0.0.0"
   final val MOD_NAME = "Myrmecology"
 
   @EventHandler
   def preInit(e : FMLPreInitializationEvent) {
+    Registry.init()
     println("myrmecology preInit")
     BlockRegistry.registerBlocks()
     AntSpeciesRegistry.registerSpecies()

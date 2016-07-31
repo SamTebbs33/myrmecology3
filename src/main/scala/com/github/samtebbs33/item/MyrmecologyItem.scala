@@ -9,7 +9,7 @@ import net.minecraft.item.Item
   */
 class MyrmecologyItem(name : String) extends Item with Named {
 
-  setUnlocalizedName(Myrmecology.MOD_ID + "_" + name)
+  setUnlocalizedName(name)
 
-  override def getUnlocalisedName(): String = Myrmecology.MOD_ID + "_" + name
+  override def getUnlocalisedName(): String = name
 }

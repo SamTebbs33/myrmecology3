@@ -10,9 +10,9 @@ import net.minecraft.block.material.Material
   */
 abstract class MyrmecologyBlock(material: Material, name : String) extends Block(material) with Named {
 
-  setUnlocalizedName(Myrmecology.MOD_ID + "_" + name)
+  setUnlocalizedName(name)
   setCreativeTab(Reference.creativeTab)
 
-  override def getUnlocalisedName(): String = getUnlocalizedName()
+  override def getUnlocalisedName(): String = name
 
 }
