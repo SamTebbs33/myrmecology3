@@ -1,5 +1,5 @@
 {
-	"parent": "myrmecology:block/testhill",
+	"parent": "myrmecology:block/ant_hill_plains",
 	"display": {
 		"thirdperson": {
 			"rotation": [ 10, -45, 170 ],
