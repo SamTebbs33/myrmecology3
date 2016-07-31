@@ -9,11 +9,11 @@ import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostIniti
 	*/
 class Proxy {
 
-	def registerModel(itemBlock: Item) {}
+	def registerModel(item: Item) {}
 
 	def init(e: FMLInitializationEvent): Unit = {
-		AntSpeciesRegistry.registerSpecies()
 		BlockRegistry.registerBlocks()
+ 		BlockRegistry.registerBlocks()
 		ItemRegistry.registerItems()
 	}
 

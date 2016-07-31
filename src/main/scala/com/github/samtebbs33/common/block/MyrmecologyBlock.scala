@@ -1,7 +1,8 @@
 package com.github.samtebbs33.common.block
 
-import com.github.samtebbs33.{Myrmecology, Named}
-import net.minecraft.block._
+import com.github.samtebbs33.Named
+import com.github.samtebbs33.common.Registry.BlockRegistry
+import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.creativetab.CreativeTabs
 
@@ -12,6 +13,7 @@ abstract class MyrmecologyBlock(material: Material, name: String) extends Block(
 
 	setUnlocalizedName(getLongName())
 	setCreativeTab(CreativeTabs.BUILDING_BLOCKS)
+	BlockRegistry.blocks.add(this)
 
 	override def getShortName(): String = name
 }
