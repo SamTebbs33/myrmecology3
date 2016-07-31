@@ -51,8 +51,10 @@ object Registry {
 	}
 
 	object ItemRegistry {
+		final val antExtractor = new MyrmecologyItem("ant_extractor") {}
+
 		def registerItems() {
-			// TODO
+			registerItem(antExtractor)
 		}
 
 		def registerBlock(block: MyrmecologyBlock) {
@@ -63,11 +65,14 @@ object Registry {
 		}
 
 		private def registerItem(item: MyrmecologyItem) {
+			item.setRegistryName(item.getExternalName())
+			GameRegistry.register(item)
+			Myrmecology.proxy.registerModel(item)
 		}
 
 	}
 
-	private def makeCreativeTab(iconItem : Item) = new CreativeTabs(CreativeTabs.CREATIVE_TAB_ARRAY.length - 1, Myrmecology.MOD_ID) {
+	private def makeCreativeTab(iconItem : Item) = new CreativeTabs(Myrmecology.MOD_ID) {
 			@SideOnly(Side.CLIENT)
 			override def getTabIconItem = iconItem
 		}

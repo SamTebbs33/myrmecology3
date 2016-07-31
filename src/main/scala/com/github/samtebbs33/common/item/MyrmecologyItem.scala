@@ -1,6 +1,7 @@
 package com.github.samtebbs33.common.item
 
 import com.github.samtebbs33.{Myrmecology, Named}
+import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 
 /**
@@ -9,6 +10,7 @@ import net.minecraft.item.Item
 abstract class MyrmecologyItem(name: String) extends Item with Named {
 
 	setUnlocalizedName(getLongName())
+	setCreativeTab(CreativeTabs.MISC)
 
 	override def getShortName(): String = name
 }

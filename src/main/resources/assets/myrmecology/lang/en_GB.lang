@@ -1,1 +1,8 @@
-tile.myrmecology_testHill.name=Test Ant Hill
+// Ant Hills
+tile.myrmecology_ant_hill_plains.name=Plains Ant Hill
+
+// Items
+item.myrmecology_ant_extractor.name=Ant Extractor
+
+// Creative Tabs
+itemgroup.myrmecology.name=Myrmecology
