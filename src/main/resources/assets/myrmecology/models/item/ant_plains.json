@@ -1,0 +1,6 @@
+{
+	"parent": "myrmecology:item/standard",
+	"textures": {
+		"layer0": "myrmecology:items/amt_plains"
+	}
+}

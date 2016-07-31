@@ -8,9 +8,13 @@ import com.github.samtebbs33.Myrmecology
 import com.github.samtebbs33.common.ant.{AntSpecies, AntTrait, AntTraits}
 import com.github.samtebbs33.common.block.{BlockAntHill, MyrmecologyBlock}
 import com.github.samtebbs33.common.item.MyrmecologyItem
+import net.minecraft.block.state.IBlockState
 import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.entity.EntityLivingBase
 import net.minecraft.init.{Biomes, Items}
-import net.minecraft.item.{Item, ItemBlock}
+import net.minecraft.item.{Item, ItemBlock, ItemStack}
+import net.minecraft.util.math.BlockPos
+import net.minecraft.world.World
 import net.minecraftforge.fml.common.registry.GameRegistry
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 
@@ -32,7 +36,7 @@ object Registry {
 	object AntSpeciesRegistry {
 		final val species: Set[AntSpecies] = new HashSet[AntSpecies]
 
-		final val speciesPlains = new AntSpecies("species_plains", "Antus Fieldia", AntTraitsRegistry.basicTraits, Biomes.PLAINS) {}
+		final val speciesPlains = new AntSpecies("plains", "Antus Fieldia", AntTraitsRegistry.basicTraits, Biomes.PLAINS) {}
 	}
 
 	object BlockRegistry {
@@ -57,7 +61,9 @@ object Registry {
 	object ItemRegistry {
 		final val items = new HashSet[MyrmecologyItem]()
 
-		final val antExtractor = new MyrmecologyItem("ant_extractor") {}
+		final val antExtractor = new MyrmecologyItem("ant_extractor") {
+			override def canHarvestBlock(blockIn: IBlockState): Boolean = blockIn.getBlock.isInstanceOf[BlockAntHill]
+		}
 
 		def registerItems() {
 			items.forEach(new Consumer[MyrmecologyItem] {
