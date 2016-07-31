@@ -12,8 +12,8 @@ class Proxy {
 	def registerModel(item: Item) {}
 
 	def init(e: FMLInitializationEvent): Unit = {
-		AntSpeciesRegistry.registerSpecies()
 		BlockRegistry.registerBlocks()
+ 		BlockRegistry.registerBlocks()
 		ItemRegistry.registerItems()
 	}
 
