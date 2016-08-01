@@ -13,7 +13,6 @@ class Proxy {
 
 	def init(e: FMLInitializationEvent): Unit = {
 		BlockRegistry.registerBlocks()
-		BlockRegistry.registerBlocks()
 		ItemRegistry.registerItems()
 	}
 

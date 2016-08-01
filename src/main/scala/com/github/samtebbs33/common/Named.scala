@@ -1,4 +1,6 @@
-package com.github.samtebbs33
+package com.github.samtebbs33.common
+
+import com.github.samtebbs33.Myrmecology
 
 /**
 	* Created by samtebbs on 31/07/2016.

@@ -21,7 +21,7 @@ object Registry {
 
 	final val creativeTab = makeCreativeTab(Items.ARROW)
 
-	val PLAINS: String = "plains"
+	val PLAINS = "plains"
 
 	object AntTraitsRegistry {
 		final val traitIsWinged = new AntTrait("isWinged")

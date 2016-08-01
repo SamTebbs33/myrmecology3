@@ -1,8 +1,8 @@
 package com.github.samtebbs33.common.item
 
-import com.github.samtebbs33.Named
-import com.github.samtebbs33.common.Registry
+import com.github.samtebbs33.common.{Named, Registry}
 import com.github.samtebbs33.common.Registry.ItemRegistry
+import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 
 /**
