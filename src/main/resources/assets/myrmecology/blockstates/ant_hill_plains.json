@@ -1,5 +1,7 @@
 {
-	"variants": {
-		"normal": { "model": "myrmecology:ant_hill_plains" }
+  "variants": {
+	"normal": {
+	  "model": "myrmecology:ant_hill_plains"
 	}
+  }
 }

@@ -1,6 +1,6 @@
 package com.github.samtebbs33
 
-import com.github.samtebbs33.common.Registry.{AntSpeciesRegistry, BlockRegistry, ItemRegistry}
+import com.github.samtebbs33.common.Registry.{BlockRegistry, ItemRegistry}
 import net.minecraft.item.Item
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
 
@@ -13,14 +13,12 @@ class Proxy {
 
 	def init(e: FMLInitializationEvent): Unit = {
 		BlockRegistry.registerBlocks()
- 		BlockRegistry.registerBlocks()
+		BlockRegistry.registerBlocks()
 		ItemRegistry.registerItems()
 	}
 
-	def preInit(e: FMLPreInitializationEvent) {
+	def preInit(e: FMLPreInitializationEvent): Unit = {}
 
-	}
-
-	def postInit(e: FMLPostInitializationEvent) {}
+	def postInit(e: FMLPostInitializationEvent): Unit = {}
 
 }

@@ -1,8 +1,8 @@
 package com.github.samtebbs33.common.item
 
+import com.github.samtebbs33.Named
+import com.github.samtebbs33.common.Registry
 import com.github.samtebbs33.common.Registry.ItemRegistry
-import com.github.samtebbs33.{Myrmecology, Named}
-import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.Item
 
 /**
@@ -10,9 +10,9 @@ import net.minecraft.item.Item
 	*/
 abstract class MyrmecologyItem(name: String) extends Item with Named {
 
-	setUnlocalizedName(getLongName())
-	setCreativeTab(CreativeTabs.MISC)
+	setUnlocalizedName(longName)
+	setCreativeTab(Registry.creativeTab)
 	ItemRegistry.items.add(this)
 
-	override def getShortName(): String = name
+	override def shortName: String = name
 }

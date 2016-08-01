@@ -5,8 +5,10 @@ package com.github.samtebbs33
 	*/
 trait Named {
 
-	def getShortName() : String
-	def getLongName() = Myrmecology.MOD_ID + "_" + getShortName()
-	def getExternalName() = Myrmecology.MOD_ID + ":" + getShortName()
+	def shortName: String
+
+	def longName = Myrmecology.MOD_ID + "_" + shortName
+
+	def externalName = Myrmecology.MOD_ID + ":" + shortName
 
 }

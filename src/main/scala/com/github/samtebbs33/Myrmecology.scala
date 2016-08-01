@@ -14,11 +14,13 @@ object Myrmecology {
 	final val MOD_VERSION = "0.0.0.0"
 	final val MOD_NAME = "Myrmecology"
 
-	@SidedProxy(clientSide = "com.github.samtebbs33.client.ClientProxy", serverSide = "com.github.samtebbs33.server.ServerProxy", modId = MOD_ID)
-	var proxy: Proxy = null
+	@SidedProxy(clientSide = "com.github.samtebbs33.client.ClientProxy",
+		serverSide = "com.github.samtebbs33.server.ServerProxy",
+		modId = MOD_ID)
+	val proxy: Proxy = null
 
 	@EventHandler
-	def preInit(e: FMLPreInitializationEvent) {
+	def preInit(e: FMLPreInitializationEvent): Unit = {
 		proxy.preInit(e)
 	}
 
@@ -28,7 +30,7 @@ object Myrmecology {
 	}
 
 	@EventHandler
-	def postInit(e: FMLPostInitializationEvent) {
+	def postInit(e: FMLPostInitializationEvent): Unit = {
 		proxy.postInit(e)
 	}
 

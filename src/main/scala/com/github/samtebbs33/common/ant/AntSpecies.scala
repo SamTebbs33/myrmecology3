@@ -5,8 +5,4 @@ import net.minecraft.world.biome.Biome
 /**
 	* Created by samtebbs on 30/07/2016.
 	*/
-abstract class AntSpecies(val name: String, binomialName : String, traits : AntTraits, biomes : Biome*) {
-
-
-
-}
+abstract class AntSpecies(val name: String, binomialName: String, traits: AntTraits, biomes: Biome*)

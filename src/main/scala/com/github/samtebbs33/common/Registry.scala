@@ -1,6 +1,5 @@
 package com.github.samtebbs33.common
 
-import java.util
 import java.util.function.Consumer
 import java.util.{HashSet, Set}
 
@@ -10,11 +9,8 @@ import com.github.samtebbs33.common.block.{BlockAntHill, MyrmecologyBlock}
 import com.github.samtebbs33.common.item.MyrmecologyItem
 import net.minecraft.block.state.IBlockState
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.entity.EntityLivingBase
 import net.minecraft.init.{Biomes, Items}
-import net.minecraft.item.{Item, ItemBlock, ItemStack}
-import net.minecraft.util.math.BlockPos
-import net.minecraft.world.World
+import net.minecraft.item.{Item, ItemBlock}
 import net.minecraftforge.fml.common.registry.GameRegistry
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 
@@ -24,6 +20,8 @@ import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 object Registry {
 
 	final val creativeTab = makeCreativeTab(Items.ARROW)
+
+	val PLAINS: String = "plains"
 
 	object AntTraitsRegistry {
 		final val traitIsWinged = new AntTrait("isWinged")
@@ -36,22 +34,22 @@ object Registry {
 	object AntSpeciesRegistry {
 		final val species: Set[AntSpecies] = new HashSet[AntSpecies]
 
-		final val speciesPlains = new AntSpecies("plains", "Antus Fieldia", AntTraitsRegistry.basicTraits, Biomes.PLAINS) {}
+		final val speciesPlains = new AntSpecies(PLAINS, "Antus Fieldia", AntTraitsRegistry.basicTraits, Biomes.PLAINS) {}
 	}
 
 	object BlockRegistry {
 		final val blocks = new HashSet[MyrmecologyBlock]()
 
-		final val antHillPlains = new BlockAntHill("plains", AntSpeciesRegistry.speciesPlains)
+		final val antHillPlains = new BlockAntHill(PLAINS, AntSpeciesRegistry.speciesPlains)
 
-		def registerBlocks() {
+		def registerBlocks(): Unit = {
 			blocks.forEach(new Consumer[MyrmecologyBlock] {
 				override def accept(t: MyrmecologyBlock): Unit = registerBlock(t)
 			})
 		}
 
-		private def registerBlock(block: MyrmecologyBlock) {
-			block.setRegistryName(block.getExternalName())
+		private def registerBlock(block: MyrmecologyBlock): Unit = {
+			block.setRegistryName(block.externalName)
 			GameRegistry.register(block)
 			ItemRegistry.registerBlock(block)
 		}
@@ -65,30 +63,30 @@ object Registry {
 			override def canHarvestBlock(blockIn: IBlockState): Boolean = blockIn.getBlock.isInstanceOf[BlockAntHill]
 		}
 
-		def registerItems() {
+		def registerItems(): Unit = {
 			items.forEach(new Consumer[MyrmecologyItem] {
 				override def accept(t: MyrmecologyItem): Unit = registerItem(t)
 			})
 		}
 
-		def registerBlock(block: MyrmecologyBlock) {
+		def registerBlock(block: MyrmecologyBlock): Unit = {
 			val itemBlock = new ItemBlock(block)
 			itemBlock.setRegistryName(block.getRegistryName)
 			GameRegistry.register(itemBlock)
 			Myrmecology.proxy.registerModel(itemBlock)
 		}
 
-		private def registerItem(item: MyrmecologyItem) {
-			item.setRegistryName(item.getExternalName())
+		private def registerItem(item: MyrmecologyItem): Unit = {
+			item.setRegistryName(item.externalName)
 			GameRegistry.register(item)
 			Myrmecology.proxy.registerModel(item)
 		}
 
 	}
 
-	private def makeCreativeTab(iconItem : Item) = new CreativeTabs(Myrmecology.MOD_ID) {
-			@SideOnly(Side.CLIENT)
-			override def getTabIconItem = iconItem
+	private def makeCreativeTab(iconItem: Item) = new CreativeTabs(Myrmecology.MOD_ID) {
+		@SideOnly(Side.CLIENT)
+		override def getTabIconItem = iconItem
 	}
 
 }

@@ -10,6 +10,7 @@ import net.minecraft.item.Item
 	*/
 class ClientProxy extends Proxy {
 	override def registerModel(item: Item): Unit = {
-		Minecraft.getMinecraft.getRenderItem.getItemModelMesher.register(item, 0, new ModelResourceLocation(item.getRegistryName, "inventory"))
+		Minecraft.getMinecraft.getRenderItem.getItemModelMesher
+			.register(item, 0, new ModelResourceLocation(item.getRegistryName, "inventory"))
 	}
 }
