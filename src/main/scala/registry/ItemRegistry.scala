@@ -1,0 +1,42 @@
+package registry
+
+import java.util.HashSet
+
+import com.github.samtebbs33.Myrmecology
+import com.github.samtebbs33.common.block.{BlockAntHill, MyrmecologyBlock}
+import com.github.samtebbs33.common.item.{ItemAnt, MyrmecologyItem}
+import net.minecraft.block.state.IBlockState
+import net.minecraft.item.ItemBlock
+import net.minecraftforge.fml.common.registry.GameRegistry
+
+import scala.collection.JavaConversions._
+
+/**
+	* Created by samtebbs on 02/08/2016.
+	*/
+object ItemRegistry {
+	final val items = new HashSet[MyrmecologyItem]()
+
+	final val antExtractor = new MyrmecologyItem("ant_extractor") {
+		override def canHarvestBlock(blockIn: IBlockState): Boolean = blockIn.getBlock.isInstanceOf[BlockAntHill]
+	}
+	final val antPlains = new ItemAnt(AntSpeciesRegistry.speciesPlains)
+
+	def registerItems(): Unit = {
+		items.foreach(registerItem)
+	}
+
+	def registerBlock(block: MyrmecologyBlock): Unit = {
+		val itemBlock = new ItemBlock(block)
+		itemBlock.setRegistryName(block.getRegistryName)
+		GameRegistry.register(itemBlock)
+		Myrmecology.proxy.registerModel(itemBlock)
+	}
+
+	private def registerItem(item: MyrmecologyItem): Unit = {
+		item.setRegistryName(item.externalName)
+		GameRegistry.register(item)
+		Myrmecology.proxy.registerModel(item)
+	}
+
+}
