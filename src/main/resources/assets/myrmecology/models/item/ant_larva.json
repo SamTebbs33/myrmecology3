@@ -1,0 +1,7 @@
+{
+  "parent": "myrmecology:item/ant",
+  "textures": {
+	"layer0": "myrmecology:items/ant/ant_larva",
+	"layer1": "myrmecology:items/ant/ant_larva_overlay"
+  }
+}

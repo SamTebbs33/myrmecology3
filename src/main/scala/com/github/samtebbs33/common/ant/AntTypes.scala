@@ -5,6 +5,6 @@ package com.github.samtebbs33.common.ant
 	*/
 object AntTypes extends Enumeration {
 
-	val WORKER, DRONE, QUEEN = Value
+	val WORKER, DRONE, QUEEN, LARVA = Value
 
 }

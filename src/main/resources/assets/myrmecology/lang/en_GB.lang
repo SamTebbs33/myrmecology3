@@ -4,5 +4,11 @@ tile.myrmecology_ant_hill_plains.name=Plains Ant Hill
 // Items
 item.myrmecology_ant_extractor.name=Ant Extractor
 
+// Ants
+item.myrmecology_ant_plains_drone.name=Plains Ant Drone
+item.myrmecology_ant_plains_queen.name=Plains Ant Queen
+item.myrmecology_ant_plains_larva.name=Plains Ant Larva
+item.myrmecology_ant_plains_worker.name=Plains Ant Worker
+
 // Creative Tabs
 itemgroup.myrmecology.name=Myrmecology

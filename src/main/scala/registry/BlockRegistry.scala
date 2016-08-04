@@ -20,7 +20,7 @@ object BlockRegistry {
 	}
 
 	private def registerBlock(block: MyrmecologyBlock): Unit = {
-		block.setRegistryName(block.externalName)
+		block.setRegistryName(block.registryName)
 		GameRegistry.register(block)
 		ItemRegistry.registerBlock(block)
 	}

@@ -1,8 +1,8 @@
 package com.github.samtebbs33
 
-import com.github.samtebbs33.common.Registry.{BlockRegistry, ItemRegistry}
 import net.minecraft.item.Item
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
+import registry.{BlockRegistry, ItemRegistry}
 
 /**
 	* Created by samtebbs on 31/07/2016.

@@ -34,7 +34,7 @@ object ItemRegistry {
 	}
 
 	private def registerItem(item: MyrmecologyItem): Unit = {
-		item.setRegistryName(item.externalName)
+		item.setRegistryName(item.registryName)
 		GameRegistry.register(item)
 		Myrmecology.proxy.registerModel(item)
 	}
