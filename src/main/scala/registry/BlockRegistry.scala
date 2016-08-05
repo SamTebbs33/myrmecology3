@@ -2,7 +2,7 @@ package registry
 
 import java.util.HashSet
 
-import com.github.samtebbs33.common.block.{BlockAntHill, MyrmecologyBlock}
+import com.github.samtebbs33.common.block.{BlockAntHill, BlockSolarium, MyrmecologyBlock}
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 import scala.collection.JavaConversions._
@@ -13,6 +13,7 @@ import scala.collection.JavaConversions._
 object BlockRegistry {
 	final val blocks = new HashSet[MyrmecologyBlock]()
 
+	final val solarium = new BlockSolarium("solarium")
 	final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
 
 	def registerBlocks(): Unit = {
