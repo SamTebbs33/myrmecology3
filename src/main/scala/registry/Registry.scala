@@ -11,7 +11,7 @@ import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 	*/
 object Registry {
 
-	final val creativeTab = makeCreativeTab(Items.ARROW)
+	final val creativeTab = makeCreativeTab(ItemRegistry.antPlains)
 
 	val PLAINS = "plains"
 
