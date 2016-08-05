@@ -17,7 +17,9 @@ class Proxy {
 		Registry.registerCreativeTab
 	}
 
-	def preInit(e: FMLPreInitializationEvent): Unit = {}
+	def preInit(e: FMLPreInitializationEvent): Unit = {
+		BlockRegistry.registerTileEntities()
+	}
 
 	def postInit(e: FMLPostInitializationEvent): Unit = {}
 

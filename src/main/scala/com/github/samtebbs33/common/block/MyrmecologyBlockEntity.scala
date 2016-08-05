@@ -1,6 +1,5 @@
 package com.github.samtebbs33.common.block
 
-import com.github.samtebbs33.common.tileentity.TileEntitySolarium
 import net.minecraft.block.ITileEntityProvider
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
@@ -11,6 +10,13 @@ import net.minecraft.world.World
 /**
 	* Created by samtebbs on 05/08/2016.
 	*/
-class BlockSolarium(name : String) extends MyrmecologyBlockEntity(Material.GLASS, name) {
-	override def createNewTileEntity(worldIn: World, meta: Int): TileEntity = new TileEntitySolarium
+abstract class MyrmecologyBlockEntity(mat : Material, name : String) extends MyrmecologyBlock(mat, name) with ITileEntityProvider{
+
+	isBlockContainer = true
+
+	override def breakBlock(worldIn: World, pos: BlockPos, state: IBlockState): Unit = {
+		super.breakBlock(worldIn, pos, state)
+		worldIn.removeTileEntity(pos)
+	}
+
 }

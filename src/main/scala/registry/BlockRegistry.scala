@@ -3,8 +3,8 @@ package registry
 import java.util.HashSet
 import java.util.function.Consumer
 
-import com.github.samtebbs33.common.block.{BlockAntHill, MyrmecologyBlock}
-import com.github.samtebbs33.common.item.MyrmecologyItem
+import com.github.samtebbs33.common.block.{BlockAntHill, BlockSolarium, MyrmecologyBlock}
+import com.github.samtebbs33.common.tileentity.TileEntitySolarium
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 import scala.collection.JavaConversions._
@@ -17,6 +17,10 @@ object BlockRegistry {
 
 	final val solarium = new BlockSolarium("solarium")
 	final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
+
+	def registerTileEntities(): Unit = {
+		GameRegistry.registerTileEntity(classOf[TileEntitySolarium], solarium.shortName)
+	}
 
 	def registerBlocks(): Unit = {
 		blocks.foreach(registerBlock)
