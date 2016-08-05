@@ -12,5 +12,5 @@ import net.minecraft.world.BossInfo.Color
 object AntSpeciesRegistry {
 	final val species: Set[AntSpecies] = new HashSet[AntSpecies]
 
-	final val speciesPlains = new AntSpecies(Registry.PLAINS, 0x162308, 0x406618, "Antus Fieldia", AntTraitRegistry.basicTraits, Biomes.PLAINS) {}
+	final val speciesPlains = new AntSpecies(Registry.PLAINS, 0x162308, 0x406618, "Antus Fieldia", AntTraitRegistry.basicTraits, Biomes.PLAINS)
 }
