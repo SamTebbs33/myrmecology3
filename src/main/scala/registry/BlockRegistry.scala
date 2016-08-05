@@ -1,8 +1,10 @@
 package registry
 
 import java.util.HashSet
+import java.util.function.Consumer
 
-import com.github.samtebbs33.common.block.{BlockAntHill, BlockSolarium, MyrmecologyBlock}
+import com.github.samtebbs33.common.block.{BlockAntHill, MyrmecologyBlock}
+import com.github.samtebbs33.common.item.MyrmecologyItem
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 import scala.collection.JavaConversions._

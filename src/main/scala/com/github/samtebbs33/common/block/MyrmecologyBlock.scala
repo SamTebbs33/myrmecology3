@@ -12,7 +12,6 @@ import registry.{BlockRegistry, Registry}
 abstract class MyrmecologyBlock(material: Material, name: String) extends Block(material) with Named {
 
 	setUnlocalizedName(unlocalisedName(0))
-	setCreativeTab(Registry.creativeTab)
 	BlockRegistry.blocks.add(this)
 
 	override def shortName: String = name

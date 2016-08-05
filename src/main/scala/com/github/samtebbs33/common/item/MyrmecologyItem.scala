@@ -11,7 +11,6 @@ import registry.{ItemRegistry, Registry}
 abstract class MyrmecologyItem(name: String) extends Item with Named {
 
 	setUnlocalizedName(unlocalisedName(0))
-	setCreativeTab(Registry.creativeTab)
 	ItemRegistry.items.add(this)
 
 	override def shortName: String = name
