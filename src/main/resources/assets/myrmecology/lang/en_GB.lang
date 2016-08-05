@@ -1,6 +1,9 @@
 // Ant Hills
 tile.myrmecology_ant_hill_plains.name=Plains Ant Hill
 
+// Other blocks
+tile.myrmecology_solarium.name=Solarium
+
 // Items
 item.myrmecology_ant_extractor.name=Ant Extractor
 
