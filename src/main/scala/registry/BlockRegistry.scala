@@ -13,7 +13,7 @@ import scala.collection.JavaConversions._
 object BlockRegistry {
 	final val blocks = new HashSet[MyrmecologyBlock]()
 
-	final val antHillPlains = new BlockAntHill(Registry.PLAINS, AntSpeciesRegistry.speciesPlains)
+	final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
 
 	def registerBlocks(): Unit = {
 		blocks.foreach(registerBlock)

@@ -4,7 +4,7 @@ import java.util.HashSet
 
 import com.github.samtebbs33.Myrmecology
 import com.github.samtebbs33.common.block.{BlockAntHill, MyrmecologyBlock}
-import com.github.samtebbs33.common.item.{ItemAnt, MyrmecologyItem}
+import com.github.samtebbs33.common.item.{ItemAnt, ItemAntExtractor, MyrmecologyItem}
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemBlock
 import net.minecraftforge.fml.common.registry.GameRegistry
@@ -17,9 +17,7 @@ import scala.collection.JavaConversions._
 object ItemRegistry {
 	final val items = new HashSet[MyrmecologyItem]()
 
-	final val antExtractor = new MyrmecologyItem("ant_extractor") {
-		override def canHarvestBlock(blockIn: IBlockState): Boolean = blockIn.getBlock.isInstanceOf[BlockAntHill]
-	}
+	final val antExtractor = new ItemAntExtractor("ant_extractor")
 	final val antPlains = new ItemAnt(AntSpeciesRegistry.speciesPlains)
 
 	def registerItems(): Unit = {
