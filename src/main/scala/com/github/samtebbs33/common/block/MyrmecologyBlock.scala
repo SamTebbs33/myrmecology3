@@ -5,7 +5,6 @@ import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
 import net.minecraft.creativetab.CreativeTabs
-import registry.Registry
 
 /**
 	* Created by samtebbs on 30/07/2016.
