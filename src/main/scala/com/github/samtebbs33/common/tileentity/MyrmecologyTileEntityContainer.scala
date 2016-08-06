@@ -28,7 +28,7 @@ abstract class MyrmecologyTileEntityContainer(val name : String, invSize : Int) 
 			if(stack.stackSize <= count) setInventorySlotContents(index, null)
 			else setInventorySlotContents(index, stack.splitStack(count))
 		}
-		getStackInSlot(index)
+		stack
 	}
 
 	override def closeInventory(player: EntityPlayer): Unit = ???

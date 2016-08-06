@@ -20,8 +20,8 @@ class GuiSolarium(playerInv : IInventory, te  : TileEntitySolarium) extends GuiC
 	override def drawGuiContainerBackgroundLayer(partialTicks: Float, mouseX: Int, mouseY: Int): Unit = {
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F)
 		mc.getTextureManager.bindTexture(textureLocation)
-		val k = (width - xSize) / 2;
-		val l = (height - ySize) / 2;
-		drawTexturedModalRect(k, l, 0, 0, xSize, ySize);
+		val k = (width - xSize) / 2
+		val l = (height - ySize) / 2
+		drawTexturedModalRect(k, l, 0, 0, xSize, ySize)
 	}
 }

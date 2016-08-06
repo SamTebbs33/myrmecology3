@@ -16,9 +16,24 @@ import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent
 class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NAME_SOLARIUM, 16) with ITickable {
 
 	val SLOT_LARVA = 0
+	val TICKS_PER_SECOND = 20
+	var progress = 0
+	var ticks = 0
+
+	def updateProgress() = {
+		//println("progress update")
+		ticks += 1
+		if(ticks == TICKS_PER_SECOND) {
+			progress += 1
+			ticks = 0
+		}
+	}
 
 	override def update(): Unit = {
-
+		val larva = getStackInSlot(SLOT_LARVA)
+		if(larva != null) {
+			updateProgress()
+		}
 	}
 
 	override def getInventoryStackLimit: Int = 64

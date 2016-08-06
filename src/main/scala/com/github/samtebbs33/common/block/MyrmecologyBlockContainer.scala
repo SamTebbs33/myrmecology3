@@ -36,8 +36,10 @@ class MyrmecologyBlockContainer[T <: MyrmecologyTileEntity](material: Material, 
 
 	override def onBlockActivated(worldIn: World, pos: BlockPos, state: IBlockState, playerIn: EntityPlayer, hand: EnumHand, heldItem: ItemStack, side: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): Boolean = {
 		super.onBlockActivated(worldIn, pos, state, playerIn, hand, heldItem, side, hitX, hitY, hitZ)
-		if(!worldIn.isRemote) playerIn.openGui(Myrmecology, guiId, worldIn, pos.getX, pos.getY, pos.getZ)
-		true
+		if(!worldIn.isRemote) {
+			playerIn.openGui(Myrmecology, guiId, worldIn, pos.getX, pos.getY, pos.getZ)
+			true
+		} else false
 	}
 
 }

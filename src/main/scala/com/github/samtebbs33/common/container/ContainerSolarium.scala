@@ -18,7 +18,13 @@ class ContainerSolarium(playerInv : IInventory, te : TileEntitySolarium) extends
 		// Mature ant slots
 		val rows = 3
 		val cols = 5
-		Range(0, rows).foreach(y => Range(0, cols).foreach(x => list.add(new Slot(te, rows * y + x + 1 , 62 + x * 18, 17 + y * 18))))
+		var id = 0
+		println("Going to add slots")
+		Range(0, rows).foreach(y => Range(0, cols).foreach(x => {
+			id += 1
+			println(s"adding slot x=$x, y=$y, id=$id")
+			list.add(new Slot(te, id, 62 + x * 18, 17 + y * 18))
+		}))
 		list
 	}
 
