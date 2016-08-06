@@ -2,7 +2,7 @@ package com.github.samtebbs33.common.block
 
 import com.github.samtebbs33.Myrmecology
 import com.github.samtebbs33.common.GuiHandler
-import com.github.samtebbs33.common.tileentity.MyrmecologyTileEntityContainer
+import com.github.samtebbs33.common.tileentity.{MyrmecologyTileEntity, MyrmecologyTileEntityContainer}
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
 import net.minecraft.entity.EntityLivingBase
@@ -16,7 +16,7 @@ import net.minecraft.world.World
 /**
 	* Created by samtebbs on 06/08/2016.
 	*/
-class MyrmecologyBlockContainer(material: Material, name : String, guiId : Int) extends MyrmecologyBlockEntity(material, name) {
+class MyrmecologyBlockContainer[T <: MyrmecologyTileEntity](material: Material, name : String, guiId : Int, cls : Class[T]) extends MyrmecologyBlockEntity(material, name, cls) {
 
 	isBlockContainer = true
 

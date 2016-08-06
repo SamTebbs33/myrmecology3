@@ -11,7 +11,7 @@ import net.minecraft.item.ItemStack
 	* Created by samtebbs on 06/08/2016.
 	*/
 class ContainerSolarium(playerInv : IInventory, te : TileEntitySolarium) extends MyrmecologyContainer(playerInv, te) {
-	override def slots: List[Slot] = {
+	override def slots: util.List[Slot] = {
 		val list = new util.LinkedList[Slot]
 		// Larva slot
 		list.add(new Slot(te, 0, 8, 17))
@@ -24,7 +24,7 @@ class ContainerSolarium(playerInv : IInventory, te : TileEntitySolarium) extends
 
 	override def transferStackInSlot(playerIn: EntityPlayer, index: Int): ItemStack = {
 		val slot = inventorySlots.get(index)
-		if(slot == null || !slot.getHasStack) return
+		if(slot == null || !slot.getHasStack) return null
 		val stack = slot.getStack
 		if(index < te.getSizeInventory) {
 			// From tile to player inv, merge to any player inv slot
