@@ -13,14 +13,17 @@ import registry.BlockRegistry
 /**
 	* Created by samtebbs on 05/08/2016.
 	*/
-class TileEntitySolarium extends MyrmecologyContainer(BlockRegistry.NAME_SOLARIUM, 1) with ITickable {
+class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NAME_SOLARIUM, 16) with ITickable {
+
+	val SLOT_LARVA = 0
+
 	override def update(): Unit = {
 
 	}
 
-	override def getInventoryStackLimit: Int = 1
+	override def getInventoryStackLimit: Int = 64
 
-	override def isItemValidForSlot(index: Int, stack: ItemStack): Boolean = stack.getItem.isInstanceOf[ItemAnt] && stack.getMetadata == AntTypes.LARVA.id
+	override def isItemValidForSlot(index: Int, stack: ItemStack): Boolean = index == SLOT_LARVA && stack.getItem.isInstanceOf[ItemAnt] && stack.getMetadata == AntTypes.LARVA.id
 
 	override def openInventory(player: EntityPlayer): Unit = ???
 

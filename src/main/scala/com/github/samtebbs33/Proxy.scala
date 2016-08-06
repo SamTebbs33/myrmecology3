@@ -1,7 +1,9 @@
 package com.github.samtebbs33
 
+import com.github.samtebbs33.common.GuiHandler
 import net.minecraft.item.Item
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
+import net.minecraftforge.fml.common.network.NetworkRegistry
 import registry.{BlockRegistry, ItemRegistry, Registry}
 
 /**
@@ -15,6 +17,7 @@ class Proxy {
 		BlockRegistry.registerBlocks
 		ItemRegistry.registerItems
 		Registry.registerCreativeTab
+		NetworkRegistry.INSTANCE.registerGuiHandler(Myrmecology, GuiHandler)
 	}
 
 	def preInit(e: FMLPreInitializationEvent): Unit = {
