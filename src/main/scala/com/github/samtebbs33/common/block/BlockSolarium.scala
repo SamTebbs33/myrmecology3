@@ -11,6 +11,5 @@ import net.minecraft.world.World
 /**
 	* Created by samtebbs on 05/08/2016.
 	*/
-class BlockSolarium(name : String) extends MyrmecologyBlockEntity(Material.GLASS, name) {
-	override def createNewTileEntity(worldIn: World, meta: Int): TileEntity = new TileEntitySolarium
+class BlockSolarium(name : String) extends MyrmecologyBlockEntity(Material.GLASS, name, classOf[TileEntitySolarium]) {
 }
