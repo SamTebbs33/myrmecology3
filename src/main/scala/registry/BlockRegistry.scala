@@ -15,7 +15,9 @@ import scala.collection.JavaConversions._
 object BlockRegistry {
 	final val blocks = new HashSet[MyrmecologyBlock]()
 
-	final val solarium = new BlockSolarium("solarium")
+	final val NAME_SOLARIUM = "solarium"
+
+	final val solarium = new BlockSolarium(NAME_SOLARIUM)
 	final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
 
 	def registerTileEntities(): Unit = {

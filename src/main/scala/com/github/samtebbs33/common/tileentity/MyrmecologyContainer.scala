@@ -59,14 +59,16 @@ abstract class MyrmecologyContainer(val name : String, invSize : Int) extends My
 	override def isUseableByPlayer(player: EntityPlayer): Boolean = player.getDistanceSq(this.pos) <= 64
 
 	def slotIsEmpty(i : Int) = getStackInSlot(i) == null
+	def slotIsNotEmpty(i : Int) = !slotIsEmpty(i)
 	def forEachSlot[T](f : (Int) => T) = Range(0, getSizeInventory).foreach(f)
-	def forEachOccupiedSlot[T](f : (Int) => T) = Range(0, getSizeInventory).filter(slotIsEmpty).foreach(f)
+	def forEachOccupiedSlot[T](f : (Int) => T) = Range(0, getSizeInventory).filter(slotIsNotEmpty).foreach(f)
 
 	override def readFromNBT(compound: NBTTagCompound): Unit = {
+		super.readFromNBT(compound)
 		val itemList = compound.getTagList(NBT_INVENTORY_TAG, 10)
 		Range(0, itemList.tagCount()).foreach(i => {
 			val tag = itemList.getCompoundTagAt(i)
-			setInventorySlotContents(tag.getByte(NBT_SLOT_TAG), ItemStack.loadItemStackFromNBT(tag))
+			setInventorySlotContents(tag.getByte(NBT_SLOT_TAG) & 255, ItemStack.loadItemStackFromNBT(tag))
 		})
 		if(compound.hasKey(NBT_CUSTOM_NAME_TAG)) customName = compound.getString(NBT_CUSTOM_NAME_TAG)
 	}
@@ -76,7 +78,7 @@ abstract class MyrmecologyContainer(val name : String, invSize : Int) extends My
 		val tagList = new NBTTagList
 		forEachOccupiedSlot(i => {
 			val stackTag = new NBTTagCompound
-			stackTag.setByte(NBT_SLOT_TAG, i.asInstanceOf[Byte])
+			stackTag.setByte(NBT_SLOT_TAG, i.toByte)
 			getStackInSlot(i).writeToNBT(stackTag)
 			tagList.appendTag(stackTag)
 		})
