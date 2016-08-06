@@ -4,6 +4,7 @@ import java.util
 import java.util.function.Consumer
 
 import com.github.samtebbs33.common.item.MyrmecologyItem
+import com.github.samtebbs33.registry.ItemRegistry
 import com.github.samtebbs33.{Myrmecology, Proxy}
 import net.minecraft.client.Minecraft
 import net.minecraft.client.renderer.block.model.{ModelBakery, ModelResourceLocation}
@@ -11,7 +12,6 @@ import net.minecraft.client.renderer.color.{IItemColor, ItemColors}
 import net.minecraft.item.{Item, ItemStack}
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPreInitializationEvent}
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
-import registry.ItemRegistry
 
 import scala.collection.JavaConversions._
 

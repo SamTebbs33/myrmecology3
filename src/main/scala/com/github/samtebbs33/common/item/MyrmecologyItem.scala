@@ -1,9 +1,10 @@
 package com.github.samtebbs33.common.item
 
 import com.github.samtebbs33.common.Named
+import com.github.samtebbs33.registry.ItemRegistry
 import net.minecraft.client.renderer.color.IItemColor
 import net.minecraft.item.{Item, ItemStack}
-import registry.{ItemRegistry, Registry}
+import registry.Registry
 
 /**
 	* Created by samtebbs on 30/07/2016.

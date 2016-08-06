@@ -1,12 +1,10 @@
-package registry
+package com.github.samtebbs33.registry
 
 import java.util.HashSet
-import java.util.function.Consumer
 
 import com.github.samtebbs33.Myrmecology
-import com.github.samtebbs33.common.block.{BlockAntHill, MyrmecologyBlock}
+import com.github.samtebbs33.common.block.MyrmecologyBlock
 import com.github.samtebbs33.common.item.{ItemAnt, ItemAntExtractor, MyrmecologyItem}
-import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemBlock
 import net.minecraftforge.fml.common.registry.GameRegistry
 

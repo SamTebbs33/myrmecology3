@@ -1,4 +1,4 @@
-package registry
+package com.github.samtebbs33.registry
 
 import java.util.function.Consumer
 
@@ -6,7 +6,6 @@ import com.github.samtebbs33.Myrmecology
 import com.github.samtebbs33.common.block.MyrmecologyBlock
 import com.github.samtebbs33.common.item.MyrmecologyItem
 import net.minecraft.creativetab.CreativeTabs
-import net.minecraft.init.Items
 import net.minecraft.item.Item
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 

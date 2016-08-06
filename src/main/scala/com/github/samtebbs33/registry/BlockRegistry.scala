@@ -1,7 +1,6 @@
-package registry
+package com.github.samtebbs33.registry
 
 import java.util.HashSet
-import java.util.function.Consumer
 
 import com.github.samtebbs33.common.block.{BlockAntHill, BlockSolarium, MyrmecologyBlock}
 import com.github.samtebbs33.common.tileentity.TileEntitySolarium

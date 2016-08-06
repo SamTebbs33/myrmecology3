@@ -2,13 +2,13 @@ package com.github.samtebbs33.common.tileentity
 
 import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.ItemAnt
+import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.IInventory
 import net.minecraft.item.ItemStack
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.ITickable
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent
-import registry.BlockRegistry
 
 /**
 	* Created by samtebbs on 05/08/2016.

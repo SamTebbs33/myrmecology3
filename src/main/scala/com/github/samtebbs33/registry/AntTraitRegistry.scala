@@ -1,4 +1,4 @@
-package registry
+package com.github.samtebbs33.registry
 
 import com.github.samtebbs33.common.ant.{AntTrait, AntTraits}
 

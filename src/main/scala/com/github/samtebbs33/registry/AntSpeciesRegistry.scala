@@ -1,10 +1,9 @@
-package registry
+package com.github.samtebbs33.registry
 
 import java.util.{HashSet, Set}
 
 import com.github.samtebbs33.common.ant.AntSpecies
 import net.minecraft.init.Biomes
-import net.minecraft.world.BossInfo.Color
 
 /**
 	* Created by samtebbs on 02/08/2016.

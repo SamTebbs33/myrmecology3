@@ -10,6 +10,6 @@ import net.minecraft.inventory.IInventory
 	*/
 class GuiSolarium(playerInv : IInventory, te  : TileEntitySolarium) extends GuiContainer(new ContainerSolarium(playerInv, te)) {
 	override def drawGuiContainerBackgroundLayer(partialTicks: Float, mouseX: Int, mouseY: Int): Unit = {
-		
+
 	}
 }
