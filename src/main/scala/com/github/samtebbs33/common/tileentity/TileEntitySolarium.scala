@@ -8,11 +8,12 @@ import net.minecraft.item.ItemStack
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.ITickable
 import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent
+import registry.BlockRegistry
 
 /**
 	* Created by samtebbs on 05/08/2016.
 	*/
-class TileEntitySolarium(name : String) extends MyrmecologyContainer(name, 1) with ITickable {
+class TileEntitySolarium extends MyrmecologyContainer(BlockRegistry.NAME_SOLARIUM, 1) with ITickable {
 	override def update(): Unit = {
 
 	}
