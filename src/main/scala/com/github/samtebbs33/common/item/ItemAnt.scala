@@ -19,7 +19,7 @@ class ItemAnt(val species: AntSpecies) extends MyrmecologyItem("ant_" + species.
 
 	override def resourceName(metadata: Int): String = Myrmecology.MOD_ID + ":ant_" + getAntTypeString(metadata)
 
-	override def getUnlocalizedName(stack: ItemStack): String = super.unlocalisedName(stack.getMetadata) + "_" + getAntTypeString(stack.getMetadata)
+	override def getUnlocalizedName(stack: ItemStack): String = "item." + super.unlocalisedName(stack.getMetadata) + "_" + getAntTypeString(stack.getMetadata)
 
 	override def getSubItems(itemIn: Item, tab: CreativeTabs, subItems: util.List[ItemStack]): Unit =
 		for (elem <- AntTypes.values) subItems.add(new ItemStack(itemIn, 1, elem.id))
