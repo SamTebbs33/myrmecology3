@@ -18,7 +18,7 @@ object BlockRegistry {
 	final val NAME_BREEDING_CHAMBER = "breeding_chamber"
 
 	final val solarium = new BlockSolarium(NAME_SOLARIUM)
-	//final val breedingChamber = new BlockBreedingChamber(NAME_BREEDING_CHAMBER)
+	final val breedingChamber = new BlockBreedingChamber(NAME_BREEDING_CHAMBER)
 	final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
 
 	def registerTileEntities(): Unit = {
