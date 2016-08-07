@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+	"side": "myrmecology:blocks/solarium",
+	"end": "myrmecology:blocks/solarium_end"
+  }
+}
