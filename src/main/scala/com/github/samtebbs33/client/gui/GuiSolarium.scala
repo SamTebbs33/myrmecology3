@@ -29,7 +29,7 @@ class GuiSolarium(playerInv : IInventory, te  : TileEntitySolarium) extends GuiC
 
 		if (progress > 0) {
 			val scaledProgress = progress * 24 / targetTime // TODO
-			drawTexturedModalRect(k + 31, l + 16, 176, 0, scaledProgress + 1, 16);
+			drawTexturedModalRect(k + 31, l + 16, 176, 0, scaledProgress + 1, 16)
 		}
 	}
 }

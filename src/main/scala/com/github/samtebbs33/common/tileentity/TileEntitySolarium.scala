@@ -63,7 +63,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 		case _ => stack.getItem.isInstanceOf[ItemAnt]
 	}
 
-	override def openInventory(player: EntityPlayer): Unit = ???
+	override def openInventory(player: EntityPlayer): Unit = {}
 
 	override def getFieldCount: Int = 0
 
