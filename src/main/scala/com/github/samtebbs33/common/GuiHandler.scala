@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.network.IGuiHandler
 object GuiHandler extends IGuiHandler {
 
 	val ID_SOLARIUM = 0
+	val ID_BREEDING_CHAMBER = 1
 
 	def getTileEntity[T <: MyrmecologyTileEntityContainer](world: World, x: Int, y: Int, z: Int, clazz: Class[T]): T = clazz.cast(world.getTileEntity(new BlockPos(x, y, z)))
 
