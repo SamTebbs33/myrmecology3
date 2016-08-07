@@ -20,6 +20,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 	val SLOT_LARVA = 0
 	val TICKS_PER_SECOND = 20
 	var progress = 0
+	var targetTime = Int.MaxValue
 	var ticks = 0
 	var product : Option[ItemStack] = None
 
@@ -35,6 +36,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 	def reset(): Unit = {
 		ticks = 0
 		progress = 0
+		targetTime = Int.MaxValue
 		product = None
 	}
 
@@ -42,9 +44,10 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 		val larva = getStackInSlot(SLOT_LARVA)
 		if(larva != null) {
 			val species = larva.getItem.asInstanceOf[ItemAnt].species
+			targetTime = species.traits.getTrait(AntTraitRegistry.incubationTime)
 			if(product.isEmpty) product = Some(new ItemStack(ItemRegistry.getAnt(species).get, 1, Random.nextInt(AntTypes.values.size)))
 			updateProgress()
-			if(progress >= species.traits.getTrait(AntTraitRegistry.incubationTime)) {
+			if(progress >= targetTime) {
 				println("Finishing incubation")
 				decrStackSize(SLOT_LARVA, 1)
 				addStack(product.get)
@@ -64,8 +67,16 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 
 	override def getFieldCount: Int = 0
 
-	override def getField(id: Int): Int = 0
+	override def getField(id: Int): Int = id match {
+		case 0 => progress
+		case 1 => targetTime
+		case _ => 0
+	}
 
-	override def setField(id: Int, value: Int): Unit = {}
+	override def setField(id: Int, value: Int): Unit = id match {
+		case 0 => progress = value
+		case 1 => targetTime = value
+	}
 
+	override def numFields: Int = 2
 }

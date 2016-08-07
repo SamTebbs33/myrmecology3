@@ -7,10 +7,15 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.{Container, IInventory, Slot}
 import net.minecraft.item.ItemStack
 
+import scala.collection.JavaConversions._
+
 /**
 	* Created by samtebbs on 06/08/2016.
 	*/
 class ContainerSolarium(playerInv : IInventory, te : TileEntitySolarium) extends MyrmecologyContainer(playerInv, te) {
+
+	var progress = 0
+
 	override def slots: util.List[Slot] = {
 		val list = new util.LinkedList[Slot]
 		// Larva slot
@@ -41,4 +46,5 @@ class ContainerSolarium(playerInv : IInventory, te : TileEntitySolarium) extends
 		}
 		stack
 	}
+
 }
