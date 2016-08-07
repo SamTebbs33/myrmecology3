@@ -6,9 +6,10 @@ import com.github.samtebbs33.common.ant.{AntTrait, AntTraits}
 	* Created by samtebbs on 02/08/2016.
 	*/
 object AntTraitRegistry {
-	final val traitIsWinged = new AntTrait("isWinged")
-	final val traitIsNocturnal = new AntTrait("isNocturnal")
+	final val isWinged = new AntTrait("isWinged")
+	final val isNocturnal = new AntTrait("isNocturnal")
+	val incubationTime = new AntTrait("incubationTime")
 
-	final val basicTraits = new AntTraits(traitIsNocturnal, traitIsWinged)
+	final val basicTraits = new AntTraits(isNocturnal, isWinged, incubationTime)
 
 }
