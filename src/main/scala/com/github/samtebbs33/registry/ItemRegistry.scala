@@ -1,7 +1,6 @@
 package com.github.samtebbs33.registry
 
-import java.util
-import java.util.{HashSet, Optional}
+import java.util.HashSet
 import java.util.function.Predicate
 
 import com.github.samtebbs33.Myrmecology
@@ -22,7 +21,7 @@ object ItemRegistry {
 		val i = ItemRegistry.ants.stream().filter(new Predicate[ItemAnt] {
 			override def test(t: ItemAnt): Boolean = t.species == species
 		}).findFirst()
-		if(i.isPresent) Some(i.get()) else None
+		if (i.isPresent) Some(i.get()) else None
 	}
 
 	final val items = new HashSet[MyrmecologyItem]()

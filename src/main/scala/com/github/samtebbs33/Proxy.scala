@@ -1,10 +1,10 @@
 package com.github.samtebbs33
 
 import com.github.samtebbs33.common.GuiHandler
+import com.github.samtebbs33.registry.{BlockRegistry, ItemRegistry, Registry}
 import net.minecraft.item.Item
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
 import net.minecraftforge.fml.common.network.NetworkRegistry
-import registry.{BlockRegistry, ItemRegistry, Registry}
 
 /**
 	* Created by samtebbs on 31/07/2016.

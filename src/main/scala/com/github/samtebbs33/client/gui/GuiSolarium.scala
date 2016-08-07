@@ -1,10 +1,9 @@
 package com.github.samtebbs33.client.gui
 
-import akka.io.Tcp.Register
 import com.github.samtebbs33.Myrmecology
 import com.github.samtebbs33.common.container.ContainerSolarium
-import com.github.samtebbs33.common.tileentity.{MyrmecologyTileEntityContainer, TileEntitySolarium}
-import com.github.samtebbs33.registry.{BlockRegistry, Registry}
+import com.github.samtebbs33.common.tileentity.TileEntitySolarium
+import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.inventory.IInventory
@@ -13,7 +12,7 @@ import net.minecraft.util.ResourceLocation
 /**
 	* Created by samtebbs on 06/08/2016.
 	*/
-class GuiSolarium(playerInv : IInventory, te  : TileEntitySolarium) extends GuiContainer(new ContainerSolarium(playerInv, te)) {
+class GuiSolarium(playerInv: IInventory, te: TileEntitySolarium) extends GuiContainer(new ContainerSolarium(playerInv, te)) {
 
 	val textureLocation = new ResourceLocation(Myrmecology.MOD_ID, "textures/gui/" + BlockRegistry.NAME_SOLARIUM + ".png")
 
