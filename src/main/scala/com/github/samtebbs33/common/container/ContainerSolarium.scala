@@ -2,17 +2,15 @@ package com.github.samtebbs33.common.container
 
 import java.util
 
-import com.github.samtebbs33.common.tileentity.{MyrmecologyTileEntity, TileEntitySolarium}
+import com.github.samtebbs33.common.tileentity.TileEntitySolarium
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.inventory.{Container, IInventory, Slot}
+import net.minecraft.inventory.{IInventory, Slot}
 import net.minecraft.item.ItemStack
-
-import scala.collection.JavaConversions._
 
 /**
 	* Created by samtebbs on 06/08/2016.
 	*/
-class ContainerSolarium(playerInv : IInventory, te : TileEntitySolarium) extends MyrmecologyContainer(playerInv, te) {
+class ContainerSolarium(playerInv: IInventory, te: TileEntitySolarium) extends MyrmecologyContainer(playerInv, te) {
 
 	var progress = 0
 
@@ -33,14 +31,14 @@ class ContainerSolarium(playerInv : IInventory, te : TileEntitySolarium) extends
 
 	override def transferStackInSlot(playerIn: EntityPlayer, index: Int): ItemStack = {
 		val slot = inventorySlots.get(index)
-		if(slot == null || !slot.getHasStack) return null
+		if (slot == null || !slot.getHasStack) return null
 		val stack = slot.getStack
-		if(index < te.getSizeInventory) {
+		if (index < te.getSizeInventory) {
 			// From tile to player inv, merge to any player inv slot
-			if(!mergeItemStack(stack, te.getSizeInventory, inventorySlots.size(), false)) return null
-		} else if(te.isItemValidForSlot(0, stack)){
+			if (!mergeItemStack(stack, te.getSizeInventory, inventorySlots.size(), false)) return null
+		} else if (te.isItemValidForSlot(0, stack)) {
 			// From player inv to tile, merge to larva slot
-			if(!mergeItemStack(stack, 0, 1, false)) return null
+			if (!mergeItemStack(stack, 0, 1, false)) return null
 		}
 		stack
 	}

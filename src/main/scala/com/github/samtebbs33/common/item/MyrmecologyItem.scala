@@ -15,9 +15,9 @@ abstract class MyrmecologyItem(name: String) extends Item with Named {
 
 	override def shortName: String = name
 
-	def usesColourHandler : Boolean = false
+	def usesColourHandler: Boolean = false
 
-	def getColourHandler : IItemColor = null
+	def getColourHandler: IItemColor = null
 
 	override def getUnlocalizedName(stack: ItemStack): String = getUnlocalizedName
 

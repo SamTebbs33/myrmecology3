@@ -5,11 +5,9 @@ import java.util
 import com.github.samtebbs33.Myrmecology
 import com.github.samtebbs33.common.ant.{AntSpecies, AntTypes}
 import com.github.samtebbs33.registry.ItemRegistry
-import net.minecraft.client.renderer.RenderItem
 import net.minecraft.client.renderer.color.IItemColor
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.{Item, ItemStack}
-import net.minecraftforge.fml.client.registry.RenderingRegistry
 
 /**
 	* Created by samtebbs on 31/07/2016.
@@ -19,7 +17,7 @@ class ItemAnt(val species: AntSpecies) extends MyrmecologyItem("ant_" + species.
 	setHasSubtypes(true)
 	ItemRegistry.ants.add(this)
 
-	override def resourceName(metadata: Int): String =  Myrmecology.MOD_ID + ":ant_" + getAntTypeString(metadata)
+	override def resourceName(metadata: Int): String = Myrmecology.MOD_ID + ":ant_" + getAntTypeString(metadata)
 
 	override def getUnlocalizedName(stack: ItemStack): String = super.unlocalisedName(stack.getMetadata) + "_" + getAntTypeString(stack.getMetadata)
 

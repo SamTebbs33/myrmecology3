@@ -14,7 +14,7 @@ import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 	*/
 object Registry {
 
-	final var creativeTab : CreativeTabs = _
+	final var creativeTab: CreativeTabs = _
 
 	val PLAINS = "plains"
 
