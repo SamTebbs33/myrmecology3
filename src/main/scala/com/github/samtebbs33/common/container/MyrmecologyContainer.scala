@@ -18,7 +18,7 @@ abstract class MyrmecologyContainer(playerInv: IInventory, te: MyrmecologyTileEn
 	Range(0, 3).foreach(y => Range(0, 9).foreach(x => addSlot(playerInv, x + y * 9 + 9, 8 + x * 18, 84 + y * 18)))
 	Range(0, 9).foreach(x => addSlot(playerInv, x, 8 + x * 18, 142))
 
-	val tileEntityFields = new Array[Int](te.numFields)
+	val tileEntityFields = new Array[Int](te.getFieldCount)
 
 	def slots: java.util.List[Slot]
 
