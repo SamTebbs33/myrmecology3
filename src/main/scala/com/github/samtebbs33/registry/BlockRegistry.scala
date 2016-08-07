@@ -2,8 +2,8 @@ package com.github.samtebbs33.registry
 
 import java.util.HashSet
 
-import com.github.samtebbs33.common.block.{BlockAntHill, BlockSolarium, MyrmecologyBlock}
-import com.github.samtebbs33.common.tileentity.TileEntitySolarium
+import com.github.samtebbs33.common.block._
+import com.github.samtebbs33.common.tileentity.{MyrmecologyTileEntity, TileEntitySolarium}
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 import scala.collection.JavaConversions._
@@ -15,12 +15,17 @@ object BlockRegistry {
 	final val blocks = new HashSet[MyrmecologyBlock]()
 
 	final val NAME_SOLARIUM = "solarium"
+	final val NAME_BREEDING_CHAMBER = "breeding_chamber"
 
 	final val solarium = new BlockSolarium(NAME_SOLARIUM)
+	final val breedingChamber = new BlockBreedingChamber(NAME_BREEDING_CHAMBER)
 	final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
 
 	def registerTileEntities(): Unit = {
-		GameRegistry.registerTileEntity(classOf[TileEntitySolarium], solarium.shortName)
+		blocks.foreach[Unit] {
+			case block: MyrmecologyBlockEntity[_] => GameRegistry.registerTileEntity(block.tileEntityClass, block.shortName)
+			case _ => // Crashes without this line
+		}
 	}
 
 	def registerBlocks(): Unit = {

@@ -64,8 +64,6 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 
 	override def openInventory(player: EntityPlayer): Unit = {}
 
-	override def getFieldCount: Int = 0
-
 	override def getField(id: Int): Int = id match {
 		case 0 => progress
 		case 1 => targetTime
@@ -77,7 +75,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 		case 1 => targetTime = value
 	}
 
-	override def numFields: Int = 2
+	override def getFieldCount: Int = 2
 
 	override def readFromNBT(compound: NBTTagCompound): Unit = {
 		super.readFromNBT(compound)

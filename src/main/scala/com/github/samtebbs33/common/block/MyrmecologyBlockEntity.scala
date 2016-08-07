@@ -11,7 +11,7 @@ import net.minecraft.world.World
 /**
 	* Created by samtebbs on 05/08/2016.
 	*/
-abstract class MyrmecologyBlockEntity[T <: MyrmecologyTileEntity](mat: Material, name: String, cls: Class[T]) extends MyrmecologyBlock(mat, name) with ITileEntityProvider {
+abstract class MyrmecologyBlockEntity[T <: MyrmecologyTileEntity](mat: Material, name: String, val tileEntityClass: Class[T]) extends MyrmecologyBlock(mat, name) with ITileEntityProvider {
 
 	override def breakBlock(worldIn: World, pos: BlockPos, state: IBlockState): Unit = {
 		worldIn.removeTileEntity(pos)
@@ -19,6 +19,6 @@ abstract class MyrmecologyBlockEntity[T <: MyrmecologyTileEntity](mat: Material,
 	}
 
 	override def createNewTileEntity(world: World, meta: Int): TileEntity = {
-		cls.newInstance()
+		tileEntityClass.newInstance()
 	}
 }
