@@ -4,11 +4,9 @@ import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.{AntTraitRegistry, BlockRegistry, ItemRegistry}
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.inventory.IInventory
 import net.minecraft.item.ItemStack
-import net.minecraft.tileentity.TileEntity
+import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.ITickable
-import net.minecraftforge.event.entity.minecart.MinecartUpdateEvent
 
 import scala.util.Random
 
@@ -22,12 +20,14 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 	var progress = 0
 	var targetTime = Int.MaxValue
 	var ticks = 0
-	var product : Option[ItemStack] = None
+	var product: Option[ItemStack] = None
+
+	val NBT_PROGRESS_TAG = "Progress"
+	val NBT_PRODUCT_TAG = "Product"
 
 	def updateProgress() = {
-		//println("progress update")
 		ticks += 1
-		if(ticks == TICKS_PER_SECOND) {
+		if (ticks == TICKS_PER_SECOND) {
 			progress += 1
 			ticks = 0
 		}
@@ -42,13 +42,12 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 
 	override def update(): Unit = {
 		val larva = getStackInSlot(SLOT_LARVA)
-		if(larva != null) {
+		if (larva != null) {
 			val species = larva.getItem.asInstanceOf[ItemAnt].species
 			targetTime = species.traits.getTrait(AntTraitRegistry.incubationTime)
-			if(product.isEmpty) product = Some(new ItemStack(ItemRegistry.getAnt(species).get, 1, Random.nextInt(AntTypes.values.size)))
+			if (product.isEmpty) product = Some(new ItemStack(ItemRegistry.getAnt(species).get, 1, Random.nextInt(AntTypes.values.size - 1)))
 			updateProgress()
-			if(progress >= targetTime) {
-				println("Finishing incubation")
+			if (progress >= targetTime) {
 				decrStackSize(SLOT_LARVA, 1)
 				addStack(product.get)
 				reset()
@@ -79,4 +78,21 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 	}
 
 	override def numFields: Int = 2
+
+	override def readFromNBT(compound: NBTTagCompound): Unit = {
+		super.readFromNBT(compound)
+		progress = compound.getInteger(NBT_PROGRESS_TAG)
+		product = if(compound.hasKey(NBT_PRODUCT_TAG, 10)) Some(ItemStack.loadItemStackFromNBT(compound.getCompoundTag(NBT_PRODUCT_TAG))) else None
+	}
+
+	override def writeToNBT(compound: NBTTagCompound): NBTTagCompound = {
+		super.writeToNBT(compound)
+		compound.setInteger(NBT_PROGRESS_TAG, progress)
+		if(product.isDefined) {
+			val stackTag = new NBTTagCompound
+			product.get.writeToNBT(stackTag)
+			compound.setTag(NBT_PRODUCT_TAG, stackTag)
+		}
+		compound
+	}
 }
