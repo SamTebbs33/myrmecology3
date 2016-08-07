@@ -3,7 +3,7 @@ package com.github.samtebbs33.common.tileentity
 import java.util.Objects
 
 import net.minecraft.entity.player.EntityPlayer
-import net.minecraft.inventory.{IInventory, Slot}
+import net.minecraft.inventory.{IInventory, InventoryHelper, Slot}
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.{NBTTagCompound, NBTTagList}
 
@@ -13,7 +13,7 @@ import net.minecraft.nbt.{NBTTagCompound, NBTTagList}
 abstract class MyrmecologyTileEntityContainer(val name : String, invSize : Int) extends MyrmecologyTileEntity with IInventory {
 
 	val inventory = new Array[Option[ItemStack]](invSize)
-	Range(0, inventory.length).foreach(i => inventory(i) = None)
+	inventory.indices.foreach(i => inventory(i) = None)
 	val NBT_INVENTORY_TAG = "Items"
 	val NBT_SLOT_TAG = "Slot"
 	val NBT_CUSTOM_NAME_TAG = "CustomName"
@@ -29,6 +29,37 @@ abstract class MyrmecologyTileEntityContainer(val name : String, invSize : Int) 
 			else setInventorySlotContents(index, stack.splitStack(count))
 		}
 		stack
+	}
+
+	def addStack(stack: ItemStack): Unit = {
+		for(slot <- 0 to getSizeInventory) {
+			if(isItemValidForSlot(slot, stack)) {
+				if (stack.stackSize <= 0) return
+				val slotStack = getStackInSlot(slot)
+				if(slotStack == null) {
+					val temp = stack.copy()
+					stack.stackSize -= getInventoryStackLimit
+					setInventorySlotContents(slot, temp)
+				} else if (slotStack.getItem == stack.getItem && slotStack.getMetadata == stack.getMetadata) {
+					val remaining = getInventoryStackLimit - slotStack.stackSize
+					stack.stackSize -= remaining
+					slotStack.stackSize += remaining
+				}
+			}
+		}
+	}
+
+	def canHoldStack(stack: ItemStack): Boolean = {
+		var stackSize = stack.stackSize
+		for(slot <- 0 to getSizeInventory) {
+			if(isItemValidForSlot(slot, stack)) {
+				if (stackSize <= 0) return true
+				val slotStack = getStackInSlot(slot)
+				if(slotStack == null && isItemValidForSlot(slot, stack)) stackSize -= getInventoryStackLimit
+				else if (slotStack.getItem == stack.getItem && slotStack.getMetadata == stack.getMetadata) stackSize -= getInventoryStackLimit - slotStack.stackSize
+			}
+		}
+		stackSize <= 0
 	}
 
 	override def closeInventory(player: EntityPlayer): Unit = ???
