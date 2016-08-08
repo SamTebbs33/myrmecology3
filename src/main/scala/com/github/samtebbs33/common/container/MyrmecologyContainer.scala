@@ -3,6 +3,7 @@ package com.github.samtebbs33.common.container
 import com.github.samtebbs33.common.tileentity.MyrmecologyTileEntityContainer
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.{Container, IInventory, Slot}
+import net.minecraft.item.ItemStack
 
 import scala.collection.JavaConversions._
 
@@ -45,4 +46,19 @@ abstract class MyrmecologyContainer(playerInv: IInventory, te: MyrmecologyTileEn
 	override def updateProgressBar(id: Int, data: Int): Unit = {
 		te.setField(id, data)
 	}
+
+	override def transferStackInSlot(playerIn: EntityPlayer, index: Int): ItemStack = {
+		val slot = inventorySlots.get(index)
+		if (slot == null || !slot.getHasStack) return null
+		val stack = slot.getStack
+		if (index < te.getSizeInventory) {
+			// From tile to player inv, merge to any player inv slot
+			if (!mergeItemStack(stack, te.getSizeInventory, inventorySlots.size(), false)) return null
+		} else if (te.isItemValidForSlot(0, stack)) {
+			// From player inv to tile, merge to larva slot
+			if (!mergeItemStack(stack, 0, 1, false)) return null
+		}
+		stack
+	}
+
 }

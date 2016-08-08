@@ -2,22 +2,19 @@ package com.github.samtebbs33.common.container
 
 import java.util
 
-import com.github.samtebbs33.common.tileentity.TileEntitySolarium
-import net.minecraft.entity.player.EntityPlayer
+import com.github.samtebbs33.common.tileentity.MyrmecologyTileEntityContainer
 import net.minecraft.inventory.{IInventory, Slot}
-import net.minecraft.item.ItemStack
 
 /**
-	* Created by samtebbs on 06/08/2016.
+	* Created by samtebbs on 08/08/2016.
 	*/
-class ContainerSolarium(playerInv: IInventory, te: TileEntitySolarium) extends MyrmecologyContainer(playerInv, te) {
-
-	var progress = 0
-
+class ContainerBreedingChamber(playerInv: IInventory, te: MyrmecologyTileEntityContainer) extends MyrmecologyContainer(playerInv, te) {
 	override def slots: util.List[Slot] = {
 		val list = new util.LinkedList[Slot]
-		// Larva slot
+		// Queen slot
 		list.add(new Slot(te, 0, 8, 17))
+		// Drone slot
+		list.add(new Slot(te, 0, 8, 1))
 		// Mature ant slots
 		val rows = 3
 		val cols = 5
@@ -28,5 +25,4 @@ class ContainerSolarium(playerInv: IInventory, te: TileEntitySolarium) extends M
 		}))
 		list
 	}
-
 }
