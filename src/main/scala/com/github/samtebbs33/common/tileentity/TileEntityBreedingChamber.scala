@@ -12,8 +12,8 @@ import net.minecraft.util.ITickable
 	*/
 class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegistry.NAME_BREEDING_CHAMBER, 17) with ITickable {
 
-	val SLOT_DRONE = 1
-	val SLOT_QUEEN = 0
+	val SLOT_DRONE = 0
+	val SLOT_QUEEN = 1
 
 	var progress = 0
 	var ticks = 0
