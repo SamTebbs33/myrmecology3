@@ -1,8 +1,8 @@
 package com.github.samtebbs33.common
 
-import com.github.samtebbs33.client.gui.GuiSolarium
-import com.github.samtebbs33.common.container.ContainerSolarium
-import com.github.samtebbs33.common.tileentity.{MyrmecologyTileEntityContainer, TileEntitySolarium}
+import com.github.samtebbs33.client.gui.{GuiBreedingChamber, GuiSolarium}
+import com.github.samtebbs33.common.container.{ContainerBreedingChamber, ContainerSolarium}
+import com.github.samtebbs33.common.tileentity.{MyrmecologyTileEntityContainer, TileEntityBreedingChamber, TileEntitySolarium}
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
@@ -20,9 +20,11 @@ object GuiHandler extends IGuiHandler {
 
 	override def getClientGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): AnyRef = ID match {
 		case ID_SOLARIUM => new GuiSolarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntitySolarium]))
+		case ID_BREEDING_CHAMBER => new GuiBreedingChamber(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityBreedingChamber]))
 	}
 
 	override def getServerGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): AnyRef = ID match {
 		case ID_SOLARIUM => new ContainerSolarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntitySolarium]))
+		case ID_BREEDING_CHAMBER => new ContainerBreedingChamber(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityBreedingChamber]))
 	}
 }
