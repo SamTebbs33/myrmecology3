@@ -1,9 +1,11 @@
 package com.github.samtebbs33.common
 
-import com.github.samtebbs33.client.gui.{GuiBreedingChamber, GuiSolarium}
-import com.github.samtebbs33.common.container.{ContainerBreedingChamber, ContainerSolarium}
-import com.github.samtebbs33.common.tileentity.{MyrmecologyTileEntityContainer, TileEntityBreedingChamber, TileEntitySolarium}
+import com.github.samtebbs33.client.gui.{GuiBreedingChamber, GuiFormicarium, GuiSolarium}
+import com.github.samtebbs33.common.container.{ContainerBreedingChamber, ContainerFormicarium, ContainerSolarium}
+import com.github.samtebbs33.common.tileentity.{MyrmecologyTileEntityContainer, TileEntityBreedingChamber, TileEntityFormicarium, TileEntitySolarium}
+import net.minecraft.client.gui.GuiScreen
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.inventory.Container
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraftforge.fml.common.network.IGuiHandler
@@ -19,13 +21,15 @@ object GuiHandler extends IGuiHandler {
 
   def getTileEntity[T <: MyrmecologyTileEntityContainer](world: World, x: Int, y: Int, z: Int, clazz: Class[T]): T = clazz.cast(world.getTileEntity(new BlockPos(x, y, z)))
 
-  override def getClientGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): AnyRef = ID match {
+  override def getClientGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): GuiScreen = ID match {
     case ID_SOLARIUM => new GuiSolarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntitySolarium]))
     case ID_BREEDING_CHAMBER => new GuiBreedingChamber(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityBreedingChamber]))
+    case ID_FORMICARIUM ⇒ new GuiFormicarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityFormicarium]))
   }
 
-  override def getServerGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): AnyRef = ID match {
+  override def getServerGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): Container = ID match {
     case ID_SOLARIUM => new ContainerSolarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntitySolarium]))
     case ID_BREEDING_CHAMBER => new ContainerBreedingChamber(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityBreedingChamber]))
+    case ID_FORMICARIUM ⇒ new ContainerFormicarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityFormicarium]))
   }
 }
