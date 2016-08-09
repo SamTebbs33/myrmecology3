@@ -13,5 +13,6 @@ object AntSpeciesRegistry {
 
   final val speciesPlains = new AntSpecies(Registry.PLAINS, 0x162308, 0x406618, "Antus Fieldia", AntTraitRegistry.basicTraits, Biomes.PLAINS) {
     traits.setTrait(AntTraitRegistry.incubationTime, 10)
+    traits.setTrait(AntTraitRegistry.breedingTime, 10)
   }
 }

@@ -1,5 +1,6 @@
 package com.github.samtebbs33.common.tileentity
 
+import com.github.samtebbs33.common.ProgressTracker
 import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.{AntTraitRegistry, BlockRegistry, ItemRegistry}
@@ -17,42 +18,25 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
 
   val SLOT_LARVA = 0
   val TICKS_PER_SECOND = 20
-  var progress = 0
-  var targetTime = Int.MaxValue
-  var ticks = 0
+  val tracker = new ProgressTracker
   var product: Option[ItemStack] = None
 
   val NBT_PROGRESS_TAG = "Progress"
   val NBT_PRODUCT_TAG = "Product"
 
-  def updateProgress() = {
-    ticks += 1
-    if (ticks == TICKS_PER_SECOND) {
-      progress += 1
-      ticks = 0
-    }
-  }
-
-  def reset(): Unit = {
-    ticks = 0
-    progress = 0
-    targetTime = Int.MaxValue
-    product = None
-  }
-
   override def update(): Unit = {
     val larva = getStackInSlot(SLOT_LARVA)
     if (larva != null) {
       val species = larva.getItem.asInstanceOf[ItemAnt].species
-      targetTime = species.traits.getTrait(AntTraitRegistry.incubationTime)
+      tracker.targetTime = species.traits.getTrait(AntTraitRegistry.incubationTime)
       if (product.isEmpty) product = Some(new ItemStack(ItemRegistry.getAnt(species).get, 1, Random.nextInt(AntTypes.values.size - 1)))
-      updateProgress()
-      if (progress >= targetTime) {
+      tracker.update
+      if (tracker.done) {
         decrStackSize(SLOT_LARVA, 1)
         addStack(product.get)
-        reset()
+        tracker.reset
       }
-    } else reset()
+    } else tracker.reset
   }
 
   override def getInventoryStackLimit: Int = 64
@@ -65,27 +49,27 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
   override def openInventory(player: EntityPlayer): Unit = {}
 
   override def getField(id: Int): Int = id match {
-    case 0 => progress
-    case 1 => targetTime
+    case 0 => tracker.progress
+    case 1 => tracker.targetTime
     case _ => 0
   }
 
   override def setField(id: Int, value: Int): Unit = id match {
-    case 0 => progress = value
-    case 1 => targetTime = value
+    case 0 => tracker.progress = value
+    case 1 => tracker.targetTime = value
   }
 
   override def getFieldCount: Int = 2
 
   override def readFromNBT(compound: NBTTagCompound): Unit = {
     super.readFromNBT(compound)
-    progress = compound.getInteger(NBT_PROGRESS_TAG)
+    tracker.readFromNBT(compound)
     product = if (compound.hasKey(NBT_PRODUCT_TAG, 10)) Some(ItemStack.loadItemStackFromNBT(compound.getCompoundTag(NBT_PRODUCT_TAG))) else None
   }
 
   override def writeToNBT(compound: NBTTagCompound): NBTTagCompound = {
     super.writeToNBT(compound)
-    compound.setInteger(NBT_PROGRESS_TAG, progress)
+    tracker.writeToNBT(compound)
     if (product.isDefined) {
       val stackTag = new NBTTagCompound
       product.get.writeToNBT(stackTag)

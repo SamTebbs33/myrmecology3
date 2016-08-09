@@ -23,8 +23,8 @@ class GuiBreedingChamber(playerInv: IInventory, te: TileEntityBreedingChamber) e
     val l = (height - ySize) / 2
     drawTexturedModalRect(k, l, 0, 0, xSize, ySize)
 
-    val progress = te.progress
-    val targetTime = te.targetTime
+    val progress = te.tracker.progress
+    val targetTime = te.tracker.targetTime
 
     if (progress > 0) {
       val scaledProgress = progress * 13 / targetTime
