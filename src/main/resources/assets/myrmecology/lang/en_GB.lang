@@ -4,6 +4,7 @@ tile.myrmecology_ant_hill_plains.name=Plains Ant Hill
 // Other blocks
 tile.myrmecology_solarium.name=Solarium
 tile.myrmecology_breeding_chamber.name=Breeding Chamber
+tile.myrmecology_formicarium.name=Formicarium
 
 // Items
 item.myrmecology_ant_extractor.name=Ant Extractor
