@@ -9,16 +9,16 @@ import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 
 /**
-	* Created by samtebbs on 05/08/2016.
-	*/
+  * Created by samtebbs on 05/08/2016.
+  */
 abstract class MyrmecologyBlockEntity[T <: MyrmecologyTileEntity](mat: Material, name: String, val tileEntityClass: Class[T]) extends MyrmecologyBlock(mat, name) with ITileEntityProvider {
 
-	override def breakBlock(worldIn: World, pos: BlockPos, state: IBlockState): Unit = {
-		worldIn.removeTileEntity(pos)
-		super.breakBlock(worldIn, pos, state)
-	}
+  override def breakBlock(worldIn: World, pos: BlockPos, state: IBlockState): Unit = {
+    worldIn.removeTileEntity(pos)
+    super.breakBlock(worldIn, pos, state)
+  }
 
-	override def createNewTileEntity(world: World, meta: Int): TileEntity = {
-		tileEntityClass.newInstance()
-	}
+  override def createNewTileEntity(world: World, meta: Int): TileEntity = {
+    tileEntityClass.newInstance()
+  }
 }
