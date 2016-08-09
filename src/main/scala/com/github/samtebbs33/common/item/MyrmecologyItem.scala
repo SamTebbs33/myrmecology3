@@ -6,19 +6,19 @@ import net.minecraft.client.renderer.color.IItemColor
 import net.minecraft.item.{Item, ItemStack}
 
 /**
-	* Created by samtebbs on 30/07/2016.
-	*/
+  * Created by samtebbs on 30/07/2016.
+  */
 abstract class MyrmecologyItem(name: String) extends Item with Named {
 
-	setUnlocalizedName(unlocalisedName(0))
-	ItemRegistry.items.add(this)
+  setUnlocalizedName(unlocalisedName(0))
+  ItemRegistry.items.add(this)
 
-	override def shortName: String = name
+  override def shortName: String = name
 
-	def usesColourHandler: Boolean = false
+  def usesColourHandler: Boolean = false
 
-	def getColourHandler: IItemColor = null
+  def getColourHandler: IItemColor = null
 
-	override def getUnlocalizedName(stack: ItemStack): String = getUnlocalizedName
+  override def getUnlocalizedName(stack: ItemStack): String = getUnlocalizedName
 
 }

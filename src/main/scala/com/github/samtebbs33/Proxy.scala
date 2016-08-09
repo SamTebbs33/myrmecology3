@@ -7,23 +7,23 @@ import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostIniti
 import net.minecraftforge.fml.common.network.NetworkRegistry
 
 /**
-	* Created by samtebbs on 31/07/2016.
-	*/
+  * Created by samtebbs on 31/07/2016.
+  */
 class Proxy {
 
-	def registerModel(item: Item) {}
+  def registerModel(item: Item) {}
 
-	def init(e: FMLInitializationEvent): Unit = {
-		BlockRegistry.registerBlocks
-		ItemRegistry.registerItems
-		Registry.registerCreativeTab
-		NetworkRegistry.INSTANCE.registerGuiHandler(Myrmecology, GuiHandler)
-	}
+  def init(e: FMLInitializationEvent): Unit = {
+    BlockRegistry.registerBlocks
+    ItemRegistry.registerItems
+    Registry.registerCreativeTab
+    NetworkRegistry.INSTANCE.registerGuiHandler(Myrmecology, GuiHandler)
+  }
 
-	def preInit(e: FMLPreInitializationEvent): Unit = {
-		BlockRegistry.registerTileEntities()
-	}
+  def preInit(e: FMLPreInitializationEvent): Unit = {
+    BlockRegistry.registerTileEntities()
+  }
 
-	def postInit(e: FMLPostInitializationEvent): Unit = {}
+  def postInit(e: FMLPostInitializationEvent): Unit = {}
 
 }
