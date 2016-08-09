@@ -2,6 +2,7 @@ package com.github.samtebbs33.common.ant
 
 import java.util
 
+import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.world.biome.Biome
 import net.minecraftforge.event.AttachCapabilitiesEvent.TileEntity
 
@@ -15,7 +16,7 @@ abstract class AntSpecies(val name: String, val primaryColour: Int, val secondar
 
   val aiList = new util.ArrayList[AntAI]()
 
-  def executeAI(formicarium: TileEntity): Unit = {
+  def executeAI(formicarium: TileEntityFormicarium): Unit = {
     for(ai : AntAI ← aiList) if(ai.shouldExecute(formicarium)) {
       ai.execute(formicarium)
       return
