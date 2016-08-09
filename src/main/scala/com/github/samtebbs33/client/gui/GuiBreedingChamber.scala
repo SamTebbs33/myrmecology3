@@ -12,23 +12,16 @@ import net.minecraft.util.ResourceLocation
 /**
   * Created by samtebbs on 08/08/2016.
   */
-class GuiBreedingChamber(playerInv: IInventory, te: TileEntityBreedingChamber) extends GuiContainer(new ContainerBreedingChamber(playerInv, te)) {
-
-  val textureLocation = new ResourceLocation(Myrmecology.MOD_ID, "textures/gui/" + BlockRegistry.NAME_BREEDING_CHAMBER + ".png")
+class GuiBreedingChamber(playerInv: IInventory, te: TileEntityBreedingChamber) extends MyrmecologyGuiContainer(BlockRegistry.NAME_BREEDING_CHAMBER, new ContainerBreedingChamber(playerInv, te)) {
 
   override def drawGuiContainerBackgroundLayer(partialTicks: Float, mouseX: Int, mouseY: Int): Unit = {
-    GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F)
-    mc.getTextureManager.bindTexture(textureLocation)
-    val k = (width - xSize) / 2
-    val l = (height - ySize) / 2
-    drawTexturedModalRect(k, l, 0, 0, xSize, ySize)
-
+    super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY)
     val progress = te.tracker.progress
     val targetTime = te.tracker.targetTime
 
     if (progress > 0) {
       val scaledProgress = progress * 13 / targetTime
-      drawTexturedModalRect(k + 29, l + 36, 176, 0, progress + 1, 16);
+      drawTexturedModalRect(k + 29, l + 36, 176, 0, scaledProgress + 1, 16);
     }
   }
 }

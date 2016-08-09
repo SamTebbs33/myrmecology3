@@ -14,7 +14,6 @@ class ProgressTracker(var targetTime: Int = Int.MaxValue) {
   def reset: Unit = {
     progress = 0
     ticks = 0
-    targetTime = Int.MaxValue
   }
 
   def update = {
@@ -26,10 +25,10 @@ class ProgressTracker(var targetTime: Int = Int.MaxValue) {
   }
 
   def done = progress >= targetTime
-  def writeToNBT(implicit compound: NBTTagCompound): NBTTagCompound = {
+  def writeToNBT(compound: NBTTagCompound): NBTTagCompound = {
     compound.setInteger("progress", progress)
     compound
   }
-  def readFromNBT(implicit compound: NBTTagCompound) = progress = compound.getInteger("progress")
+  def readFromNBT(compound: NBTTagCompound) = progress = compound.getInteger("progress")
 
 }
