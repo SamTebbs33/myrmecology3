@@ -2,7 +2,8 @@ package com.github.samtebbs33.registry
 
 import java.util.{HashSet, Set}
 
-import com.github.samtebbs33.common.ant.AntSpecies
+import com.github.samtebbs33.common.ant.{AntAI, AntSpecies}
+import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.init.Biomes
 
 /**

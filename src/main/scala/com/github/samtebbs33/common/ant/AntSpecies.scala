@@ -16,7 +16,7 @@ abstract class AntSpecies(val name: String, val primaryColour: Int, val secondar
 
   val aiList = new util.ArrayList[AntAI]()
 
-  def executeAI(formicarium: TileEntityFormicarium): Unit = {
+  def updateAI(formicarium: TileEntityFormicarium): Unit = {
     for(ai : AntAI ← aiList) if(ai.shouldExecute(formicarium)) {
       ai.execute(formicarium)
       return
