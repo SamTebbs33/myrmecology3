@@ -1,17 +1,17 @@
 package com.github.samtebbs33.registry
 
-import java.util.HashSet
-
 import com.github.samtebbs33.common.block._
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 import scala.collection.JavaConversions._
+import scala.collection.mutable
 
 /**
   * Created by samtebbs on 02/08/2016.
   */
 object BlockRegistry {
-  final val blocks = new HashSet[MyrmecologyBlock]()
+  final val blocks = mutable.HashSet[MyrmecologyBlock]()
+  val antHills = new java.util.ArrayList[BlockAntHill]()
 
   final val NAME_SOLARIUM = "solarium"
   final val NAME_FORMICARIUM = "formicarium"

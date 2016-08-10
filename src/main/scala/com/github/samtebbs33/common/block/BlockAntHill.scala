@@ -4,6 +4,7 @@ import java.util
 
 import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.{ItemAnt, ItemAntExtractor}
+import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
 import net.minecraft.entity.player.EntityPlayer
@@ -17,11 +18,13 @@ import scala.util.Random
   * Created by samtebbs on 30/07/2016.
   */
 class BlockAntHill(name: String, species: ItemAnt*) extends MyrmecologyBlock(Material.CACTUS, "ant_hill_" + name) {
-  override def canHarvestBlock(world: IBlockAccess, pos: BlockPos, player: EntityPlayer): Boolean = player.getHeldItemMainhand.getItem.isInstanceOf[ItemAntExtractor]
+
+  BlockRegistry.antHills.add(this)
 
   def maxDroppedAnts = 4
-
   def minDroppedAnts = 1
+
+  override def canHarvestBlock(world: IBlockAccess, pos: BlockPos, player: EntityPlayer): Boolean = player.getHeldItemMainhand.getItem.isInstanceOf[ItemAntExtractor]
 
   override def getDrops(world: IBlockAccess, pos: BlockPos, state: IBlockState, fortune: Int): util.List[ItemStack] = {
     val result = new util.LinkedList[ItemStack]()
