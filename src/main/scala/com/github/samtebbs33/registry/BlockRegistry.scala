@@ -10,7 +10,7 @@ import scala.collection.mutable
   * Created by samtebbs on 02/08/2016.
   */
 object BlockRegistry {
-  final val blocks = mutable.HashSet[MyrmecologyBlock]()
+  final val blocks = new java.util.LinkedList[MyrmecologyBlock]()
   val antHills = new java.util.ArrayList[BlockAntHill]()
 
   final val NAME_SOLARIUM = "solarium"

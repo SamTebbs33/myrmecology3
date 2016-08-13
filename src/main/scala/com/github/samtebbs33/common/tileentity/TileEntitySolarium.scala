@@ -24,6 +24,11 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
   val NBT_PROGRESS_TAG = "Progress"
   val NBT_PRODUCT_TAG = "Product"
 
+  def reset = {
+    product = None
+    tracker.reset
+  }
+
   override def update(): Unit = {
     val larva = getStackInSlot(SLOT_LARVA)
     if (larva != null) {
@@ -34,9 +39,9 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
       if (tracker.done) {
         decrStackSize(SLOT_LARVA, 1)
         addStack(product.get)
-        tracker.reset
+        reset
       }
-    } else tracker.reset
+    } else reset
   }
 
   override def getInventoryStackLimit: Int = 64
