@@ -1,6 +1,6 @@
 package com.github.samtebbs33.common.block
 
-import com.github.samtebbs33.common.Named
+import com.github.samtebbs33.common.{CraftingRecipe, Named}
 import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material
@@ -13,5 +13,6 @@ abstract class MyrmecologyBlock(material: Material, name: String) extends Block(
   setUnlocalizedName(unlocalisedName(0))
   BlockRegistry.blocks.add(this)
 
+  def craftingRecipe: Option[CraftingRecipe] = None
   override def shortName: String = name
 }
