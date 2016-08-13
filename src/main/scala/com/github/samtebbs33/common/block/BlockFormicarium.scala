@@ -9,4 +9,6 @@ import net.minecraft.block.material.Material
   */
 class BlockFormicarium(name: String) extends MyrmecologyBlockContainer(Material.GLASS, name, GuiHandler.ID_FORMICARIUM, classOf[TileEntityFormicarium]) {
 
+
+
 }

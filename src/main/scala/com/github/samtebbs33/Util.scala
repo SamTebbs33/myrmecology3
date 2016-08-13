@@ -2,6 +2,8 @@ package com.github.samtebbs33
 
 import net.minecraft.item.ItemStack
 
+import scala.util.Random
+
 /**
   * Created by samtebbs on 09/08/2016.
   */
@@ -14,6 +16,14 @@ object Util {
 
   implicit class ItemStackUtil(stack: ItemStack) {
     def getItemAs[C] = stack.getItem.asInstanceOf[C]
+  }
+
+  implicit class ArrayUtil[T](array: Array[T]) {
+    def rand = array(Random.nextInt(array.length))
+  }
+
+  implicit class SeqUtil[T](seq: Seq[T]) {
+    def rand = seq(Random.nextInt(seq.size))
   }
 
 }
