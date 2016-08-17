@@ -16,7 +16,10 @@ Labels
 * **idea**: Has not been discussed as a potential feature or a conclusion has not been reached about its validity and worth to the project.
 * **improvement**: An improvement to an exisitng feature and one that does not introduce new features.
 * **in progress** (Waffle.io): The issue is currently being tended to/implemented.
-* **invalid**: Not appropriate for the project or 
+* **ready** (Waffle.io): The issue is ready to be tended to.
+* **invalid**: Not appropriate for the project or rejected.
+* **question**: A question and not necessarily an issue representing something to be implemented or changed.
+* **duplicate**: A duplicate of an existing (closed or open) issue.
 
 Note all issues assigned to a certain milestone should be completed before that milestone is regarded as being reached.
 An issue's prerequisite steps must be completed first.
