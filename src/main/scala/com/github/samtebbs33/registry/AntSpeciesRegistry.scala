@@ -2,7 +2,7 @@ package com.github.samtebbs33.registry
 
 import java.util.{HashSet, Set}
 
-import com.github.samtebbs33.common.ant.{AntAI, AntSpecies}
+import com.github.samtebbs33.common.ant.{AntAI, AntSpecies, AntTrait}
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.init.Biomes
 import net.minecraft.world.biome.Biome
@@ -13,8 +13,8 @@ import net.minecraft.world.biome.Biome
 object AntSpeciesRegistry {
   final val species: Set[AntSpecies] = new HashSet[AntSpecies]
 
-  final val speciesPlains = new AntSpecies(Registry.PLAINS, 0x162308, 0x406618, "Antus Fieldia", AntTraitRegistry.basicTraits, Map(Biomes.PLAINS → 1f)) {
-    traits.setTrait(AntTraitRegistry.incubationTime, 10)
-    traits.setTrait(AntTraitRegistry.breedingTime, 10)
+  final val speciesPlains = new AntSpecies(Registry.PLAINS, 0x162308, 0x406618, "Antus Fieldia", Map(Biomes.PLAINS → 1f)) {
+    setTrait(AntTraitRegistry.incubationTime, 10)
+    setTrait(AntTraitRegistry.breedingTime, 10)
   }
 }
