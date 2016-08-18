@@ -4,7 +4,7 @@ import com.github.samtebbs33.common.CraftingRecipe
 import com.github.samtebbs33.common.block.BlockAntHill
 import net.minecraft.block.state.IBlockState
 import net.minecraft.init.Items
-import net.minecraft.item.{ItemDye, ItemStack}
+import net.minecraft.item.ItemStack
 
 /**
   * Created by samtebbs on 05/08/2016.

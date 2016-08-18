@@ -1,5 +1,6 @@
 package com.github.samtebbs33.common.tileentity
 
+import com.github.samtebbs33.Util._
 import com.github.samtebbs33.common.ProgressTracker
 import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.ItemAnt
@@ -8,7 +9,6 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.ITickable
-import com.github.samtebbs33.Util._
 
 /**
   * Created by samtebbs on 07/08/2016.
@@ -19,7 +19,7 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
   val SLOT_QUEEN = 1
 
   val tracker = new ProgressTracker
-  var product : Option[ItemStack] = None
+  var product: Option[ItemStack] = None
 
   override def getInventoryStackLimit: Int = 64
 
@@ -49,9 +49,9 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
     if (drone != null && queen != null && drone.getItem == queen.getItem) {
       tracker.targetTime = queen.getItemAs[ItemAnt].species.getTrait(AntTraitRegistry.breedingTime)
       product.ifNotDefined(() ⇒ product = Some(new ItemStack(drone.getItem, 2, AntTypes.LARVA.id)))
-      if(canHoldStack(product.get)) {
+      if (canHoldStack(product.get)) {
         tracker.update
-        if(tracker.done) {
+        if (tracker.done) {
           addStack(product.get)
           decrStackSize(SLOT_QUEEN, 1)
           decrStackSize(SLOT_DRONE, 1)

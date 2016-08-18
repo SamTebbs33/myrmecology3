@@ -1,14 +1,14 @@
 package com.github.samtebbs33.common.tileentity
 
+import com.github.samtebbs33.Util._
 import com.github.samtebbs33.common.ProgressTracker
 import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
-import net.minecraft.util.ITickable
-import com.github.samtebbs33.Util._
 import net.minecraft.nbt.NBTTagCompound
+import net.minecraft.util.ITickable
 
 /**
   * Created by samtebbs on 09/08/2016.
@@ -36,7 +36,7 @@ class TileEntityFormicarium extends MyrmecologyTileEntityContainer(BlockRegistry
 
   override def update(): Unit = {
     tracker.update
-    if(tracker.done) {
+    if (tracker.done) {
       tracker.reset
       forEachOccupiedSlot(slot ⇒ getStackInSlot(slot).getItemAs[ItemAnt].species.updateAI(this), SLOT_ANT_END)
     }

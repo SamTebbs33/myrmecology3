@@ -3,12 +3,9 @@ package com.github.samtebbs33.common.ant
 import java.util
 
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
-import com.github.samtebbs33.registry.AntTraitRegistry
 import net.minecraft.world.biome.Biome
-import net.minecraftforge.event.AttachCapabilitiesEvent.TileEntity
 
 import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
 import scala.collection.mutable
 
 /**
@@ -20,15 +17,18 @@ abstract class AntSpecies(val name: String, val primaryColour: Int, val secondar
   val traitMap = mutable.Map[AntTrait, Int]()
 
   def getTrait(antTrait: AntTrait) = traitMap.getOrElseUpdate(antTrait, antTrait.default)
+
   def getTraitBool(antTrait: AntTrait) = getTrait(antTrait) match {
     case x if x > 0 ⇒ true
     case _ ⇒ false
   }
+
   def setTrait(antTrait: AntTrait, int: Int) = traitMap.put(antTrait, int)
-  def setTrait(antTrait: AntTrait, boolean: Boolean) = traitMap.put(antTrait, if(boolean) 1 else 0)
+
+  def setTrait(antTrait: AntTrait, boolean: Boolean) = traitMap.put(antTrait, if (boolean) 1 else 0)
 
   def updateAI(formicarium: TileEntityFormicarium): Unit = {
-    for(ai : AntAI ← aiList) if(ai.shouldExecute(formicarium)) {
+    for (ai: AntAI ← aiList) if (ai.shouldExecute(formicarium)) {
       ai.execute(formicarium)
       return
     }

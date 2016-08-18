@@ -8,7 +8,7 @@ import net.minecraft.item.{Item, ItemStack}
 /**
   * Created by samtebbs on 30/07/2016.
   */
-abstract class MyrmecologyItem(name: String) extends Item with Named with Craftable{
+abstract class MyrmecologyItem(name: String) extends Item with Named with Craftable {
 
   setUnlocalizedName(unlocalisedName(0))
   ItemRegistry.items.add(this)

@@ -2,7 +2,7 @@ package com.github.samtebbs33.registry
 
 import java.util
 
-import com.github.samtebbs33.common.ant.{AntTrait}
+import com.github.samtebbs33.common.ant.AntTrait
 
 /**
   * Created by samtebbs on 02/08/2016.

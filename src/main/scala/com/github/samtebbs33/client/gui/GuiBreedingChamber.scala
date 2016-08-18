@@ -1,13 +1,9 @@
 package com.github.samtebbs33.client.gui
 
-import com.github.samtebbs33.Myrmecology
 import com.github.samtebbs33.common.container.ContainerBreedingChamber
 import com.github.samtebbs33.common.tileentity.TileEntityBreedingChamber
 import com.github.samtebbs33.registry.BlockRegistry
-import net.minecraft.client.gui.inventory.GuiContainer
-import net.minecraft.client.renderer.GlStateManager
 import net.minecraft.inventory.IInventory
-import net.minecraft.util.ResourceLocation
 
 /**
   * Created by samtebbs on 08/08/2016.

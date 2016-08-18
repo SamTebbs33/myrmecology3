@@ -1,6 +1,6 @@
 package com.github.samtebbs33.common.block
 
-import com.github.samtebbs33.common.{Craftable, CraftingRecipe, Named}
+import com.github.samtebbs33.common.{Craftable, Named}
 import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.block.Block
 import net.minecraft.block.material.Material

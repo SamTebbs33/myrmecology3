@@ -4,7 +4,6 @@ import com.github.samtebbs33.common.block._
 import net.minecraftforge.fml.common.registry.GameRegistry
 
 import scala.collection.JavaConversions._
-import scala.collection.mutable
 
 /**
   * Created by samtebbs on 02/08/2016.

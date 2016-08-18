@@ -18,17 +18,19 @@ class ProgressTracker(var targetTime: Int = Int.MaxValue) {
 
   def update = {
     ticks += 1
-    if(ticks >= TICKS_PER_SECOND) {
+    if (ticks >= TICKS_PER_SECOND) {
       progress += 1
       ticks = 0
     }
   }
 
   def done = progress >= targetTime
+
   def writeToNBT(compound: NBTTagCompound): NBTTagCompound = {
     compound.setInteger("progress", progress)
     compound
   }
+
   def readFromNBT(compound: NBTTagCompound) = progress = compound.getInteger("progress")
 
 }

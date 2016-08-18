@@ -1,7 +1,7 @@
 package com.github.samtebbs33.common.block
 
-import com.github.samtebbs33.common.{CraftingRecipe, GuiHandler}
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
+import com.github.samtebbs33.common.{CraftingRecipe, GuiHandler}
 import net.minecraft.block.material.Material
 import net.minecraft.init.{Blocks, Items}
 import net.minecraft.item.ItemStack

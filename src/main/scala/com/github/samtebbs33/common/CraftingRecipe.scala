@@ -4,8 +4,6 @@ import java.util
 
 import net.minecraft.item.ItemStack
 
-import scala.collection.mutable
-
 /**
   * Created by samtebbs on 13/08/2016.
   */

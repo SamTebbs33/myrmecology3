@@ -10,8 +10,9 @@ import scala.util.Random
 object Util {
 
   implicit class OptionUtil[T](opt: Option[T]) {
-    def ifDefined[A](f: (T) ⇒ A) = if(opt.isDefined) f.apply(opt.get)
-    def ifNotDefined[A](f: () ⇒ A) = if(opt.isEmpty) f.apply()
+    def ifDefined[A](f: (T) ⇒ A) = if (opt.isDefined) f.apply(opt.get)
+
+    def ifNotDefined[A](f: () ⇒ A) = if (opt.isEmpty) f.apply()
   }
 
   implicit class ItemStackUtil(stack: ItemStack) {

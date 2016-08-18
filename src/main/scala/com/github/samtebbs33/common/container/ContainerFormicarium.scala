@@ -11,7 +11,7 @@ import net.minecraft.inventory.{IInventory, Slot}
 class ContainerFormicarium(playerInv: IInventory, te: TileEntityFormicarium) extends MyrmecologyContainer(playerInv, te) {
   override def slots: util.List[Slot] = {
     val list = new util.LinkedList[Slot]
-    def addSlotGroup(baseX : Int, baseY : Int, baseID: Int): Unit = {
+    def addSlotGroup(baseX: Int, baseY: Int, baseID: Int): Unit = {
       var id = baseID
       Range(0, 3).foreach(y ⇒ Range(0, 3).foreach(x ⇒ {
         list.add(new Slot(te, id, baseX + 18 * x, baseY + 18 * y))
