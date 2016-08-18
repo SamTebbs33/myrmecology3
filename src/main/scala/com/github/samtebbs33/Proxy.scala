@@ -20,6 +20,7 @@ class Proxy {
     ItemRegistry.registerItems
     Registry.registerCreativeTab
     NetworkRegistry.INSTANCE.registerGuiHandler(Myrmecology, GuiHandler)
+    Registry.registerCraftingRecipes
   }
 
   def preInit(e: FMLPreInitializationEvent): Unit = {
