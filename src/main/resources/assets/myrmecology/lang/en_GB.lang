@@ -1,6 +1,7 @@
 // Ant Hills
 tile.myrmecology_ant_hill_plains.name=Plains Ant Hill
 tile.myrmecology_ant_hill_forest.name=Forest Ant Hill
+tile.myrmecology_ant_hill_desert.name=Desert Ant Hill
 
 // Other blocks
 tile.myrmecology_solarium.name=Solarium
@@ -20,6 +21,11 @@ item.myrmecology_ant_forest_drone.name=Forest Ant Drone
 item.myrmecology_ant_forest_queen.name=Forest Ant Queen
 item.myrmecology_ant_forest_larva.name=Forest Ant Larva
 item.myrmecology_ant_forest_worker.name=Forest Ant Worker
+
+item.myrmecology_ant_desert_drone.name=Desert Ant Drone
+item.myrmecology_ant_desert_queen.name=Desert Ant Queen
+item.myrmecology_ant_desert_larva.name=Desert Ant Larva
+item.myrmecology_ant_desert_worker.name=Desert Ant Worker
 
 // Creative Tabs
 itemgroup.myrmecology.name=Myrmecology

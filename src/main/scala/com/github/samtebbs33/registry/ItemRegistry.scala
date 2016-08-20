@@ -31,6 +31,7 @@ object ItemRegistry {
 
   final val antPlains = new ItemAnt(AntSpeciesRegistry.speciesPlains)
   final val antForest = new ItemAnt(AntSpeciesRegistry.speciesForest)
+  val antDesert = new ItemAnt(AntSpeciesRegistry.speciesDesert)
 
   def registerItems(): Unit = {
     items.foreach(registerItem)

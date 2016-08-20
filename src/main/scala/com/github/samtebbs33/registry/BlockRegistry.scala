@@ -22,6 +22,7 @@ object BlockRegistry {
 
   final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
   final val antHillForest = new BlockAntHill(Registry.FOREST, ItemRegistry.antForest)
+  val antHillDesert = new BlockAntHill(Registry.DESERT, ItemRegistry.antDesert)
 
   def registerTileEntities(): Unit = {
     blocks.foreach[Unit] {
