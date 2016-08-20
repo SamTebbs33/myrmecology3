@@ -19,8 +19,8 @@ abstract class AntSpecies(val name: String, val primaryColour: Int, val secondar
   def getTrait(antTrait: AntTrait) = traitMap.getOrElseUpdate(antTrait, antTrait.default)
 
   def getTraitBool(antTrait: AntTrait) = getTrait(antTrait) match {
-    case x if x > 0 ⇒ true
-    case _ ⇒ false
+    case 0 => false
+    case _ => true
   }
 
   def setTrait(antTrait: AntTrait, int: Int) = traitMap.put(antTrait, int)
