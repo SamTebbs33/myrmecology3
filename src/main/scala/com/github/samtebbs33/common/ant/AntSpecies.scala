@@ -11,7 +11,7 @@ import scala.collection.mutable
 /**
   * Created by samtebbs on 30/07/2016.
   */
-class AntSpecies(val name: String, val primaryColour: Int, val secondaryColour: Int, binomialName: String, val spawnMap: Map[Biome, Float] = Map()) {
+class AntSpecies(val name: String, val primaryColour: Int, val secondaryColour: Int, binomialName: String, val spawnChanceMap: Map[Biome, Float] = Map()) {
 
   val aiList = new util.ArrayList[AntAI]()
   val traitMap = mutable.Map[AntTrait, Int]()

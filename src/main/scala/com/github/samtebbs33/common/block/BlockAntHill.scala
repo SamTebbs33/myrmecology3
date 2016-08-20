@@ -38,7 +38,7 @@ class BlockAntHill(name: String, species: ItemAnt) extends MyrmecologyBlock(Mate
 
   override def canHarvestBlock(world: IBlockAccess, pos: BlockPos, player: EntityPlayer): Boolean = player.getHeldItemMainhand.getItem.isInstanceOf[ItemAntExtractor]
 
-  def generationChance(rand: java.util.Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkGenerator, chunkProvider: IChunkProvider, biome: Biome): Float = species.species.spawnMap.getOrElse(biome, 0)
+  def generationChance(rand: java.util.Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkGenerator, chunkProvider: IChunkProvider, biome: Biome): Float = species.species.spawnChanceMap.getOrElse(biome, 0)
 
   override def getDrops(world: IBlockAccess, pos: BlockPos, state: IBlockState, fortune: Int): util.List[ItemStack] = {
     val result = new util.LinkedList[ItemStack]()
