@@ -16,4 +16,4 @@ item.myrmecology_ant_plains_larva.name=Plains Ant Larva
 item.myrmecology_ant_plains_worker.name=Plains Ant Worker
 
 // Creative Tabs
-itemgroup.myrmecology.name=Myrmecology
+itemGroup.myrmecology=Myrmecology
