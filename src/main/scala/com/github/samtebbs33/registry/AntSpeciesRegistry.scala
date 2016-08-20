@@ -17,5 +17,6 @@ object AntSpeciesRegistry {
   val speciesDesert = new AntSpecies(Registry.DESERT, 0x898000, 0xeada00, "Antus Desertus", Map(Biomes.DESERT → 1f))
   val speciesSwamp = new AntSpecies(Registry.SWAMP, 0x210020, 0x4B0049, "Antus Swampus", Map(Biomes.SWAMPLAND → 1f))
   val speciesJungle = new AntSpecies(Registry.JUNGLE, 0x3D0000, 0x790000, "Formica Rufa", Map(Biomes.JUNGLE → 1f))
+  val speciesStone = new AntSpecies(Registry.STONE, 0x2B2B2B, 0x636363, "Formicidae Lapidus")
 
 }
