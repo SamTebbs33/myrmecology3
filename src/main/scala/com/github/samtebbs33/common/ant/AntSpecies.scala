@@ -2,6 +2,7 @@ package com.github.samtebbs33.common.ant
 
 import java.util
 
+import com.github.samtebbs33.common.ant.behaviour.AntBehaviour
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.world.biome.Biome
 
@@ -13,7 +14,7 @@ import scala.collection.mutable
   */
 class AntSpecies(val name: String, val primaryColour: Int, val secondaryColour: Int, binomialName: String, val spawnChanceMap: Map[Biome, Float] = Map()) {
 
-  val aiList = new util.ArrayList[AntAI]()
+  val aiList = new util.ArrayList[AntBehaviour]()
   val traitMap = mutable.Map[AntTrait, Int]()
 
   def getTrait(antTrait: AntTrait) = traitMap.getOrElseUpdate(antTrait, antTrait.default)
@@ -28,12 +29,12 @@ class AntSpecies(val name: String, val primaryColour: Int, val secondaryColour: 
   def setTrait(antTrait: AntTrait, boolean: Boolean) = traitMap.put(antTrait, if (boolean) 1 else 0)
 
   def updateAI(formicarium: TileEntityFormicarium): Unit = {
-    for (ai: AntAI ← aiList) if (ai.shouldExecute(formicarium)) {
+    for (ai: AntBehaviour ← aiList) if (ai.shouldExecute(formicarium)) {
       ai.execute(formicarium)
       return
     }
   }
 
-  def addAi(ai: AntAI) = aiList.add(ai)
+  def addAi(ai: AntBehaviour) = aiList.add(ai)
 
 }
