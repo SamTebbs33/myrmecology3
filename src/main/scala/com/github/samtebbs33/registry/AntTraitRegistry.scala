@@ -13,7 +13,7 @@ object AntTraitRegistry {
 
   val isWinged = new AntTrait("isWinged")
   val isNocturnal = new AntTrait("isNocturnal")
-  val incubationTime = new AntTrait("incubationTime")
-  val breedingTime = new AntTrait("breedingTime")
+  val incubationTime = new AntTrait("incubationTime", 10)
+  val breedingTime = new AntTrait("breedingTime", 10)
 
 }

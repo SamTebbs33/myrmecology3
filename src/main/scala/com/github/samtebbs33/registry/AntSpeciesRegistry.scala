@@ -11,8 +11,6 @@ import net.minecraft.init.Biomes
 object AntSpeciesRegistry {
   final val species: Set[AntSpecies] = new HashSet[AntSpecies]
 
-  final val speciesPlains = new AntSpecies(Registry.PLAINS, 0x162308, 0x406618, "Antus Fieldia", Map(Biomes.PLAINS → 1f)) {
-    setTrait(AntTraitRegistry.incubationTime, 10)
-    setTrait(AntTraitRegistry.breedingTime, 10)
-  }
+  final val speciesPlains = new AntSpecies(Registry.PLAINS, 0x162308, 0x406618, "Antus Fieldia", Map(Biomes.PLAINS → 1f))
+  final val speciesForest = new AntSpecies(Registry.FOREST, 0x020202, 0x333333, "Lasius Niger", Map(Biomes.FOREST → 1f))
 }

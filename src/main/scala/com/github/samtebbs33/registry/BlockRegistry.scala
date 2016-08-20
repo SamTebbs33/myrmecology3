@@ -21,6 +21,7 @@ object BlockRegistry {
   final val formicarium = new BlockFormicarium(NAME_FORMICARIUM)
 
   final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
+  final val antHillForest = new BlockAntHill(Registry.FOREST, ItemRegistry.antForest)
 
   def registerTileEntities(): Unit = {
     blocks.foreach[Unit] {

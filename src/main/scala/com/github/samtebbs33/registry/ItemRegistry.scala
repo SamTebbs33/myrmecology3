@@ -28,7 +28,9 @@ object ItemRegistry {
   final val ants = new HashSet[ItemAnt]()
 
   final val antExtractor = new ItemAntExtractor("ant_extractor")
+
   final val antPlains = new ItemAnt(AntSpeciesRegistry.speciesPlains)
+  final val antForest = new ItemAnt(AntSpeciesRegistry.speciesForest)
 
   def registerItems(): Unit = {
     items.foreach(registerItem)
