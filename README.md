@@ -8,7 +8,13 @@ This project uses
 * [Minecraft forge versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/)
 * [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
 
-Labels
+The 0.0.1-beta release is pending
+
+## Issue graph
+
+[![Throughput Graph](https://graphs.waffle.io/SamTebbs33/myrmecology3/throughput.svg)](https://waffle.io/SamTebbs33/myrmecology3/metrics/throughput)
+
+## Labels
 * **feature**: An idea whose implementation has been agreed upon and that does not build upon an existing feature.
 * **help wanted**: The assignee is unable to tend to this issue on their own or help from the community is desired.
 * **high priority**: This issue is critical for the entire project or a certain milestone.
