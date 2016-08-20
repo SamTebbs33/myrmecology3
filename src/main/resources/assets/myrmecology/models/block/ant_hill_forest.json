@@ -1,0 +1,8 @@
+{
+  "parent": "myrmecology:block/ant_hill",
+  "textures": {
+	"side": "myrmecology:blocks/ant_hill/forest",
+	"top": "myrmecology:blocks/ant_hill/forest_top",
+	"bottom": "myrmecology:blocks/ant_hill/forest_top"
+  }
+}
