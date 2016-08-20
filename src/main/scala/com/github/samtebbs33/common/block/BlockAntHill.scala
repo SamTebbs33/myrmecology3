@@ -20,7 +20,7 @@ import scala.util.Random
 /**
   * Created by samtebbs on 30/07/2016.
   */
-class BlockAntHill(name: String, species: ItemAnt) extends MyrmecologyBlock(Material.CACTUS, "ant_hill_" + name) {
+class BlockAntHill(name: String, ant: ItemAnt) extends MyrmecologyBlock(Material.CACTUS, "ant_hill_" + name) {
   BlockRegistry.antHills.add(this)
 
   def maxDroppedAnts = 4
@@ -38,14 +38,17 @@ class BlockAntHill(name: String, species: ItemAnt) extends MyrmecologyBlock(Mate
 
   override def canHarvestBlock(world: IBlockAccess, pos: BlockPos, player: EntityPlayer): Boolean = player.getHeldItemMainhand.getItem.isInstanceOf[ItemAntExtractor]
 
-  def generationChance(rand: java.util.Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkGenerator, chunkProvider: IChunkProvider, biome: Biome): Float = species.species.spawnMap.getOrElse(biome, 0)
+  def generationChance(rand: java.util.Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkGenerator, chunkProvider: IChunkProvider, biome: Biome): Float = ant.species.spawnChanceMap.isEmpty match {
+    case false ⇒ ant.species.spawnChanceMap.getOrElse(biome, 0)
+    case _ ⇒ 1f
+  }
 
   override def getDrops(world: IBlockAccess, pos: BlockPos, state: IBlockState, fortune: Int): util.List[ItemStack] = {
     val result = new util.LinkedList[ItemStack]()
     val maxSpawned = maxDroppedAnts
     val minSpawned = minDroppedAnts
     val numToSpawn = Random.nextInt(maxSpawned - minSpawned) + minSpawned
-    for (i <- 0 to numToSpawn) result.add(new ItemStack(species, 1, AntTypes.LARVA.id))
+    for (i <- 0 to numToSpawn) result.add(new ItemStack(ant, 1, AntTypes.LARVA.id))
     result
   }
 }
