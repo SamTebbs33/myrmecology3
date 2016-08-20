@@ -24,6 +24,7 @@ object Registry {
   val PLAINS = "plains"
   val FOREST = "forest"
   val DESERT = "desert"
+  val SWAMP = "swamp"
 
   private def makeCreativeTab(iconItem: Item) = new CreativeTabs(Myrmecology.MOD_ID) {
     @SideOnly(Side.CLIENT)
