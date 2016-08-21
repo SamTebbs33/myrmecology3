@@ -8,7 +8,7 @@ import java.util
 class AntBehaviourTree(name: String) {
 
   val children = new util.ArrayList[AntBehaviourTree]()
-  val behaviours = new util.ArrayList[AntBehaviour]()
+  val behaviour = new util.ArrayList[AntBehaviour]()
 
   def addChild(antBehaviourTree: AntBehaviourTree) = {
     children.add(antBehaviourTree)
@@ -16,7 +16,7 @@ class AntBehaviourTree(name: String) {
   }
 
   def addBehaviour(antAI: AntBehaviour) = {
-    behaviours.add(antAI)
+    behaviour.add(antAI)
     antAI
   }
 

@@ -14,7 +14,6 @@ import scala.collection.mutable
   */
 class AntSpecies(val name: String, val primaryColour: Int, val secondaryColour: Int, binomialName: String, val spawnChanceMap: Map[Biome, Float] = Map()) {
 
-  val aiList = new util.ArrayList[AntBehaviour]()
   val traitMap = mutable.Map[AntTrait, Int]()
 
   def getTrait(antTrait: AntTrait) = traitMap.getOrElseUpdate(antTrait, antTrait.default)
@@ -27,14 +26,5 @@ class AntSpecies(val name: String, val primaryColour: Int, val secondaryColour: 
   def setTrait(antTrait: AntTrait, int: Int) = traitMap.put(antTrait, int)
 
   def setTrait(antTrait: AntTrait, boolean: Boolean) = traitMap.put(antTrait, if (boolean) 1 else 0)
-
-  def updateAI(formicarium: TileEntityFormicarium): Unit = {
-    for (ai: AntBehaviour ← aiList) if (ai.shouldExecute(formicarium)) {
-      ai.execute(formicarium)
-      return
-    }
-  }
-
-  def addAi(ai: AntBehaviour) = aiList.add(ai)
 
 }

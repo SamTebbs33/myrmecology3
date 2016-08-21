@@ -1,8 +1,12 @@
 package com.github.samtebbs33.common.tileentity
 
+import java.util.function.Function
+import java.util.stream.Collectors
+
 import com.github.samtebbs33.Util._
 import com.github.samtebbs33.common.ProgressTracker
 import com.github.samtebbs33.common.ant.AntTypes
+import com.github.samtebbs33.common.ant.behaviour.AntBehaviour
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.entity.player.EntityPlayer
@@ -38,7 +42,9 @@ class TileEntityFormicarium extends MyrmecologyTileEntityContainer(BlockRegistry
     tracker.update
     if (tracker.done) {
       tracker.reset
-      forEachOccupiedSlot(slot ⇒ getStackInSlot(slot).getItemAs[ItemAnt].species.updateAI(this), SLOT_ANT_END)
+      // Group the ant stacks by their behaviour
+      val map = occupiedSlots(SLOT_ANT_END).map(getStackInSlot).groupBy(ItemAnt.getBehaviour)
+      map.foreach(entry ⇒ entry._1.ifDefined(behaviour ⇒ behaviour.execute(this, entry._2.map(stack ⇒ stack.stackSize).sum, entry._2)))
     }
   }
 

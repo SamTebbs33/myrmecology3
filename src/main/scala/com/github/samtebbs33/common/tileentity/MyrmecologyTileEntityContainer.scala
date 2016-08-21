@@ -95,9 +95,11 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
 
   def slotIsNotEmpty(i: Int) = !slotIsEmpty(i)
 
+  def occupiedSlots(max: Int = getSizeInventory) = Range(0, max).filter(slotIsNotEmpty)
+
   def forEachSlot[T](f: (Int) => T, max: Int = getSizeInventory) = Range(0, max).foreach(f)
 
-  def forEachOccupiedSlot[T](f: (Int) => T, max: Int = getSizeInventory) = Range(0, max).filter(slotIsNotEmpty).foreach(f)
+  def forEachOccupiedSlot[T](f: (Int) => T, max: Int = getSizeInventory) = occupiedSlots(max).foreach(f)
 
   override def readFromNBT(compound: NBTTagCompound): Unit = {
     super.readFromNBT(compound)
