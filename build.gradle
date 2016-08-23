@@ -38,17 +38,6 @@ minecraft {
     // makeObfSourceJar = false // an Srg named sources jar is made by default. uncomment this to disable.
 }
 
-repositories {
-    maven {
-        name = "ilexiconn"
-        url = "http://maven.ilexiconn.net"
-    }
-}
-
-dependencies {
-    compile "net.ilexiconn:llibrary:1.5.0-1.10.2"
-}
-
 processResources
 {
     // this will ensure that this task is redone when the versions change.
