@@ -3,7 +3,7 @@ package com.github.samtebbs33.common.item
 import java.util
 
 import com.github.samtebbs33.Myrmecology
-import com.github.samtebbs33.common.ant.behaviour.AntBehaviour
+import com.github.samtebbs33.common.ant.behaviour.Behaviour$
 import com.github.samtebbs33.common.ant.{AntSpecies, AntTypes}
 import com.github.samtebbs33.registry.ItemRegistry
 import net.minecraft.client.renderer.color.IItemColor
@@ -46,6 +46,6 @@ class ItemAnt(val species: AntSpecies) extends MyrmecologyItem("ant_" + species.
 
 object ItemAnt {
   def getBehaviour(itemStack: ItemStack) = itemStack.getItem match {
-    case _ : ItemAnt ⇒ AntBehaviour.getBehaviour(itemStack.getTagCompound.getString("Behaviour"))
+    case _ : ItemAnt ⇒ Behaviour.getBehaviour(itemStack.getTagCompound.getString("Behaviour"))
   }
 }

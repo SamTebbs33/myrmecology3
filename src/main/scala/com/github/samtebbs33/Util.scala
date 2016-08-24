@@ -36,22 +36,22 @@ object Util {
   }
 
   implicit class WorldUtil(world: World) {
-    def getBlocksInRadius(pos: BlockPos, radius: Vec3i): Set[IBlockState] = {
+    def getBlocksInRadius(pos: BlockPos, radius: Vec3i): Set[(BlockPos, IBlockState)] = {
       val posX = pos.getX
       val posY = pos.getY
       val posZ = pos.getZ
       val radiusX = radius.getX
       val radiusY = radius.getY
       val radiusZ = radius.getZ
-      val set = Set[IBlockState]()
+      val set = Set[(BlockPos, IBlockState)]()
       Range(posX - radiusX, posX + radiusX).foreach(x ⇒
         Range(posY - radiusY, posY + radiusY).foreach(y ⇒
-          Range(posZ - radiusZ, posZ + radiusZ).toStream.map(z ⇒ new BlockPos(x, y, z)).filter(!world.isAirBlock(_)).map(world.getBlockState).foreach(set.add)
+          Range(posZ - radiusZ, posZ + radiusZ).toStream.map(z ⇒ new BlockPos(x, y, z)).filter(!world.isAirBlock(_)).map(pos => (pos, world.getBlockState(pos))).foreach(set.add)
         )
       )
       set
     }
-    def getTypedBlocksInRadius[T](pos: BlockPos, radius: Vec3i) = getBlocksInRadius(pos, radius).filter(_.getBlock.isInstanceOf[T])
+    def getTypedBlocksInRadius[T](pos: BlockPos, radius: Vec3i) = getBlocksInRadius(pos, radius).filter(pair=> pair._2.getBlock.isInstanceOf[T])
   }
 
 }

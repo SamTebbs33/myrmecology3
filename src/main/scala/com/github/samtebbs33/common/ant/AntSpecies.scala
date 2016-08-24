@@ -2,7 +2,7 @@ package com.github.samtebbs33.common.ant
 
 import java.util
 
-import com.github.samtebbs33.common.ant.behaviour.AntBehaviour
+import com.github.samtebbs33.common.ant.behaviour.Behaviour$
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.world.biome.Biome
 
