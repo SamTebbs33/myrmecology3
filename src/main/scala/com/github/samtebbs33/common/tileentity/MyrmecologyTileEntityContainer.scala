@@ -33,6 +33,11 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
     stack
   }
 
+  def getStackSizeInSlot(slot: Int) = getStackInSlot(slot) match {
+    case null ⇒ 0
+    case stack ⇒ stack.stackSize
+  }
+
   def addStack(stack: ItemStack): Unit = {
     for (slot <- 0 to getSizeInventory) {
       if (isItemValidForSlot(slot, stack)) {
