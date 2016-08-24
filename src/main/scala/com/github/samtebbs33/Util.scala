@@ -52,7 +52,7 @@ object Util {
       )
       set
     }
-    def getTypedBlocksInRadius[T](pos: BlockPos, radius: Vec3i) = getBlocksInRadius(pos, radius).filter(_.getBlock.isInstanceOf[T])
+    def getTypedBlocksInRadius[T](pos: BlockPos, radius: Vec3i) = getBlocksInRadius(pos, radius).filter(_._2.getBlock.isInstanceOf[T])
   }
 
 }
