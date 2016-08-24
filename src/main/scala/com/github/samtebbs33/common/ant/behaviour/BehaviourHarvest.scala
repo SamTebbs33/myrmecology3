@@ -19,17 +19,17 @@ class BehaviourHarvest(name: String) extends Behaviour(name) {
   val harvesters = scala.collection.mutable.Map[Class[_ <: Block], HarvestChecker]()
 
   def metadataHarvester(state: IBlockState) = state.getBlock.asInstanceOf[BlockCrops].isMaxAge(state)
-  val blockHarvester: HarvestChecker = (state) => true
+  def blockHarvester(state: IBlockState) = true
 
-  addHarvester[BlockPumpkin](blockHarvester)
-  addHarvester[BlockMelon](blockHarvester)
-  addHarvester[BlockCrops](metadataHarvester)
+  addHarvester(blockHarvester, classOf[BlockPumpkin])
+  addHarvester(blockHarvester, classOf[BlockMelon])
+  addHarvester(metadataHarvester, classOf[BlockCrops])
 
-  def addHarvester[T <: Block](harvester: HarvestChecker) = harvesters.put(classOf[T], harvester)
+  def addHarvester(harvester: HarvestChecker, cls: Class[_ <: Block]) = harvesters.put(cls, harvester)
 
   def harvestCrop(block: IBlockState): Boolean = {
-    harvesters.get(block.getBlock.getClass) match {
-      case Some(harvester) => harvester.apply(block)
+    harvesters.find(pair => pair._1.isInstance(block.getBlock.getClass)) match {
+      case Some(pair) => pair._2.apply(block)
       case _ => false
     }
   }

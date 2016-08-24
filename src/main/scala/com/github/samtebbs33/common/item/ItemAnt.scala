@@ -3,7 +3,7 @@ package com.github.samtebbs33.common.item
 import java.util
 
 import com.github.samtebbs33.Myrmecology
-import com.github.samtebbs33.common.ant.behaviour.Behaviour$
+import com.github.samtebbs33.common.ant.behaviour.{Behaviour, Behaviour$}
 import com.github.samtebbs33.common.ant.{AntSpecies, AntTypes}
 import com.github.samtebbs33.registry.ItemRegistry
 import net.minecraft.client.renderer.color.IItemColor
