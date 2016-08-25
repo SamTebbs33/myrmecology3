@@ -5,6 +5,6 @@ import com.github.samtebbs33.registry.AntTraitRegistry
 /**
   * Created by samtebbs on 31/07/2016.
   */
-class AntTrait(name: String, val default: Int = 0) {
+class Trait(name: String, val default: Int = 0) {
   AntTraitRegistry.traits.add(this)
 }
