@@ -28,10 +28,7 @@ object Behaviour {
   val treeCrops = treeFood.addChild(new BehaviourTree("crops"))
   val treeAnimals = treeFood.addChild(new BehaviourTree("animals"))
 
-  val behaviourHarvestCrops = new BehaviourHarvest("harvest crops")
-  treeCrops.addBehaviour(behaviourHarvestCrops)
-  val behaviourPlantCrops = new BehaviourPlantCrops("plant crops")
-  treeCrops.addBehaviour(behaviourPlantCrops)
+  val behaviourHarvestCrops = treeCrops.addBehaviour(new BehaviourHarvest("harvest crops"))
   val behaviourPlantCrops = treeCrops.addBehaviour(new BehaviourPlantCrops("plant crops"))
 
   def getBehaviour(name: String) = behaviourMap.get(name)
