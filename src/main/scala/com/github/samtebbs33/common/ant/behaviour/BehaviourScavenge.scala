@@ -16,7 +16,8 @@ class BehaviourScavenge(name: String) extends Behaviour(name) {
 
   override def execute(formicarium: TileEntityFormicarium, numAnts: Int, stacks: Seq[ItemStack]): Unit = {
     val pos = formicarium.getPos
-    val items = formicarium.getWorld.getEntitiesWithinAABB(classOf[EntityItem], new AxisAlignedBB(pos.getX - radius.getX,
+    val items = formicarium.getWorld.getEntitiesWithinAABB(classOf[EntityItem], new AxisAlignedBB(
+      pos.getX - radius.getX,
       pos.getY - radius.getY,
       pos.getZ - radius.getZ,
       pos.getX + radius.getX,
@@ -24,11 +25,13 @@ class BehaviourScavenge(name: String) extends Behaviour(name) {
       pos.getZ + radius.getZ
     ))
     var i = 0
-    items.map(entity => (entity, entity.getEntityItem)).filter(pair => formicarium.canHoldStack(pair._2)).takeWhile(_ => i < numAnts).foreach(pair => {
-      formicarium.addStack(pair._2)
-      pair._1.setDead()
-      i += 1
-    })
+    items.map(entity => (entity, entity.getEntityItem))
+      .filter(pair => formicarium.canHoldStack(pair._2))
+      .takeWhile(_ => i < numAnts).foreach(pair => {
+        formicarium.addStack(pair._2)
+        pair._1.setDead()
+        i += 1
+      })
   }
 
 }
