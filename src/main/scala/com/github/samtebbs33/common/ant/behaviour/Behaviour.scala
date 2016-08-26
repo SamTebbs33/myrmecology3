@@ -1,11 +1,7 @@
 package com.github.samtebbs33.common.ant.behaviour
 
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
-import com.github.samtebbs33.Util._
-import net.minecraft.block.state.IBlockState
-import net.minecraft.block._
-import net.minecraft.item.ItemStack
-import net.minecraft.util.math.Vec3i
+import net.minecraft.item.{ItemHoe, ItemStack}
 
 /**
   * Created by samtebbs on 09/08/2016.
@@ -30,6 +26,7 @@ object Behaviour {
 
   val behaviourHarvestCrops = treeCrops.addBehaviour(new BehaviourHarvest("harvest crops"))
   val behaviourPlantCrops = treeCrops.addBehaviour(new BehaviourPlantCrops("plant crops"))
+  val behaviourGrowCrops = treeCrops.addBehaviour(new BehaviourGrowCrops("grow crops"))
 
   def getBehaviour(name: String) = behaviourMap.get(name)
 
