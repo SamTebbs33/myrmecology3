@@ -47,7 +47,7 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
           val temp = stack.copy()
           stack.stackSize -= getInventoryStackLimit
           setInventorySlotContents(slot, temp)
-        } else if (slotStack.getItem == stack.getItem && slotStack.getMetadata == stack.getMetadata) {
+        } else if (slotStack.isItemEqual(stack)) {
           val remaining = Math.min(getInventoryStackLimit - slotStack.stackSize, stack.stackSize)
           stack.stackSize -= remaining
           slotStack.stackSize += remaining
@@ -58,12 +58,12 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
 
   def canHoldStack(stack: ItemStack): Boolean = {
     var stackSize = stack.stackSize
-    for (slot <- 0 to getSizeInventory) {
+    for (slot <- 0 until getSizeInventory) {
       if (isItemValidForSlot(slot, stack)) {
         if (stackSize <= 0) return true
         val slotStack = getStackInSlot(slot)
-        if (slotStack == null && isItemValidForSlot(slot, stack)) stackSize -= getInventoryStackLimit
-        else if (slotStack.getItem == stack.getItem && slotStack.getMetadata == stack.getMetadata) stackSize -= getInventoryStackLimit - slotStack.stackSize
+        if (slotStack == null) stackSize -= getInventoryStackLimit
+        else if (slotStack.isItemEqual(stack)) stackSize -= getInventoryStackLimit - slotStack.stackSize
       }
     }
     stackSize <= 0
