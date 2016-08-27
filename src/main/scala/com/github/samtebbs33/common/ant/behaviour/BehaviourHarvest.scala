@@ -16,18 +16,17 @@ class BehaviourHarvest(name: String) extends Behaviour(name) {
   type HarvestChecker = (IBlockState) => Boolean
 
   val radius = new Vec3i(5, 5, 5)
-  val harvesters = scala.collection.mutable.Map[Class[_ <: Block], HarvestChecker]()
 
   def metadataHarvester(state: IBlockState) = state.getBlock.asInstanceOf[BlockCrops].isMaxAge(state)
   def blockHarvester(state: IBlockState) = true
 
-  addHarvester(blockHarvester, classOf[BlockPumpkin])
-  addHarvester(blockHarvester, classOf[BlockMelon])
-  addHarvester(metadataHarvester, classOf[BlockCrops])
+  val harvesters = Map[Class[_ <: Block], HarvestChecker](
+    classOf[BlockCrops] -> metadataHarvester,
+    classOf[BlockMelon] -> blockHarvester,
+    classOf[BlockPumpkin] -> blockHarvester
+  )
 
-  def addHarvester(harvester: HarvestChecker, cls: Class[_ <: Block]) = harvesters.put(cls, harvester)
-
-  def harvestCrop(block: IBlockState): Boolean = {
+  def canHarvestCrop(block: IBlockState): Boolean = {
     harvesters.find(pair => pair._1.isInstance(block.getBlock.getClass)) match {
       case Some(pair) => pair._2.apply(block)
       case _ => false
@@ -38,7 +37,7 @@ class BehaviourHarvest(name: String) extends Behaviour(name) {
     val world = formicarium.getWorld
     val crops = world.getTypedBlocksInRadius[IGrowable](formicarium.getPos, radius)
     var i = 0
-    crops.takeWhile(_ => i < numAnts).foreach(pair => if(harvestCrop(pair._2)) {
+    crops.takeWhile(_ => i < numAnts).filter(pair => canHarvestCrop(pair._2)).foreach(pair => {
       world.destroyBlock(pair._1, true)
       i += 1
     })

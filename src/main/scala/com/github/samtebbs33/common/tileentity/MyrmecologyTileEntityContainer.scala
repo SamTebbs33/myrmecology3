@@ -82,6 +82,11 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
     if (inBounds(index)) inventory(index).orNull
     else null
 
+  def getStackSize(slot: Int) = getStackInSlot(slot) match {
+    case null => 0
+    case stack => stack.stackSize
+  }
+
   override def removeStackFromSlot(index: Int): ItemStack = {
     val temp = getStackInSlot(index)
     setInventorySlotContents(index, null)
