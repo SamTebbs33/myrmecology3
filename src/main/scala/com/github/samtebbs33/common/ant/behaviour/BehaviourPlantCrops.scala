@@ -5,6 +5,7 @@ import net.minecraft.block.{BlockCrops, BlockMelon}
 import net.minecraft.init.{Blocks, Items}
 import net.minecraft.item.{ItemSeeds, ItemStack}
 import net.minecraft.util.math.Vec3i
+import net.minecraftforge.common.IPlantable
 import net.minecraftforge.oredict.OreDictionary
 
 /**
