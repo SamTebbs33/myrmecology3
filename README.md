@@ -4,6 +4,8 @@
 [![Stories in Ready](https://badge.waffle.io/SamTebbs33/myrmecology3.png?label=ready&title=Ready)](https://waffle.io/SamTebbs33/myrmecology3)
 ![Repo size](https://reposs.herokuapp.com/?path=SamTebbs33/myrmecology3)
 
+![Banner](img/banner.png)
+
 This project uses
 * [Minecraft forge versioning](https://mcforge.readthedocs.io/en/latest/conventions/versioning/)
 * [GitFlow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow)
