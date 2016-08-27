@@ -26,14 +26,16 @@ class BehaviourGrowCrops(name: String) extends Behaviour(name) {
     // Filter crops by those that can grow
     val cropFilter = (tuple: (BlockPos, IBlockState, IGrowable)) => tuple._3.canGrow(world, tuple._1, tuple._2, world.isRemote)
     // Loops over each crop, filtered by those that can be grown
-    val cropLoop = (slot: Int) => crops.takeWhile(_ => i < numAnts && formicarium.getStackSize(slot) > 0)
+    val cropLoop = (slot: Int) => crops
       .map(pair => (pair._1, pair._2, pair._2.getBlock.asInstanceOf[IGrowable]))
       .filter(cropFilter).foreach(tuple => {
-        // Grow the crop
-        tuple._3.grow(world, rand, tuple._1, tuple._2)
-        // Remove one bonemeal
-        formicarium.decrStackSize(slot, 1)
-        i += 1
+        if(i < numAnts && formicarium.getStackSize(slot) > 0) {
+          // Grow the crop
+          tuple._3.grow(world, rand, tuple._1, tuple._2)
+          // Remove one bonemeal
+          formicarium.decrStackSize(slot, 1)
+          i += 1
+        }
       })
     bonemealSlots.takeWhile(_ => i < numAnts).foreach(cropLoop)
   }

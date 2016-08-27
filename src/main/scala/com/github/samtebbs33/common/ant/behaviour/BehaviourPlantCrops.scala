@@ -24,12 +24,12 @@ class BehaviourPlantCrops(name: String) extends Behaviour(name) {
       .foreach(pair => {
         val slot = pair._1
         val plantable = pair._2
-        world.getBlocksInRadius(formicarium.getPos, radius).takeWhile(_ => i < numAnts && formicarium.getStackSize(slot) > 0)
+        world.getBlocksInRadius(formicarium.getPos, radius)
           .foreach(pair => {
             val pos = pair._1.up()
             val plant = plantable.getPlant(world, pos)
             val block = plant.getBlock
-            if(block.canPlaceBlockAt(world, pos)) {
+            if(i < numAnts && formicarium.getStackSize(slot) > 0 && block.canPlaceBlockAt(world, pos)) {
               world.setBlockState(pos, plant)
               formicarium.decrStackSize(slot, 1)
               i += 1
