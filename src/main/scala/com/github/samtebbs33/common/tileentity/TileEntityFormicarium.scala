@@ -6,7 +6,7 @@ import java.util.stream.Collectors
 import com.github.samtebbs33.Util._
 import com.github.samtebbs33.common.ProgressTracker
 import com.github.samtebbs33.common.ant.AntTypes
-import com.github.samtebbs33.common.ant.behaviour.Behaviour$
+import com.github.samtebbs33.common.ant.behaviour.{Behaviour, Behaviour$}
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.entity.player.EntityPlayer
@@ -41,7 +41,7 @@ class TileEntityFormicarium extends MyrmecologyTileEntityContainer(BlockRegistry
   override def update(): Unit = {
     tracker.update
     if (tracker.done) {
-      if(!worldObj.isRemote) AntBehaviour.behaviourHarvestCrops.execute(this, 3, null)
+      if(!worldObj.isRemote) Behaviour.behaviourHarvestCrops.execute(this, 3, null)
       tracker.reset
       // Group the ant stacks by their behaviour
       val map = occupiedSlots(SLOT_ANT_END).map(getStackInSlot).groupBy(ItemAnt.getBehaviour)

@@ -42,7 +42,6 @@ object Util {
       getBlockPositions(pos, radius).filter(!world.isAirBlock(_)).map(pos ⇒ (pos, world.getBlockState(pos))).foreach(set.add)
       set
     }
-    def getTypedBlocksInRadius[T](pos: BlockPos, radius: Vec3i) = getBlocksInRadius(pos, radius).filter(_._2.getBlock.isInstanceOf[T])
     def getBlockPositions(pos: BlockPos, radius: Vec3i) = {
       val posX = pos.getX
       val posY = pos.getY

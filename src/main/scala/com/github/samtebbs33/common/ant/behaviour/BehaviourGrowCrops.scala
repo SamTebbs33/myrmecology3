@@ -19,7 +19,7 @@ class BehaviourGrowCrops(name: String) extends Behaviour(name) {
 
   override def execute(formicarium: TileEntityFormicarium, numAnts: Int, stacks: Seq[ItemStack]): Unit = {
     val world = formicarium.getWorld
-    val crops = world.getTypedBlocksInRadius[IGrowable](formicarium.getPos, radius)
+    val crops = world.getBlocksInRadius(formicarium.getPos, radius).filter(pair ⇒ pair._2.getBlock.isInstanceOf[IGrowable])
     var i = 0
     val bonemealSlots = formicarium.occupiedSlots().map(slot => (slot, formicarium.getStackInSlot(slot))).filter(pair => pair._2.isItemEqual(bonemeal)).map(_._1)
     val rand = new Random()

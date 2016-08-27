@@ -27,7 +27,7 @@ class BehaviourHarvest(name: String) extends Behaviour(name) {
   )
 
   def canHarvestCrop(block: IBlockState): Boolean = {
-    harvesters.find(pair => pair._1.isInstance(block.getBlock.getClass)) match {
+    harvesters.find(pair => pair._1.isInstance(block.getBlock)) match {
       case Some(pair) => pair._2.apply(block)
       case _ => false
     }
@@ -35,8 +35,9 @@ class BehaviourHarvest(name: String) extends Behaviour(name) {
 
   override def execute(formicarium: TileEntityFormicarium, numAnts: Int, stacks: Seq[ItemStack]): Unit = {
     val world = formicarium.getWorld
-    val crops = world.getTypedBlocksInRadius[IGrowable](formicarium.getPos, radius)
+    val crops = world.getBlocksInRadius(formicarium.getPos, radius).filter(pair ⇒ pair._2.getBlock.isInstanceOf[IGrowable])
     var i = 0
+    println(crops.find(pair ⇒ !pair._2.getBlock.isInstanceOf[IGrowable]))
     crops.takeWhile(_ => i < numAnts).filter(pair => canHarvestCrop(pair._2)).foreach(pair => {
       world.destroyBlock(pair._1, true)
       i += 1
