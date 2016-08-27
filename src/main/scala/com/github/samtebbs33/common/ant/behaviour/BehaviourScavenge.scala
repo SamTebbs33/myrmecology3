@@ -26,8 +26,9 @@ class BehaviourScavenge(name: String) extends Behaviour(name) {
     ))
     var i = 0
     items.map(entity => (entity, entity.getEntityItem))
+      .takeWhile(_ => i < numAnts)
       .filter(pair => formicarium.canHoldStack(pair._2))
-      .takeWhile(_ => i < numAnts).foreach(pair => {
+      .foreach(pair => {
         formicarium.addStack(pair._2)
         pair._1.setDead()
         i += 1
