@@ -4,7 +4,7 @@ import java.util.HashSet
 import java.util.function.Predicate
 
 import com.github.samtebbs33.Myrmecology
-import com.github.samtebbs33.common.ant.AntSpecies
+import com.github.samtebbs33.common.ant.Species
 import com.github.samtebbs33.common.block.MyrmecologyBlock
 import com.github.samtebbs33.common.item.{ItemAnt, ItemAntExtractor, MyrmecologyItem}
 import net.minecraft.item.ItemBlock
@@ -17,7 +17,7 @@ import scala.collection.JavaConversions._
   */
 object ItemRegistry {
 
-  def getAnt(species: AntSpecies): Option[ItemAnt] = {
+  def getAnt(species: Species): Option[ItemAnt] = {
     val i = ItemRegistry.ants.stream().filter(new Predicate[ItemAnt] {
       override def test(t: ItemAnt): Boolean = t.species == species
     }).findFirst()

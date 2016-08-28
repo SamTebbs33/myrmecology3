@@ -3,7 +3,8 @@ package com.github.samtebbs33.common.item
 import java.util
 
 import com.github.samtebbs33.Myrmecology
-import com.github.samtebbs33.common.ant.{AntSpecies, AntTypes}
+import com.github.samtebbs33.common.ant.behaviour.Behaviour
+import com.github.samtebbs33.common.ant.{AntTypes, Species}
 import com.github.samtebbs33.registry.ItemRegistry
 import net.minecraft.client.renderer.color.IItemColor
 import net.minecraft.creativetab.CreativeTabs
@@ -12,7 +13,7 @@ import net.minecraft.item.{Item, ItemStack}
 /**
   * Created by samtebbs on 31/07/2016.
   */
-class ItemAnt(val species: AntSpecies) extends MyrmecologyItem("ant_" + species.name) {
+class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.name) {
 
   setHasSubtypes(true)
   ItemRegistry.ants.add(this)
@@ -32,12 +33,18 @@ class ItemAnt(val species: AntSpecies) extends MyrmecologyItem("ant_" + species.
 
   override def usesColourHandler: Boolean = true
 
-  override def getColourHandler: IItemColor = new IItemColor {
+  override def getColourHandler = Some(new IItemColor {
     override def getColorFromItemstack(stack: ItemStack, tintIndex: Int): Int = {
       tintIndex match {
         case 0 => species.primaryColour
         case _ => species.secondaryColour
       }
     }
+  })
+}
+
+object ItemAnt {
+  def getBehaviour(itemStack: ItemStack) = itemStack.getItem match {
+    case _: ItemAnt ⇒ Behaviour.getBehaviour(itemStack.getTagCompound.getString("Behaviour"))
   }
 }

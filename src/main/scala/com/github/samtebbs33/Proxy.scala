@@ -2,7 +2,7 @@ package com.github.samtebbs33
 
 import com.github.samtebbs33.common.GuiHandler
 import com.github.samtebbs33.common.worldgen.WorldGen
-import com.github.samtebbs33.registry.{BlockRegistry, ItemRegistry, Registry}
+import com.github.samtebbs33.registry.{BlockRegistry, ItemRegistry, OreDictRegistry, Registry}
 import net.minecraft.item.Item
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
 import net.minecraftforge.fml.common.network.NetworkRegistry
@@ -28,6 +28,8 @@ class Proxy {
     GameRegistry.registerWorldGenerator(new WorldGen, 10)
   }
 
-  def postInit(e: FMLPostInitializationEvent): Unit = {}
+  def postInit(e: FMLPostInitializationEvent): Unit = {
+    OreDictRegistry.registerBlock("crop")
+  }
 
 }

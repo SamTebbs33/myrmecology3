@@ -33,6 +33,11 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
     stack
   }
 
+  def getStackSizeInSlot(slot: Int) = getStackInSlot(slot) match {
+    case null ⇒ 0
+    case stack ⇒ stack.stackSize
+  }
+
   def addStack(stack: ItemStack): Unit = {
     for (slot <- 0 to getSizeInventory) {
       if (isItemValidForSlot(slot, stack)) {
@@ -100,9 +105,11 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
 
   def slotIsNotEmpty(i: Int) = !slotIsEmpty(i)
 
+  def occupiedSlots(max: Int = getSizeInventory) = Range(0, max).filter(slotIsNotEmpty)
+
   def forEachSlot[T](f: (Int) => T, max: Int = getSizeInventory) = Range(0, max).foreach(f)
 
-  def forEachOccupiedSlot[T](f: (Int) => T, max: Int = getSizeInventory) = Range(0, max).filter(slotIsNotEmpty).foreach(f)
+  def forEachOccupiedSlot[T](f: (Int) => T, max: Int = getSizeInventory) = occupiedSlots(max).foreach(f)
 
   override def readFromNBT(compound: NBTTagCompound): Unit = {
     super.readFromNBT(compound)
