@@ -16,10 +16,12 @@ object Util {
   implicit class OptionUtil[T](opt: Option[T]) {
     def ifDefined[A](f: (T) ⇒ A): Unit = opt match {
       case Some(foo) ⇒ f(foo)
+      case None ⇒
     }
 
     def ifNotDefined[A](f: () ⇒ A): Unit = opt match {
       case None ⇒ f()
+      case _ ⇒
     }
   }
 
