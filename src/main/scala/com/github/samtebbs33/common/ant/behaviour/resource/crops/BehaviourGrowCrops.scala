@@ -1,4 +1,4 @@
-package com.github.samtebbs33.common.ant.behaviour.resource
+package com.github.samtebbs33.common.ant.behaviour.resource.crops
 
 import java.util.Random
 
