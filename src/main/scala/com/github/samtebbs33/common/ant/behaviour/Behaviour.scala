@@ -1,7 +1,7 @@
 package com.github.samtebbs33.common.ant.behaviour
 
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
-import net.minecraft.item.{ItemHoe, ItemStack}
+import net.minecraft.item.ItemStack
 
 /**
   * Created by samtebbs on 09/08/2016.

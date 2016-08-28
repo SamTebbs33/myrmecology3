@@ -1,6 +1,5 @@
 package com.github.samtebbs33.registry
 
-import java.util
 import java.util.{HashSet, Set}
 
 import com.github.samtebbs33.common.ant.Species

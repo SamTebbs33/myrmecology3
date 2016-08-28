@@ -1,17 +1,12 @@
 package com.github.samtebbs33
 
-import java.util
-import java.util.stream.{Collectors, SliceOps}
-
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.math.{AxisAlignedBB, BlockPos, Vec3i}
 import net.minecraft.world.World
 
-import scala.util.Random
-import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
 import scala.collection.mutable
+import scala.util.Random
 
 /**
   * Created by samtebbs on 09/08/2016.
@@ -42,6 +37,7 @@ object Util {
       getBlockPositions(pos, radius).filter(!world.isAirBlock(_)).map(pos ⇒ (pos, world.getBlockState(pos))).foreach(set.add)
       set
     }
+
     def getBlockPositions(pos: BlockPos, radius: Vec3i) = {
       val posX = pos.getX
       val posY = pos.getY
@@ -54,7 +50,7 @@ object Util {
       set
     }
   }
-  
+
   implicit class Vec3iUtil(vec: Vec3i) {
     def toAABB(radius: Vec3i) = new AxisAlignedBB(vec.getX - radius.getX,
       vec.getY - radius.getY,

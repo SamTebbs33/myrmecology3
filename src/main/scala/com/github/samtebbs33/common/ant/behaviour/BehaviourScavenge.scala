@@ -1,12 +1,12 @@
 package com.github.samtebbs33.common.ant.behaviour
+
+import com.github.samtebbs33.Util._
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.item.ItemStack
-import net.minecraft.util.math.{AxisAlignedBB, Vec3i}
-import com.github.samtebbs33.Util._
+import net.minecraft.util.math.Vec3i
 
 import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
 
 /**
   * Created by samuelt on 26/08/2016.
@@ -22,7 +22,7 @@ class BehaviourScavenge(name: String) extends Behaviour(name) {
     items.map(entity => (entity, entity.getEntityItem))
       .filter(pair => formicarium.canHoldStack(pair._2))
       .foreach(pair => {
-        if(i < numAnts) {
+        if (i < numAnts) {
           formicarium.addStack(pair._2)
           pair._1.setDead()
           i += 1

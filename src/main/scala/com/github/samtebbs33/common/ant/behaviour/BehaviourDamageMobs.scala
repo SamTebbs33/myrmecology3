@@ -1,14 +1,12 @@
 package com.github.samtebbs33.common.ant.behaviour
+
+import com.github.samtebbs33.Util._
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.entity.monster.EntityMob
 import net.minecraft.item.ItemStack
-import com.github.samtebbs33.Util._
-import net.minecraft.init.{MobEffects, PotionTypes}
-import net.minecraft.potion.{Potion, PotionEffect, PotionUtils}
 import net.minecraft.util.DamageSource
 import net.minecraft.util.math.Vec3i
 
-import scala.collection.JavaConverters._
 import scala.collection.JavaConversions._
 
 /**
@@ -25,10 +23,10 @@ class BehaviourDamageMobs(name: String) extends Behaviour(name) {
     var i = 0
     val mobs = world.getEntitiesWithinAABB(classOf[EntityMob], formicarium.getPos.toVec3i.toAABB(radius))
     mobs.foreach(mob ⇒ {
-        if(i < numAnts) {
-          mob.attackEntityFrom(damageSource, 2)
-          i += 1
-        }
+      if (i < numAnts) {
+        mob.attackEntityFrom(damageSource, 2)
+        i += 1
+      }
     })
   }
 }

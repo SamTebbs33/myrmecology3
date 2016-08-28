@@ -1,12 +1,9 @@
 package com.github.samtebbs33.common.tileentity
 
-import java.util.function.Function
-import java.util.stream.Collectors
-
 import com.github.samtebbs33.Util._
 import com.github.samtebbs33.common.ProgressTracker
 import com.github.samtebbs33.common.ant.AntTypes
-import com.github.samtebbs33.common.ant.behaviour.{Behaviour, Behaviour$}
+import com.github.samtebbs33.common.ant.behaviour.Behaviour
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.entity.player.EntityPlayer

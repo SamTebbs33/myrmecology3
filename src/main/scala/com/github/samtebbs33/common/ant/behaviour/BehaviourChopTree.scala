@@ -1,6 +1,7 @@
 package com.github.samtebbs33.common.ant.behaviour
-import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
+
 import com.github.samtebbs33.Util._
+import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.block.BlockLog
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack

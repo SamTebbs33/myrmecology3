@@ -4,9 +4,8 @@ import net.minecraft.block.Block
 import net.minecraft.item.ItemBlock
 import net.minecraftforge.oredict.OreDictionary
 
-import scala.collection.mutable
 import scala.collection.JavaConversions._
-import scala.collection.JavaConverters._
+import scala.collection.mutable
 
 /**
   * Created by samtebbs on 24/08/2016.

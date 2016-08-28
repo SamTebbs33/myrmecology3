@@ -1,6 +1,7 @@
 package com.github.samtebbs33.common.ant.behaviour
-import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
+
 import com.github.samtebbs33.Util._
+import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.block.BlockOre
 import net.minecraft.item.ItemStack
 import net.minecraft.util.math.Vec3i
@@ -20,7 +21,7 @@ class BehaviourMine(name: String) extends Behaviour(name) {
       .filter(pair ⇒ pair._2.getBlock.getHarvestLevel(pair._2) < 2)
       .map(pair ⇒ (pair._1, pair._2.getBlock.asInstanceOf[BlockOre]))
       .foreach(pair ⇒ {
-        if(i < numAnts) {
+        if (i < numAnts) {
           world.destroyBlock(pair._1, true)
           i += 1
         }

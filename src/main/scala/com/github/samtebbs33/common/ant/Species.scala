@@ -1,12 +1,8 @@
 package com.github.samtebbs33.common.ant
 
-import java.util
-
-import com.github.samtebbs33.common.ant.behaviour.{Behaviour$, BehaviourTree}
-import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
+import com.github.samtebbs33.common.ant.behaviour.BehaviourTree
 import net.minecraft.world.biome.Biome
 
-import scala.collection.JavaConversions._
 import scala.collection.mutable
 
 /**

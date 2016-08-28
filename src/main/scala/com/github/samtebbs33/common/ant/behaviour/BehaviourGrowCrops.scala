@@ -1,14 +1,14 @@
 package com.github.samtebbs33.common.ant.behaviour
+
 import java.util.Random
 
-import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import com.github.samtebbs33.Util._
-import net.minecraft.block.{BlockCrops, BlockGrass, BlockStem, IGrowable}
+import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.block.state.IBlockState
+import net.minecraft.block.{BlockGrass, IGrowable}
 import net.minecraft.init.Items
 import net.minecraft.item.ItemStack
 import net.minecraft.util.math.{BlockPos, Vec3i}
-import net.minecraft.world.World
 
 /**
   * Created by samuelt on 25/08/2016.
@@ -29,14 +29,14 @@ class BehaviourGrowCrops(name: String) extends Behaviour(name) {
     val cropLoop = (slot: Int) => crops
       .map(pair => (pair._1, pair._2, pair._2.getBlock.asInstanceOf[IGrowable]))
       .filter(cropFilter).foreach(tuple => {
-        if(i < numAnts && formicarium.getStackSize(slot) > 0) {
-          // Grow the crop
-          tuple._3.grow(world, rand, tuple._1, tuple._2)
-          // Remove one bonemeal
-          formicarium.decrStackSize(slot, 1)
-          i += 1
-        }
-      })
+      if (i < numAnts && formicarium.getStackSize(slot) > 0) {
+        // Grow the crop
+        tuple._3.grow(world, rand, tuple._1, tuple._2)
+        // Remove one bonemeal
+        formicarium.decrStackSize(slot, 1)
+        i += 1
+      }
+    })
     bonemealSlots.takeWhile(_ => i < numAnts).foreach(cropLoop)
   }
 
