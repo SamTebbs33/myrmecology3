@@ -33,14 +33,14 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
 
   override def usesColourHandler: Boolean = true
 
-  override def getColourHandler: IItemColor = new IItemColor {
+  override def getColourHandler = Some(new IItemColor {
     override def getColorFromItemstack(stack: ItemStack, tintIndex: Int): Int = {
       tintIndex match {
         case 0 => species.primaryColour
         case _ => species.secondaryColour
       }
     }
-  }
+  })
 }
 
 object ItemAnt {

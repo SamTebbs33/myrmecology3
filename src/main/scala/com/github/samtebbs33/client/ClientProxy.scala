@@ -20,7 +20,9 @@ class ClientProxy extends Proxy {
   override def init(e: FMLInitializationEvent): Unit = {
     super.init(e)
     val itemColours = Minecraft.getMinecraft.getItemColors
-    ItemRegistry.items.foreach(item => if (item.usesColourHandler) itemColours.registerItemColorHandler(item.getColourHandler, item))
+    ItemRegistry.items.foreach(item => item.getColourHandler match {
+      case Some(handler) ⇒ itemColours.registerItemColorHandler(handler, item)
+    })
   }
 
   override def registerModel(item: Item): Unit = {
