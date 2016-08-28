@@ -17,7 +17,7 @@ abstract class MyrmecologyItem(name: String) extends Item with Named with Crafta
 
   def usesColourHandler: Boolean = false
 
-  def getColourHandler: IItemColor = null
+  def getColourHandler: Option[IItemColor] = None
 
   override def getUnlocalizedName(stack: ItemStack): String = getUnlocalizedName
 
