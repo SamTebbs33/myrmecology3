@@ -2,6 +2,8 @@ package com.github.samtebbs33.common.block
 
 import java.util
 
+import com.github.samtebbs33.common.AntEvent
+import com.github.samtebbs33.common.AntEvent.AntHillExtractionEvent
 import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.{ItemAnt, ItemAntExtractor}
 import com.github.samtebbs33.registry.BlockRegistry
@@ -26,6 +28,8 @@ class BlockAntHill(name: String, ant: ItemAnt) extends MyrmecologyBlock(Material
   def maxDroppedAnts = 4
 
   def minDroppedAnts = 1
+
+  override def onBlockHarvested(worldIn: World, pos: BlockPos, state: IBlockState, player: EntityPlayer): Unit = AntEvent.dispatch(new AntHillExtractionEvent(pos, player, player.getHeldItemMainhand))
 
   def generate(random: java.util.Random, chunkX: Int, chunkZ: Int, world: World, chunkGenerator: IChunkGenerator, chunkProvider: IChunkProvider, biome: Biome): Unit = {
     val randX = chunkX * 16 + random.nextInt(16)
