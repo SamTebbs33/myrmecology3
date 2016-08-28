@@ -16,7 +16,13 @@ object AntEvent {
   class AntMatureEvent(val result: ItemStack, val solarium: TileEntitySolarium) extends AntEvent
   class AntHillExtractionEvent(val pos: BlockPos, val player: EntityPlayer, val extractor: ItemStack) extends AntEvent
 
-  def dispatch(event: AntEvent) = MinecraftForge.EVENT_BUS.post(event)
+  def dispatch(event: AntEvent, canceled: () ⇒ Unit = () ⇒ (), notCanceled: () ⇒ Unit = () ⇒ ()) = {
+    MinecraftForge.EVENT_BUS.post(event)
+    event.isCanceled match {
+      case true ⇒ canceled()
+      case _ ⇒ notCanceled()
+    }
+  }
 
 }
 

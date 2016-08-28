@@ -39,9 +39,10 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
       if (product.isEmpty) product = Some(new ItemStack(ItemRegistry.getAnt(species).get, 1, Random.nextInt(AntTypes.values.size - 1)))
       tracker.update
       if (tracker.done) {
-        decrStackSize(SLOT_LARVA, 1)
-        addStack(product.get)
-        AntEvent.dispatch(new AntMatureEvent(product.get, this))
+        AntEvent.dispatch(new AntMatureEvent(product.get, this), notCanceled = () ⇒ {
+          decrStackSize(SLOT_LARVA, 1)
+          addStack(product.get)
+        })
         reset
       }
     } else reset
