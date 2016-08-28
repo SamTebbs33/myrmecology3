@@ -1,7 +1,8 @@
 package com.github.samtebbs33.common.tileentity
 
 import com.github.samtebbs33.Util._
-import com.github.samtebbs33.common.ProgressTracker
+import com.github.samtebbs33.common.AntEvent.AntBreedEvent
+import com.github.samtebbs33.common.{AntEvent, ProgressTracker}
 import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.{AntTraitRegistry, BlockRegistry}
@@ -55,6 +56,7 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
           addStack(product.get)
           decrStackSize(SLOT_QUEEN, 1)
           decrStackSize(SLOT_DRONE, 1)
+          AntEvent.dispatch(new AntBreedEvent(drone, queen, product.get, this))
         }
       }
     } else tracker.reset
