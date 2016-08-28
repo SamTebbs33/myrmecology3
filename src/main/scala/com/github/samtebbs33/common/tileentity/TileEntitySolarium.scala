@@ -8,6 +8,7 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.ITickable
+import com.github.samtebbs33.Util._
 
 import scala.util.Random
 
@@ -75,11 +76,11 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
   override def writeToNBT(compound: NBTTagCompound): NBTTagCompound = {
     super.writeToNBT(compound)
     tracker.writeToNBT(compound)
-    if (product.isDefined) {
+    product.ifDefined(p ⇒ {
       val stackTag = new NBTTagCompound
-      product.get.writeToNBT(stackTag)
+      p.writeToNBT(stackTag)
       compound.setTag(NBT_PRODUCT_TAG, stackTag)
-    }
+    })
     compound
   }
 }

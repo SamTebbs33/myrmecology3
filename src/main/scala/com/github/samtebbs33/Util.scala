@@ -14,9 +14,13 @@ import scala.util.Random
 object Util {
 
   implicit class OptionUtil[T](opt: Option[T]) {
-    def ifDefined[A](f: (T) ⇒ A) = if (opt.isDefined) f.apply(opt.get)
+    def ifDefined[A](f: (T) ⇒ A): Unit = opt match {
+      case Some(foo) ⇒ f(foo)
+    }
 
-    def ifNotDefined[A](f: () ⇒ A) = if (opt.isEmpty) f.apply()
+    def ifNotDefined[A](f: () ⇒ A): Unit = opt match {
+      case None ⇒ f()
+    }
   }
 
   implicit class ItemStackUtil(stack: ItemStack) {
