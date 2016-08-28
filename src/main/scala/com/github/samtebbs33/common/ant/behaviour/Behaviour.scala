@@ -20,8 +20,10 @@ object Behaviour {
 
   val treeMisc = new BehaviourTree("misc")
   val treeResourceGathering = new BehaviourTree("resource gathering")
+  val treeDamage = new BehaviourTree("damage")
   val treeWood = treeResourceGathering.addChild(new BehaviourTree("wood"))
   val treeFood = treeResourceGathering.addChild(new BehaviourTree("food"))
+  val treeRock = treeResourceGathering.addChild(new BehaviourTree("rock"))
   val treeCrops = treeFood.addChild(new BehaviourTree("crops"))
   val treeAnimals = treeFood.addChild(new BehaviourTree("animals"))
 
@@ -29,7 +31,11 @@ object Behaviour {
   val behaviourPlantCrops = treeCrops.addBehaviour(new BehaviourPlantCrops("plant crops"))
   val behaviourGrowCrops = treeCrops.addBehaviour(new BehaviourGrowCrops("grow crops"))
 
+  val behaviourMine = treeRock.addBehaviour(new BehaviourMine("mine ore"))
+
   val behaviourScavenge = treeMisc.addBehaviour(new BehaviourScavenge("scavenge"))
+
+  val behaviourDamageMobs = treeDamage.addBehaviour(new BehaviourDamageMobs("poison"))
 
   def getBehaviour(name: String) = behaviourMap.get(name)
 
