@@ -2,7 +2,7 @@ package com.github.samtebbs33.common.ant
 
 import java.util
 
-import com.github.samtebbs33.common.ant.behaviour.Behaviour$
+import com.github.samtebbs33.common.ant.behaviour.{Behaviour$, BehaviourTree}
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.world.biome.Biome
 
@@ -12,7 +12,7 @@ import scala.collection.mutable
 /**
   * Created by samtebbs on 30/07/2016.
   */
-class Species(val name: String, val primaryColour: Int, val secondaryColour: Int, binomialName: String, val spawnChanceMap: Map[Biome, Float] = Map()) {
+class Species(val name: String, val primaryColour: Int, val secondaryColour: Int, binomialName: String, val spawnChanceMap: Map[Biome, Float], behaviourTrees: BehaviourTree*) {
 
   val traitMap = mutable.Map[Trait, Int]()
 
