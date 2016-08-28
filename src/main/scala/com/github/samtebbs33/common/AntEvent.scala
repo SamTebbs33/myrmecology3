@@ -1,6 +1,6 @@
 package com.github.samtebbs33.common
 
-import com.github.samtebbs33.common.tileentity.TileEntityBreedingChamber
+import com.github.samtebbs33.common.tileentity.{TileEntityBreedingChamber, TileEntitySolarium}
 import net.minecraft.item.ItemStack
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.fml.common.eventhandler.Event
@@ -11,6 +11,7 @@ import net.minecraftforge.fml.common.eventhandler.Event
 
 object AntEvent {
   class AntBreedEvent(val drone: ItemStack, val queen: ItemStack, val larva: ItemStack, val breedingChamber: TileEntityBreedingChamber) extends AntEvent
+  class AntMatureEvent(val result: ItemStack, val solarium: TileEntitySolarium) extends AntEvent
 
   def dispatch(event: AntEvent) = MinecraftForge.EVENT_BUS.post(event)
 
