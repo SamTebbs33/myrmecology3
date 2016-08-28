@@ -1,5 +1,6 @@
 package com.github.samtebbs33.common.ant.behaviour
 
+import com.github.samtebbs33.common.ant.behaviour.resource._
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.item.ItemStack
 
