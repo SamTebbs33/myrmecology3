@@ -41,6 +41,7 @@ class TileEntityFormicarium extends MyrmecologyTileEntityContainer(BlockRegistry
   override def update(): Unit = {
     tracker.update
     if (tracker.done && !worldObj.isRemote) {
+      Behaviour.behaviourChopTree.execute(this, 3, null)
       tracker.reset
       // Group the ant stacks by their behaviour
       val map = occupiedSlots(SLOT_ANT_END).map(getStackInSlot).groupBy(ItemAnt.getBehaviour)
