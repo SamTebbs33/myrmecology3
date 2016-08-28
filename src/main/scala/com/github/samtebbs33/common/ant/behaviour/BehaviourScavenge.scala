@@ -3,6 +3,7 @@ import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.entity.item.EntityItem
 import net.minecraft.item.ItemStack
 import net.minecraft.util.math.{AxisAlignedBB, Vec3i}
+import com.github.samtebbs33.Util._
 
 import scala.collection.JavaConversions._
 import scala.collection.JavaConverters._
@@ -16,14 +17,7 @@ class BehaviourScavenge(name: String) extends Behaviour(name) {
 
   override def execute(formicarium: TileEntityFormicarium, numAnts: Int, stacks: Seq[ItemStack]): Unit = {
     val pos = formicarium.getPos
-    val items = formicarium.getWorld.getEntitiesWithinAABB(classOf[EntityItem], new AxisAlignedBB(
-      pos.getX - radius.getX,
-      pos.getY - radius.getY,
-      pos.getZ - radius.getZ,
-      pos.getX + radius.getX,
-      pos.getY + radius.getY,
-      pos.getZ + radius.getZ
-    ))
+    val items = formicarium.getWorld.getEntitiesWithinAABB(classOf[EntityItem], pos.toVec3i.toAABB(radius))
     var i = 0
     items.map(entity => (entity, entity.getEntityItem))
       .filter(pair => formicarium.canHoldStack(pair._2))

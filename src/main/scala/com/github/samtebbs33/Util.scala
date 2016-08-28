@@ -5,7 +5,7 @@ import java.util.stream.{Collectors, SliceOps}
 
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
-import net.minecraft.util.math.{BlockPos, Vec3i}
+import net.minecraft.util.math.{AxisAlignedBB, BlockPos, Vec3i}
 import net.minecraft.world.World
 
 import scala.util.Random
@@ -53,6 +53,20 @@ object Util {
       Range(posX - radiusX, posX + radiusX).foreach(x ⇒ Range(posY - radiusY, posY + radiusY).foreach(y ⇒ Range(posZ - radiusZ, posZ + radiusZ).map(z ⇒ new BlockPos(x, y, z)).foreach(set.add)))
       set
     }
+  }
+  
+  implicit class Vec3iUtil(vec: Vec3i) {
+    def toAABB(radius: Vec3i) = new AxisAlignedBB(vec.getX - radius.getX,
+      vec.getY - radius.getY,
+      vec.getZ - radius.getZ,
+      vec.getX + radius.getX,
+      vec.getY + radius.getY,
+      vec.getZ + radius.getZ
+    )
+  }
+
+  implicit class BlockPosUtil(blockPos: BlockPos) {
+    def toVec3i = new Vec3i(blockPos.getX, blockPos.getY, blockPos.getZ)
   }
 
 }
