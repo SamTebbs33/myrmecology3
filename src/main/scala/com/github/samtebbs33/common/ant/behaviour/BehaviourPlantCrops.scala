@@ -36,23 +36,6 @@ class BehaviourPlantCrops(name: String) extends Behaviour(name) {
         })
       }
     }
-      /*.filter(pair => pair._2.isInstanceOf[IPlantable])
-      .map(pair => (pair._1, pair._2.asInstanceOf[IPlantable]))
-      .foreach(pair => {
-        val slot = pair._1
-        val plantable = pair._2
-        world.getBlocksInRadius(formicarium.getPos, radius)
-          .foreach(pair => {
-            val pos = pair._1.up()
-            val plant = plantable.getPlant(world, pos)
-            val block = plant.getBlock
-            if(i < numAnts && formicarium.getStackSize(slot) > 0 && block.canPlaceBlockAt(world, pos)) {
-              world.setBlockState(pos, plant)
-              formicarium.decrStackSize(slot, 1)
-              i += 1
-            }
-          })
-      })*/
   }
 
 }
