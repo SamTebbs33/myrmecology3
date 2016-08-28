@@ -1,6 +1,7 @@
-package com.github.samtebbs33.common.ant.behaviour
+package com.github.samtebbs33.common.ant.behaviour.resource.crops
 
 import com.github.samtebbs33.Util._
+import com.github.samtebbs33.common.ant.behaviour.Behaviour
 import com.github.samtebbs33.common.tileentity.TileEntityFormicarium
 import net.minecraft.block.IGrowable
 import net.minecraft.block.state.IBlockState
