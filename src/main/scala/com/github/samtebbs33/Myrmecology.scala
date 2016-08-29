@@ -1,6 +1,6 @@
 package com.github.samtebbs33
 
-import com.github.samtebbs33.common.AntEvent.AntBreedEvent
+import com.github.samtebbs33.common.event.AntEvent.AntBreedEvent
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.ForgeEventFactory
 import net.minecraftforge.fml.common.Mod.EventHandler

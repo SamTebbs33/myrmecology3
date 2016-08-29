@@ -1,9 +1,10 @@
 package com.github.samtebbs33.common.tileentity
 
 import com.github.samtebbs33.Util._
-import com.github.samtebbs33.common.AntEvent.{AntBreedEvent, AntMatureEvent}
-import com.github.samtebbs33.common.{AntEvent, ProgressTracker}
+import com.github.samtebbs33.common.event.AntEvent.{AntBreedEvent, AntMatureEvent}
+import com.github.samtebbs33.common.ProgressTracker
 import com.github.samtebbs33.common.ant.AntTypes
+import com.github.samtebbs33.common.event.AntEvent
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.{AntTraitRegistry, BlockRegistry}
 import net.minecraft.entity.player.EntityPlayer

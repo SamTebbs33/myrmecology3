@@ -2,9 +2,9 @@ package com.github.samtebbs33.common.block
 
 import java.util
 
-import com.github.samtebbs33.common.AntEvent
 import com.github.samtebbs33.common.AntEvent.AntHillExtractionEvent
 import com.github.samtebbs33.common.ant.AntTypes
+import com.github.samtebbs33.common.event.AntEvent
 import com.github.samtebbs33.common.item.{ItemAnt, ItemAntExtractor}
 import com.github.samtebbs33.registry.BlockRegistry
 import net.minecraft.block.material.Material

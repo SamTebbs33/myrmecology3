@@ -1,4 +1,4 @@
-package com.github.samtebbs33.common
+package com.github.samtebbs33.common.event
 
 import com.github.samtebbs33.common.tileentity.{TileEntityBreedingChamber, TileEntitySolarium}
 import net.minecraft.entity.player.EntityPlayer
