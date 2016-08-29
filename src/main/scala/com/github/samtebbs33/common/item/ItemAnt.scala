@@ -9,6 +9,10 @@ import com.github.samtebbs33.registry.ItemRegistry
 import net.minecraft.client.renderer.color.IItemColor
 import net.minecraft.creativetab.CreativeTabs
 import net.minecraft.item.{Item, ItemStack}
+import com.github.samtebbs33.Util._
+import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.nbt.NBTTagString
+import net.minecraft.world.World
 
 /**
   * Created by samtebbs on 31/07/2016.
@@ -23,7 +27,11 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
   override def getUnlocalizedName(stack: ItemStack): String = "item." + super.unlocalisedName(stack.getMetadata) + "_" + getAntTypeString(stack.getMetadata)
 
   override def getSubItems(itemIn: Item, tab: CreativeTabs, subItems: util.List[ItemStack]): Unit =
-    for (elem <- AntTypes.values) subItems.add(new ItemStack(itemIn, 1, elem.id))
+    for (elem <- AntTypes.values) {
+      val stack = new ItemStack(itemIn, 1, elem.id)
+      ItemAnt.assignBehaviour(stack)
+      subItems.add(stack)
+    }
 
   override def showDurabilityBar(stack: ItemStack): Boolean = false
 
@@ -32,6 +40,16 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
   def getAntTypeString(metadata: Int): String = AntTypes.apply(metadata).toString.toLowerCase
 
   override def usesColourHandler: Boolean = true
+
+  override def addInformation(stack: ItemStack, playerIn: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
+    super.addInformation(stack, playerIn, tooltip, advanced)
+    tooltip.add(s"Behaviour: ${ItemAnt.getBehaviour(stack)}")
+  }
+
+  override def onCreated(stack: ItemStack, worldIn: World, playerIn: EntityPlayer): Unit = {
+    super.onCreated(stack, worldIn, playerIn)
+    ItemAnt.assignBehaviour(stack)
+  }
 
   override def getColourHandler = Some(new IItemColor {
     override def getColorFromItemstack(stack: ItemStack, tintIndex: Int): Int = {
@@ -45,6 +63,16 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
 
 object ItemAnt {
   def getBehaviour(itemStack: ItemStack) = itemStack.getItem match {
-    case _: ItemAnt ⇒ Behaviour.getBehaviour(itemStack.getTagCompound.getString("Behaviour"))
+    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Some(Behaviour.getBehaviour(itemStack.getTagCompound.getString("Behaviour")))
+    case _ ⇒ None
+  }
+  def assignBehaviour(antStack: ItemStack): Unit = {
+    antStack.getItem match {
+      case _: ItemAnt if antStack.getMetadata == AntTypes.WORKER.id ⇒
+        val species = antStack.getItem.asInstanceOf[ItemAnt].species
+        val behaviour = species.behaviourTrees.rand.randomBehaviour.name
+        antStack.setTagInfo("Behaviour", new NBTTagString(behaviour))
+      case _ ⇒
+    }
   }
 }

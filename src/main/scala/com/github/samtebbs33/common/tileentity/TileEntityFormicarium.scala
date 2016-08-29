@@ -41,7 +41,7 @@ class TileEntityFormicarium extends MyrmecologyTileEntityContainer(BlockRegistry
       tracker.reset
       // Group the ant stacks by their behaviour
       val map = occupiedSlots(SLOT_ANT_END).map(getStackInSlot).groupBy(ItemAnt.getBehaviour)
-      map.foreach(entry ⇒ entry._1.ifDefined(behaviour ⇒ behaviour.execute(this, entry._2.map(stack ⇒ stack.stackSize).sum, entry._2)))
+      map.foreach(entry ⇒ entry._1.ifDefined(behaviour ⇒ behaviour.ifDefined(_.execute(this, entry._2.map(stack ⇒ stack.stackSize).sum, entry._2))))
     }
   }
 

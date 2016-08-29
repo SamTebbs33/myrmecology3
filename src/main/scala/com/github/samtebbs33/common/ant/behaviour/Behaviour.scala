@@ -8,7 +8,7 @@ import net.minecraft.item.ItemStack
 /**
   * Created by samtebbs on 09/08/2016.
   */
-abstract class Behaviour(name: String) {
+abstract class Behaviour(val name: String) {
 
   Behaviour.behaviourMap.put(name, this)
 
