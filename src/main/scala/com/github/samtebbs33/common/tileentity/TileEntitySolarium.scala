@@ -1,6 +1,6 @@
 package com.github.samtebbs33.common.tileentity
 
-import com.github.samtebbs33.common.ProgressTracker
+import com.github.samtebbs33.common.{AntEvent, ProgressTracker}
 import com.github.samtebbs33.common.ant.AntTypes
 import com.github.samtebbs33.common.item.ItemAnt
 import com.github.samtebbs33.registry.{AntTraitRegistry, BlockRegistry, ItemRegistry}
@@ -9,6 +9,7 @@ import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.util.ITickable
 import com.github.samtebbs33.Util._
+import com.github.samtebbs33.common.AntEvent.AntMatureEvent
 
 import scala.util.Random
 
@@ -38,8 +39,10 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
       if (product.isEmpty) product = Some(new ItemStack(ItemRegistry.getAnt(species).get, 1, Random.nextInt(AntTypes.values.size - 1)))
       tracker.update
       if (tracker.done) {
-        decrStackSize(SLOT_LARVA, 1)
-        addStack(product.get)
+        AntEvent.dispatch(new AntMatureEvent(product.get, this), notCanceled = () ⇒ {
+          decrStackSize(SLOT_LARVA, 1)
+          addStack(product.get)
+        })
         reset
       }
     } else reset

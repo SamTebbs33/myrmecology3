@@ -22,6 +22,7 @@ class ClientProxy extends Proxy {
     val itemColours = Minecraft.getMinecraft.getItemColors
     ItemRegistry.items.foreach(item => item.getColourHandler match {
       case Some(handler) ⇒ itemColours.registerItemColorHandler(handler, item)
+      case None ⇒
     })
   }
 
