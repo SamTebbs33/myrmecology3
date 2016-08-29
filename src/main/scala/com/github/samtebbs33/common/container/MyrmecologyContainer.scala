@@ -47,18 +47,23 @@ abstract class MyrmecologyContainer(playerInv: IInventory, te: MyrmecologyTileEn
     te.setField(id, data)
   }
 
+  def firstValidSlot(stack: ItemStack): Int =
+    te.inventory.toStream.zipWithIndex.map(_._2).find(slot ⇒ te.isItemValidForSlot(slot, stack)).getOrElse(-1)
+
+  def lastValidSlot(stack: ItemStack, from: Int) =
+    te.inventory.toStream.zipWithIndex.reverse.take(te.inventory.length - from).map(_._2).find(slot ⇒ te.isItemValidForSlot(slot, stack)).getOrElse(-1)
+
   override def transferStackInSlot(playerIn: EntityPlayer, index: Int): ItemStack = {
     val slot = inventorySlots.get(index)
     if (slot == null || !slot.getHasStack) return null
     val stack = slot.getStack
-    if (index < te.getSizeInventory) {
-      // From tile to player inv, merge to any player inv slot
-      if (!mergeItemStack(stack, te.getSizeInventory, inventorySlots.size(), false)) return null
-    } else if (te.isItemValidForSlot(0, stack)) {
-      // From player inv to tile, merge to larva slot
-      if (!mergeItemStack(stack, 0, 1, false)) return null
-    }
-    stack
+    val tileInv = index < te.getSizeInventory
+    println(s"tileInv: $tileInv")
+    val from = if(tileInv) te.getSizeInventory else firstValidSlot(stack)
+    val to = if(tileInv) inventorySlots.size else lastValidSlot(stack, from + 1) + 1
+    println(s"from $from, to $to")
+    if (!mergeItemStack(stack, from, to, false)) return null
+    else stack
   }
 
 }
