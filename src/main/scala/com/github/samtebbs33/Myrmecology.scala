@@ -1,6 +1,7 @@
 package com.github.samtebbs33
 
 import com.github.samtebbs33.common.event.AntEvent.AntBreedEvent
+import com.github.samtebbs33.common.event.AntEventHandler
 import net.minecraftforge.common.MinecraftForge
 import net.minecraftforge.event.ForgeEventFactory
 import net.minecraftforge.fml.common.Mod.EventHandler
@@ -34,6 +35,7 @@ object Myrmecology {
   @EventHandler
   def postInit(e: FMLPostInitializationEvent): Unit = {
     proxy.postInit(e)
+    MinecraftForge.EVENT_BUS.register(new AntEventHandler)
   }
 
 }
