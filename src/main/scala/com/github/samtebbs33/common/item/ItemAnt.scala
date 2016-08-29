@@ -43,7 +43,7 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
 
   override def addInformation(stack: ItemStack, playerIn: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     super.addInformation(stack, playerIn, tooltip, advanced)
-    tooltip.add(s"Behaviour: ${ItemAnt.getBehaviour(stack)}")
+    tooltip.add(s"Behaviour: ${ItemAnt.getBehaviour(stack).fold("None")(_.get.name)}")
   }
 
   override def onCreated(stack: ItemStack, worldIn: World, playerIn: EntityPlayer): Unit = {
