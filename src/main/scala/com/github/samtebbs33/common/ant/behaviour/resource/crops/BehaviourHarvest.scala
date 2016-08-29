@@ -37,7 +37,6 @@ class BehaviourHarvest(name: String) extends Behaviour(name) {
     val world = formicarium.getWorld
     val crops = world.getBlocksInRadius(formicarium.getPos, radius)
     var i = 0
-    println(crops.find(pair ⇒ !pair._2.getBlock.isInstanceOf[IGrowable]))
     crops.filter(pair => canHarvestCrop(pair._2)).foreach(pair => {
       if (i < numAnts) {
         world.destroyBlock(pair._1, true)
