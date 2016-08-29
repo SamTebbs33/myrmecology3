@@ -34,6 +34,7 @@ object Behaviour {
   val behaviourGrowCrops = treeCrops.addBehaviour(new BehaviourGrowCrops("grow crops"))
 
   val behaviourChopTree = treeWood.addBehaviour(new BehaviourChopTree("chop tree"))
+  val behaviourCutLeaves = treeWood.addBehaviour(new BehaviourCutLeaves("cut leaves"))
 
   val behaviourMine = treeRock.addBehaviour(new BehaviourMine("mine ore"))
 
