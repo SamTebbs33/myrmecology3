@@ -33,7 +33,7 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
       subItems.add(stack)
     }
 
-  override def getItemStackLimit(stack: ItemStack): Int = stack.stackSize match {
+  override def getItemStackLimit(stack: ItemStack): Int = stack.getMetadata match {
     case x if x == AntTypes.WORKER.id ⇒ 1
     case _ ⇒ 64
   }
