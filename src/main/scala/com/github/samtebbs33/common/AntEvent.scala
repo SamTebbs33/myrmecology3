@@ -12,9 +12,12 @@ import net.minecraftforge.fml.common.eventhandler.Event
   */
 
 object AntEvent {
+  class AntEvent(cancelable: Boolean = true) extends Event {
+    override def isCancelable: Boolean = cancelable
+  }
   class AntBreedEvent(val drone: ItemStack, val queen: ItemStack, val larva: ItemStack, val breedingChamber: TileEntityBreedingChamber) extends AntEvent
   class AntMatureEvent(val result: ItemStack, val solarium: TileEntitySolarium) extends AntEvent
-  class AntHillExtractionEvent(val pos: BlockPos, val player: EntityPlayer, val extractor: ItemStack) extends AntEvent
+  class AntHillExtractionEvent(val pos: BlockPos, val player: EntityPlayer, val extractor: ItemStack) extends AntEvent(false)
 
   def dispatch(event: AntEvent, canceled: () ⇒ Unit = () ⇒ (), notCanceled: () ⇒ Unit = () ⇒ ()) = {
     MinecraftForge.EVENT_BUS.post(event)
@@ -23,9 +26,5 @@ object AntEvent {
       case _ ⇒ notCanceled()
     }
   }
-
-}
-
-class AntEvent extends Event {
 
 }
