@@ -12,108 +12,19 @@ import net.minecraft.nbt.{NBTTagCompound, NBTTagList}
 abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) extends MyrmecologyTileEntity with MyrmecologyInventory {
 
   val inventoryArray = new Array[Option[ItemStack]](invSize)
-  inventoryArray.indices.foreach(i => inventory(i) = None)
+  inventoryArray.indices.foreach(i => inventoryArray(i) = None)
   val NBT_INVENTORY_TAG = "Items"
   val NBT_SLOT_TAG = "Slot"
   val NBT_CUSTOM_NAME_TAG = "CustomName"
 
   var customName = ""
 
-  def inventory = inventoryArray
-  def inBounds(index: Int) = index < getSizeInventory && index >= 0
-
-  override def decrStackSize(index: Int, count: Int): ItemStack = {
-    val stack = getStackInSlot(index)
-    if (stack != null) {
-      if (stack.stackSize <= count) setInventorySlotContents(index, null)
-      else {
-        val result = stack.splitStack(count)
-        setInventorySlotContents(index, stack)
-        return result
-      }
-    }
-    stack
-  }
-
-  def getStackSizeInSlot(slot: Int) = getStackInSlot(slot) match {
-    case null ⇒ 0
-    case stack ⇒ stack.stackSize
-  }
-
-  def addStack(stack: ItemStack): Unit = {
-    val stackSizeLimit = Math.min(getInventoryStackLimit, stack.getItem.getItemStackLimit(stack))
-    for (slot <- 0 to getSizeInventory) {
-      if (isItemValidForSlot(slot, stack)) {
-        if (stack.stackSize <= 0) return
-        val slotStack = getStackInSlot(slot)
-        if (slotStack == null) {
-          val temp = stack.copy()
-          stack.stackSize -= stackSizeLimit
-          setInventorySlotContents(slot, temp)
-        } else if (slotStack.isItemEqual(stack)) {
-          val remaining = Math.min(stackSizeLimit - slotStack.stackSize, stack.stackSize)
-          stack.stackSize -= remaining
-          slotStack.stackSize += remaining
-        }
-      }
-    }
-  }
-
-  def canHoldStack(stack: ItemStack): Boolean = {
-    var stackSize = stack.stackSize
-    val stackSizeLimit = Math.min(getInventoryStackLimit, stack.getItem.getItemStackLimit(stack))
-    for (slot <- 0 until getSizeInventory) {
-      if (isItemValidForSlot(slot, stack)) {
-        if (stackSize <= 0) return true
-        val slotStack = getStackInSlot(slot)
-        if (slotStack == null) stackSize -= stackSizeLimit
-        else if (slotStack.isItemEqual(stack)) stackSize -= stackSizeLimit - slotStack.stackSize
-      }
-    }
-    stackSize <= 0
-  }
-
-  override def closeInventory(player: EntityPlayer): Unit = ???
-
-  override def getSizeInventory: Int = invSize
-
-  override def setInventorySlotContents(index: Int, stack: ItemStack): Unit = {
-    if (inBounds(index)) inventory.update(index, Option(stack))
-    markDirty()
-  }
-
-  override def getStackInSlot(index: Int): ItemStack =
-    if (inBounds(index)) inventory(index).orNull
-    else null
-
-  def getStackSize(slot: Int) = getStackInSlot(slot) match {
-    case null => 0
-    case stack => stack.stackSize
-  }
-
-  override def removeStackFromSlot(index: Int): ItemStack = {
-    val temp = getStackInSlot(index)
-    setInventorySlotContents(index, null)
-    temp
-  }
-
-  override def clear(): Unit = forEachSlot(removeStackFromSlot)
-
+  override def inventory: Array[Option[ItemStack]] = inventoryArray
   override def getName: String = if (hasCustomName) customName else "container." + name
 
   override def hasCustomName: Boolean = !customName.isEmpty
 
   override def isUseableByPlayer(player: EntityPlayer): Boolean = player.getDistanceSq(this.pos) <= 64
-
-  def slotIsEmpty(i: Int) = getStackInSlot(i) == null
-
-  def slotIsNotEmpty(i: Int) = !slotIsEmpty(i)
-
-  def occupiedSlots(max: Int = getSizeInventory) = Range(0, max).filter(slotIsNotEmpty)
-
-  def forEachSlot[T](f: (Int) => T, max: Int = getSizeInventory) = Range(0, max).foreach(f)
-
-  def forEachOccupiedSlot[T](f: (Int) => T, max: Int = getSizeInventory) = occupiedSlots(max).foreach(f)
 
   override def readFromNBT(compound: NBTTagCompound): Unit = {
     super.readFromNBT(compound)
