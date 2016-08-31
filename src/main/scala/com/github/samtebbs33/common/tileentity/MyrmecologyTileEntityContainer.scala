@@ -1,5 +1,6 @@
 package com.github.samtebbs33.common.tileentity
 
+import com.github.samtebbs33.common.MyrmecologyInventory
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.IInventory
 import net.minecraft.item.ItemStack
@@ -8,16 +9,17 @@ import net.minecraft.nbt.{NBTTagCompound, NBTTagList}
 /**
   * Created by samtebbs on 06/08/2016.
   */
-abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) extends MyrmecologyTileEntity with IInventory {
+abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) extends MyrmecologyTileEntity with MyrmecologyInventory {
 
-  val inventory = new Array[Option[ItemStack]](invSize)
-  inventory.indices.foreach(i => inventory(i) = None)
+  val inventoryArray = new Array[Option[ItemStack]](invSize)
+  inventoryArray.indices.foreach(i => inventory(i) = None)
   val NBT_INVENTORY_TAG = "Items"
   val NBT_SLOT_TAG = "Slot"
   val NBT_CUSTOM_NAME_TAG = "CustomName"
 
   var customName = ""
 
+  def inventory = inventoryArray
   def inBounds(index: Int) = index < getSizeInventory && index >= 0
 
   override def decrStackSize(index: Int, count: Int): ItemStack = {
