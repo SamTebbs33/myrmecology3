@@ -1,5 +1,6 @@
 package com.github.samtebbs33.common.container
 
+import com.github.samtebbs33.common.MyrmecologyInventory
 import com.github.samtebbs33.common.tileentity.MyrmecologyTileEntityContainer
 import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.inventory.{Container, IInventory, Slot}
@@ -10,7 +11,7 @@ import scala.collection.JavaConversions._
 /**
   * Created by samtebbs on 06/08/2016.
   */
-abstract class MyrmecologyContainer(playerInv: IInventory, te: MyrmecologyTileEntityContainer) extends Container {
+abstract class MyrmecologyContainer(playerInv: IInventory, te: MyrmecologyInventory) extends Container {
 
   // Add container's slots
   slots.foreach(addSlot)
@@ -48,10 +49,10 @@ abstract class MyrmecologyContainer(playerInv: IInventory, te: MyrmecologyTileEn
   }
 
   def firstValidSlot(stack: ItemStack): Int =
-    te.inventory.toStream.zipWithIndex.map(_._2).find(slot ⇒ te.isItemValidForSlot(slot, stack)).getOrElse(-1)
+    te.inventoryArray.toStream.zipWithIndex.map(_._2).find(slot ⇒ te.isItemValidForSlot(slot, stack)).getOrElse(-1)
 
   def lastValidSlot(stack: ItemStack, from: Int) =
-    te.inventory.toStream.zipWithIndex.reverse.take(te.inventory.length - from).map(_._2).find(slot ⇒ te.isItemValidForSlot(slot, stack)).getOrElse(-1)
+    te.inventoryArray.toStream.zipWithIndex.reverse.take(te.inventoryArray.length - from).map(_._2).find(slot ⇒ te.isItemValidForSlot(slot, stack)).getOrElse(-1)
 
   override def transferStackInSlot(playerIn: EntityPlayer, index: Int): ItemStack = {
     val slot = inventorySlots.get(index)
