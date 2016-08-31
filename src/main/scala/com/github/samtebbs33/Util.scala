@@ -23,6 +23,9 @@ object Util {
       case None ⇒ f()
       case _ ⇒
     }
+
+    def `?:`(v: T) = opt.getOrElse(v)
+
   }
 
   implicit class ItemStackUtil(stack: ItemStack) {
@@ -69,6 +72,15 @@ object Util {
 
   implicit class BlockPosUtil(blockPos: BlockPos) {
     def toVec3i = new Vec3i(blockPos.getX, blockPos.getY, blockPos.getZ)
+  }
+
+  implicit class BooleanUtil(bool: Boolean) {
+    def `?`[T](left: T, right: T) = if(bool) left else right
+    def `?:`(right: Boolean) = bool ? (bool, right)
+  }
+
+  implicit class ComparableUtil[T](comp: _ <: Comparable[T]) {
+    def `<=>`(t: T) = comp.compareTo(t)
   }
 
 }
