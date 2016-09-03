@@ -10,4 +10,7 @@ import net.minecraft.item.ItemStack
   */
 class GuiMyrmopaedia(playerInv: IInventory, itemStack: ItemStack) extends MyrmecologyGuiContainer(ItemRegistry.NAME_MYRMOPAEDIA, new ContainerMyrmopaedia(playerInv, itemStack)) {
 
+  xSize += xSize / 4
+  ySize += ySize / 2 + 7
+
 }

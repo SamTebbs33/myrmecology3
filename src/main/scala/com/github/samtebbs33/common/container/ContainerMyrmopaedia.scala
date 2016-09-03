@@ -13,7 +13,8 @@ import net.minecraft.util.text.ITextComponent
 /**
   * Created by samuelt on 31/08/2016.
   */
-class ContainerMyrmopaedia(playerInv: IInventory, itemStack: ItemStack) extends MyrmecologyContainer(playerInv, new MyrmopaediaInventory(itemStack)) {
+class ContainerMyrmopaedia(playerInv: IInventory, itemStack: ItemStack) extends MyrmecologyContainer(playerInv, new MyrmopaediaInventory(itemStack), 173, 18) {
+
   override def slots: util.List[Slot] = new util.ArrayList[Slot](){{
     add(new Slot(inv, 0, 18, 147))
   }}
