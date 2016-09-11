@@ -8,7 +8,7 @@ import scala.collection.mutable
 /**
   * Created by samtebbs on 30/07/2016.
   */
-class Species(val name: String, val primaryColour: Int, val secondaryColour: Int, binomialName: String, val spawnChanceMap: Map[Biome, Float], val behaviourTrees: BehaviourTree*) {
+class Species(val name: String, val primaryColour: Int, val secondaryColour: Int, val binomialName: String, val spawnChanceMap: Map[Biome, Float], val behaviourTrees: BehaviourTree*) {
 
   val traitMap = mutable.Map[Trait[_], Any]()
 
