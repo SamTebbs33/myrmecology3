@@ -36,7 +36,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
     val larva = getStackInSlot(SLOT_LARVA)
     if (larva != null) {
       val species = larva.getItem.asInstanceOf[ItemAnt].species
-      tracker.targetTime = species.getTrait(AntTraitRegistry.incubationTime)
+      tracker.targetTime = species.getTraitAs[Int](AntTraitRegistry.incubationTime)
       if (product.isEmpty) product = Some(new ItemStack(ItemRegistry.getAnt(species).get, 1, Random.nextInt(AntTypes.values.size - 1)))
       tracker.update
       if (tracker.done) {

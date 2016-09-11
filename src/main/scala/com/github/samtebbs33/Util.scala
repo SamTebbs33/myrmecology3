@@ -1,5 +1,7 @@
 package com.github.samtebbs33
 
+import java.util.Objects
+
 import net.minecraft.block.state.IBlockState
 import net.minecraft.item.ItemStack
 import net.minecraft.util.math.{AxisAlignedBB, BlockPos, Vec3i}
@@ -23,6 +25,9 @@ object Util {
       case None ⇒ f()
       case _ ⇒
     }
+
+    def `?:`(v: T) = opt.getOrElse(v)
+
   }
 
   implicit class ItemStackUtil(stack: ItemStack) {
@@ -71,4 +76,21 @@ object Util {
     def toVec3i = new Vec3i(blockPos.getX, blockPos.getY, blockPos.getZ)
   }
 
+  implicit class BooleanUtil(bool: Boolean) {
+    def `?`[T](left: T, right: T) = if(bool) left else right
+    def `?:`(right: Boolean) = bool ? (bool, right)
+  }
+
+  implicit class ComparableUtil[T](comp: _ <: Comparable[T]) {
+    def `<=>`(t: T) = comp.compareTo(t)
+  }
+
+  implicit class MathsUtil(a: Double) {
+    def `**`(b: Double) = Math.pow(a, b)
+  }
+
+  implicit class AnyUtil(a: Any) {
+    def ===(b: Any) = Objects.equals(a, b)
+  }
+  
 }
