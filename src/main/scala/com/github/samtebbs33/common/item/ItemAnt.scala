@@ -67,6 +67,8 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
 }
 
 object ItemAnt {
+  def getSpecies(stack: ItemStack) = stack.getItem.asInstanceOf[ItemAnt].species
+
   def getBehaviour(itemStack: ItemStack) = itemStack.getItem match {
     case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Some(Behaviour.getBehaviour(itemStack.getTagCompound.getString("Behaviour")))
     case _ ⇒ None

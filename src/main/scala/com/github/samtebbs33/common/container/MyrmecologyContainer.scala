@@ -11,14 +11,14 @@ import scala.collection.JavaConversions._
 /**
   * Created by samtebbs on 06/08/2016.
   */
-abstract class MyrmecologyContainer(val playerInv: IInventory, val inv: MyrmecologyInventory) extends Container {
+abstract class MyrmecologyContainer(val playerInv: IInventory, val inv: MyrmecologyInventory, baseY: Int = 84, baseX: Int = 8) extends Container {
 
   // Add container's slots
   slots.foreach(addSlot)
 
   // Add player inventory
-  Range(0, 3).foreach(y => Range(0, 9).foreach(x => addSlot(playerInv, x + y * 9 + 9, 8 + x * 18, 84 + y * 18)))
-  Range(0, 9).foreach(x => addSlot(playerInv, x, 8 + x * 18, 142))
+  Range(0, 3).foreach(y => Range(0, 9).foreach(x => addSlot(playerInv, x + y * 9 + 9, baseX + x * 18, baseY + y * 18)))
+  Range(0, 9).foreach(x => addSlot(playerInv, x, baseX + x * 18, baseY + 58))
 
   val tileEntityFields = new Array[Int](inv.getFieldCount)
 

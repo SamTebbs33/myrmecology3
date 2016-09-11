@@ -9,7 +9,7 @@ import net.minecraft.util.ResourceLocation
 /**
   * Created by samtebbs on 09/08/2016.
   */
-abstract class MyrmecologyGuiContainer(texturePath: String, container: MyrmecologyContainer) extends GuiContainer(container) {
+abstract class MyrmecologyGuiContainer(texturePath: String, val container: MyrmecologyContainer) extends GuiContainer(container) {
 
   val textureLocation = new ResourceLocation(Myrmecology.MOD_ID, "textures/gui/" + texturePath + ".png")
 

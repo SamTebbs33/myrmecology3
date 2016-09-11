@@ -1,0 +1,25 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+	"layer0": "myrmecology:items/myrmopaedia"
+  },
+  "display": {
+	"thirdperson_righthand": {
+	  "rotation": [
+		0,
+		-90,
+		0
+	  ],
+	  "translation": [
+		0,
+		0,
+		0.5
+	  ],
+	  "scale": [
+		0.6,
+		0.6,
+		0.6
+	  ]
+	}
+  }
+}

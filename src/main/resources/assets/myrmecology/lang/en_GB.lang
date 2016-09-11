@@ -13,6 +13,7 @@ tile.myrmecology_formicarium.name=Formicarium
 
 // Items
 item.myrmecology_ant_extractor.name=Ant Extractor
+item.myrmecology_myrmopaedia.name=Myrmopaedia
 
 // Ants
 item.myrmecology_ant_plains_drone.name=Plains Ant Drone
