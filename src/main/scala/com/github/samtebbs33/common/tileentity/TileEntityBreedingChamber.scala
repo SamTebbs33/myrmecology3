@@ -49,7 +49,7 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
     val drone = getStackInSlot(SLOT_DRONE)
     val queen = getStackInSlot(SLOT_QUEEN)
     if (drone != null && queen != null && drone.getItem == queen.getItem) {
-      tracker.targetTime = queen.getItemAs[ItemAnt].species.getTrait(AntTraitRegistry.breedingTime)
+      tracker.targetTime = queen.getItemAs[ItemAnt].species.getTraitAs[Int](AntTraitRegistry.breedingTime)
       product.ifNotDefined(() ⇒ product = Some(new ItemStack(drone.getItem, 2, AntTypes.LARVA.id)))
       if (canHoldStack(product.get)) {
         tracker.update

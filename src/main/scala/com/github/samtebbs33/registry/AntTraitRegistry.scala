@@ -9,10 +9,10 @@ import com.github.samtebbs33.common.ant.Trait
   */
 object AntTraitRegistry {
 
-  val traits = new util.LinkedList[Trait]()
+  val traits = new util.LinkedList[Trait[_]]()
 
-  val isWinged = new Trait("isWinged")
-  val isNocturnal = new Trait("isNocturnal")
+  val isWinged = new Trait("isWinged", false)
+  val isNocturnal = new Trait("isNocturnal", false)
   val incubationTime = new Trait("incubationTime", 10)
   val breedingTime = new Trait("breedingTime", 10)
 
