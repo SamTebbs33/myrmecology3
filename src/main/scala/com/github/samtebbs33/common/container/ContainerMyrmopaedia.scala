@@ -23,24 +23,28 @@ class ContainerMyrmopaedia(playerInv: IInventory, itemStack: ItemStack) extends 
 class MyrmopaediaInventory(itemStack: ItemStack) extends MyrmecologyInventory {
 
   // Load the item from the itemstack's NBT
-  var invItem: Option[ItemStack] =  itemStack.getTagCompound match {
-    case null => None
-    case compound => compound.getCompoundTag("Inventory") match {
-      case null => None
-      case x => Some(ItemStack.loadItemStackFromNBT(x))
-    }
+  if(!itemStack.hasTagCompound) itemStack.setTagCompound(new NBTTagCompound)
+
+  val inventoryArray = new Array[Option[ItemStack]](1)
+  inventoryArray(0) = readNBT(itemStack.getTagCompound)
+
+  def readNBT(tag: NBTTagCompound): Option[ItemStack] = tag.hasKey("Inventory") match {
+    case true ⇒ Some(ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Inventory")))
+    case false ⇒ None
   }
 
-  override def inventory: Array[Option[ItemStack]] = Array(invItem)
+  override def inventory: Array[Option[ItemStack]] = inventoryArray
 
   override def getInventoryStackLimit: Int = 1
 
   override def markDirty(): Unit = {
     // Save the item to the itemstack's NBT
     val tag = if(itemStack.hasTagCompound) itemStack.getTagCompound else new NBTTagCompound()
-    invItem match {
+    inventory(0) match {
       case None => tag.removeTag("Inventory")
-      case Some(x) => x.writeToNBT(tag)
+      case Some(x) => val compound = new NBTTagCompound
+        tag.setTag("Inventory", compound)
+        x.writeToNBT(compound)
     }
   }
 
@@ -61,4 +65,5 @@ class MyrmopaediaInventory(itemStack: ItemStack) extends MyrmecologyInventory {
   override def getName: String = ""
 
   override def hasCustomName: Boolean = false
+
 }
