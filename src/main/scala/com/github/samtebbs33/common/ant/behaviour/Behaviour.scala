@@ -12,7 +12,7 @@ abstract class Behaviour(val name: String) {
 
   Behaviour.behaviourMap.put(name, this)
 
-  def execute(formicarium: TileEntityFormicarium, numAnts: Int, stacks: Seq[ItemStack])
+  def execute(formicarium: TileEntityFormicarium, numAnts: Int, stacks: Seq[ItemStack]): Unit
 
 }
 
