@@ -67,10 +67,13 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
 }
 
 object ItemAnt {
+
+  val behaviourNbtTag = "Behaviour"
+
   def getSpecies(stack: ItemStack) = stack.getItem.asInstanceOf[ItemAnt].species
 
   def getBehaviour(itemStack: ItemStack) = itemStack.getItem match {
-    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Some(Behaviour.getBehaviour(itemStack.getTagCompound.getString("Behaviour")))
+    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Some(Behaviour.getBehaviour(itemStack.getTagCompound.getString(behaviourNbtTag)))
     case _ ⇒ None
   }
   def assignBehaviour(antStack: ItemStack): Unit = {
@@ -78,7 +81,7 @@ object ItemAnt {
       case _: ItemAnt if antStack.getMetadata == AntTypes.WORKER.id ⇒
         val species = antStack.getItem.asInstanceOf[ItemAnt].species
         val behaviour = species.behaviourTrees.rand.randomBehaviour.name
-        antStack.setTagInfo("Behaviour", new NBTTagString(behaviour))
+        antStack.setTagInfo(behaviourNbtTag, new NBTTagString(behaviour))
       case _ ⇒
     }
   }

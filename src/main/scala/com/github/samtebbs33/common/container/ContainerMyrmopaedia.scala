@@ -22,14 +22,16 @@ class ContainerMyrmopaedia(playerInv: IInventory, itemStack: ItemStack) extends 
 
 class MyrmopaediaInventory(itemStack: ItemStack) extends MyrmecologyInventory {
 
+  val inventoryNbtTag = "Inventory"
+
   // Load the item from the itemstack's NBT
   if(!itemStack.hasTagCompound) itemStack.setTagCompound(new NBTTagCompound)
 
   val inventoryArray = new Array[Option[ItemStack]](1)
   inventoryArray(0) = readNBT(itemStack.getTagCompound)
 
-  def readNBT(tag: NBTTagCompound): Option[ItemStack] = tag.hasKey("Inventory") match {
-    case true ⇒ Some(ItemStack.loadItemStackFromNBT(tag.getCompoundTag("Inventory")))
+  def readNBT(tag: NBTTagCompound): Option[ItemStack] = tag.hasKey(inventoryNbtTag) match {
+    case true ⇒ Some(ItemStack.loadItemStackFromNBT(tag.getCompoundTag(inventoryNbtTag)))
     case false ⇒ None
   }
 
@@ -41,9 +43,9 @@ class MyrmopaediaInventory(itemStack: ItemStack) extends MyrmecologyInventory {
     // Save the item to the itemstack's NBT
     val tag = if(itemStack.hasTagCompound) itemStack.getTagCompound else new NBTTagCompound()
     inventory(0) match {
-      case None => tag.removeTag("Inventory")
+      case None => tag.removeTag(inventoryNbtTag)
       case Some(x) => val compound = new NBTTagCompound
-        tag.setTag("Inventory", compound)
+        tag.setTag(inventoryNbtTag, compound)
         x.writeToNBT(compound)
     }
   }
