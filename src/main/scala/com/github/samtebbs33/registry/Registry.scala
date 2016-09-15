@@ -21,14 +21,14 @@ object Registry {
 
   final var creativeTab: CreativeTabs = _
 
-  val PLAINS = "plains"
-  val FOREST = "forest"
-  val DESERT = "desert"
-  val SWAMP = "swamp"
-  val JUNGLE = "jungle"
-  val STONE = "stone"
+  val plainsName = "plains"
+  val forestName = "forest"
+  val desertName = "desert"
+  val swampName = "swamp"
+  val jungleName = "jungle"
+  val stoneName = "stone"
 
-  private def makeCreativeTab(iconItem: Item) = new CreativeTabs(Myrmecology.MOD_ID) {
+  private def makeCreativeTab(iconItem: Item) = new CreativeTabs(Myrmecology.modID) {
     @SideOnly(Side.CLIENT)
     override def getTabIconItem = iconItem
   }

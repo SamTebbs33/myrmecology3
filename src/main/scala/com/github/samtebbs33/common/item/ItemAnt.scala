@@ -22,7 +22,7 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
   setHasSubtypes(true)
   ItemRegistry.ants.add(this)
 
-  override def resourceName(metadata: Int): String = Myrmecology.MOD_ID + ":ant_" + getAntTypeString(metadata)
+  override def resourceName(metadata: Int): String = Myrmecology.modID + ":ant_" + getAntTypeString(metadata)
 
   override def getUnlocalizedName(stack: ItemStack): String = "item." + super.unlocalisedName(stack.getMetadata) + "_" + getAntTypeString(stack.getMetadata)
 
@@ -48,7 +48,12 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
 
   override def addInformation(stack: ItemStack, playerIn: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     super.addInformation(stack, playerIn, tooltip, advanced)
-    tooltip.add(s"Behaviour: ${ItemAnt.getBehaviour(stack).fold("None")(_.get.name)}")
+    val behaviour = ItemAnt.getBehaviour(stack)
+    tooltip.add(s"Behaviour: ${
+      behaviour match {
+        case Some(beh) ⇒ beh.name
+        case None ⇒ "None"
+      }}")
   }
 
   override def onCreated(stack: ItemStack, worldIn: World, playerIn: EntityPlayer): Unit = {
@@ -67,10 +72,13 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
 }
 
 object ItemAnt {
+
+  val behaviourNbtTag = "Behaviour"
+
   def getSpecies(stack: ItemStack) = stack.getItem.asInstanceOf[ItemAnt].species
 
-  def getBehaviour(itemStack: ItemStack) = itemStack.getItem match {
-    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Some(Behaviour.getBehaviour(itemStack.getTagCompound.getString("Behaviour")))
+  def getBehaviour(itemStack: ItemStack): Option[Behaviour] = itemStack.getItem match {
+    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Behaviour.get(itemStack.getTagCompound.getString(behaviourNbtTag))
     case _ ⇒ None
   }
   def assignBehaviour(antStack: ItemStack): Unit = {
@@ -78,7 +86,7 @@ object ItemAnt {
       case _: ItemAnt if antStack.getMetadata == AntTypes.WORKER.id ⇒
         val species = antStack.getItem.asInstanceOf[ItemAnt].species
         val behaviour = species.behaviourTrees.rand.randomBehaviour.name
-        antStack.setTagInfo("Behaviour", new NBTTagString(behaviour))
+        antStack.setTagInfo(behaviourNbtTag, new NBTTagString(behaviour))
       case _ ⇒
     }
   }

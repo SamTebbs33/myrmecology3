@@ -88,5 +88,4 @@ object Util {
   implicit class AnyUtil(a: Any) {
     def ===(b: Any) = Objects.equals(a, b)
   }
-  
 }

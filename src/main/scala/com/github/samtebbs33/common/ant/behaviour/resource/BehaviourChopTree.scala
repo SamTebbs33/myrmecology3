@@ -20,9 +20,9 @@ class BehaviourChopTree(name: String) extends Behaviour(name) {
     val logSet = scala.collection.mutable.Set[BlockPos]()
     val block = state.getBlock
     def addNeighbours(from: BlockPos): Unit = {
-      world.getBlocksInRadius(from, new Vec3i(1, 1, 1))
+      val blockPositions = world.getBlocksInRadius(from, new Vec3i(1, 1, 1))
         .filter(pair ⇒ block.getClass.isInstance(pair._2.getBlock))
-        .map(_._1)
+      blockPositions.map(_._1)
         .diff(logSet)
         .foreach(p ⇒ {
           logSet.add(p)

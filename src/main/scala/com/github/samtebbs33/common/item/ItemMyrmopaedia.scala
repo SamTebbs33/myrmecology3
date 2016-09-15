@@ -14,7 +14,7 @@ class ItemMyrmopaedia(name: String) extends MyrmecologyItem(name) {
 
   override def onItemRightClick(itemStackIn: ItemStack, worldIn: World, playerIn: EntityPlayer, hand: EnumHand): ActionResult[ItemStack] = {
     if(!worldIn.isRemote && !playerIn.isSneaking) {
-      playerIn.openGui(Myrmecology, GuiHandler.ID_MYRMOPAEDIA, worldIn, playerIn.posX.toInt, playerIn.posY.toInt, playerIn.posZ.toInt)
+      playerIn.openGui(Myrmecology, GuiHandler.myrmopaediaID, worldIn, playerIn.posX.toInt, playerIn.posY.toInt, playerIn.posZ.toInt)
       ActionResult.newResult(EnumActionResult.SUCCESS, itemStackIn)
     }
     ActionResult.newResult(EnumActionResult.PASS, itemStackIn)

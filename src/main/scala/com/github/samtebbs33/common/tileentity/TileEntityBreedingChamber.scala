@@ -15,10 +15,10 @@ import net.minecraft.util.ITickable
 /**
   * Created by samtebbs on 07/08/2016.
   */
-class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegistry.NAME_BREEDING_CHAMBER, 17) with ITickable {
+class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegistry.breddingChamberName, 17) with ITickable {
 
-  val SLOT_DRONE = 0
-  val SLOT_QUEEN = 1
+  val droneSlot = 0
+  val queenSlot = 1
 
   val tracker = new ProgressTracker
   var product: Option[ItemStack] = None
@@ -26,8 +26,8 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
   override def getInventoryStackLimit: Int = 64
 
   override def isItemValidForSlot(index: Int, stack: ItemStack): Boolean = stack.getItem.isInstanceOf[ItemAnt] && (index match {
-    case SLOT_DRONE => stack.getMetadata == AntTypes.DRONE.id
-    case SLOT_QUEEN => stack.getMetadata == AntTypes.QUEEN.id
+    case `droneSlot` => stack.getMetadata == AntTypes.DRONE.id
+    case `queenSlot` => stack.getMetadata == AntTypes.QUEEN.id
     case _ => true
   })
 
@@ -46,8 +46,8 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
   }
 
   override def update(): Unit = {
-    val drone = getStackInSlot(SLOT_DRONE)
-    val queen = getStackInSlot(SLOT_QUEEN)
+    val drone = getStackInSlot(droneSlot)
+    val queen = getStackInSlot(queenSlot)
     if (drone != null && queen != null && drone.getItem == queen.getItem) {
       tracker.targetTime = queen.getItemAs[ItemAnt].species.getTraitAs[Int](AntTraitRegistry.breedingTime)
       product.ifNotDefined(() ⇒ product = Some(new ItemStack(drone.getItem, 2, AntTypes.LARVA.id)))
@@ -56,8 +56,8 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
         if (tracker.done) {
           AntEvent.dispatch(new AntBreedEvent(drone, queen, product.get, this), notCanceled = () ⇒ {
             addStack(product.get)
-            decrStackSize(SLOT_QUEEN, 1)
-            decrStackSize(SLOT_DRONE, 1)
+            decrStackSize(queenSlot, 1)
+            decrStackSize(droneSlot, 1)
           })
         }
       }
@@ -73,4 +73,6 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
     super.readFromNBT(compound)
     tracker.readFromNBT(compound)
   }
+
+  override def closeInventory(player: EntityPlayer): Unit = {}
 }

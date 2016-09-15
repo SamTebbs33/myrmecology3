@@ -11,7 +11,7 @@ import net.minecraft.util.ResourceLocation
   */
 abstract class MyrmecologyGuiContainer(texturePath: String, val container: MyrmecologyContainer) extends GuiContainer(container) {
 
-  val textureLocation = new ResourceLocation(Myrmecology.MOD_ID, "textures/gui/" + texturePath + ".png")
+  val textureLocation = new ResourceLocation(Myrmecology.modID, "textures/gui/" + texturePath + ".png")
 
   var k: Int = 0
   var l: Int = 0

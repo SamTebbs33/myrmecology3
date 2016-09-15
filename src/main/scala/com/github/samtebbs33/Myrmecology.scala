@@ -12,14 +12,14 @@ import net.minecraftforge.fml.common.{Mod, SidedProxy}
 /**
   * Created by samtebbs on 30/07/2016.
   */
-@Mod(modid = Myrmecology.MOD_ID, modLanguage = "scala", version = Myrmecology.MOD_VERSION, name = Myrmecology.MOD_NAME)
+@Mod(modid = Myrmecology.modID, modLanguage = "scala", version = Myrmecology.modVersion, name = Myrmecology.modName)
 object Myrmecology {
 
-  final val MOD_ID = "myrmecology"
-  final val MOD_VERSION = "0.0.0.0"
-  final val MOD_NAME = "Myrmecology"
+  final val modID = "myrmecology"
+  final val modVersion = "0.0.0.1-beta"
+  final val modName = "Myrmecology"
 
-  @SidedProxy(clientSide = "com.github.samtebbs33.client.ClientProxy", serverSide = "com.github.samtebbs33.server.ServerProxy", modId = MOD_ID)
+  @SidedProxy(clientSide = "com.github.samtebbs33.client.ClientProxy", serverSide = "com.github.samtebbs33.server.ServerProxy", modId = modID)
   var proxy: Proxy = _
 
   @EventHandler

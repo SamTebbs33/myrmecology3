@@ -17,15 +17,15 @@ import scala.util.Random
 /**
   * Created by samtebbs on 05/08/2016.
   */
-class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NAME_SOLARIUM, 16) with ITickable {
+class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.solariumName, 16) with ITickable {
 
-  val SLOT_LARVA = 0
-  val TICKS_PER_SECOND = 20
+  val larvaSlot = 0
+  val ticksPerSecond = 20
   val tracker = new ProgressTracker
   var product: Option[ItemStack] = None
 
-  val NBT_PROGRESS_TAG = "Progress"
-  val NBT_PRODUCT_TAG = "Product"
+  val progressNbtTag = "Progress"
+  val productNbtTag = "Product"
 
   def reset = {
     product = None
@@ -33,7 +33,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
   }
 
   override def update(): Unit = {
-    val larva = getStackInSlot(SLOT_LARVA)
+    val larva = getStackInSlot(larvaSlot)
     if (larva != null) {
       val species = larva.getItem.asInstanceOf[ItemAnt].species
       tracker.targetTime = species.getTraitAs[Int](AntTraitRegistry.incubationTime)
@@ -41,7 +41,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
       tracker.update
       if (tracker.done) {
         AntEvent.dispatch(new AntMatureEvent(product.get, this), notCanceled = () ⇒ {
-          decrStackSize(SLOT_LARVA, 1)
+          decrStackSize(larvaSlot, 1)
           addStack(product.get)
         })
         reset
@@ -52,7 +52,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
   override def getInventoryStackLimit: Int = 64
 
   override def isItemValidForSlot(index: Int, stack: ItemStack): Boolean = index match {
-    case SLOT_LARVA => stack.getItem.isInstanceOf[ItemAnt] && stack.getMetadata == AntTypes.LARVA.id
+    case `larvaSlot` => stack.getItem.isInstanceOf[ItemAnt] && stack.getMetadata == AntTypes.LARVA.id
     case _ => stack.getItem.isInstanceOf[ItemAnt]
   }
 
@@ -74,7 +74,7 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
   override def readFromNBT(compound: NBTTagCompound): Unit = {
     super.readFromNBT(compound)
     tracker.readFromNBT(compound)
-    product = if (compound.hasKey(NBT_PRODUCT_TAG, 10)) Some(ItemStack.loadItemStackFromNBT(compound.getCompoundTag(NBT_PRODUCT_TAG))) else None
+    product = if (compound.hasKey(productNbtTag, 10)) Some(ItemStack.loadItemStackFromNBT(compound.getCompoundTag(productNbtTag))) else None
   }
 
   override def writeToNBT(compound: NBTTagCompound): NBTTagCompound = {
@@ -83,8 +83,10 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.NA
     product.ifDefined(p ⇒ {
       val stackTag = new NBTTagCompound
       p.writeToNBT(stackTag)
-      compound.setTag(NBT_PRODUCT_TAG, stackTag)
+      compound.setTag(productNbtTag, stackTag)
     })
     compound
   }
+
+  override def closeInventory(player: EntityPlayer): Unit = {}
 }

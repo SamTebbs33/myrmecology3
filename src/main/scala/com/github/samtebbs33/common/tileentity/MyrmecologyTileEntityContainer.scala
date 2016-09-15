@@ -13,9 +13,9 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
 
   val inventoryArray = new Array[Option[ItemStack]](invSize)
   inventoryArray.indices.foreach(i => inventoryArray(i) = None)
-  val NBT_INVENTORY_TAG = "Items"
-  val NBT_SLOT_TAG = "Slot"
-  val NBT_CUSTOM_NAME_TAG = "CustomName"
+  val inventoryNbtTag = "Items"
+  val slotNbtTag = "Slot"
+  val customNameNbtTag = "CustomName"
 
   var customName = ""
 
@@ -28,12 +28,12 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
 
   override def readFromNBT(compound: NBTTagCompound): Unit = {
     super.readFromNBT(compound)
-    val itemList = compound.getTagList(NBT_INVENTORY_TAG, 10)
+    val itemList = compound.getTagList(inventoryNbtTag, 10)
     Range(0, itemList.tagCount()).foreach(i => {
       val tag = itemList.getCompoundTagAt(i)
-      setInventorySlotContents(tag.getByte(NBT_SLOT_TAG) & 255, ItemStack.loadItemStackFromNBT(tag))
+      setInventorySlotContents(tag.getByte(slotNbtTag) & 255, ItemStack.loadItemStackFromNBT(tag))
     })
-    if (compound.hasKey(NBT_CUSTOM_NAME_TAG)) customName = compound.getString(NBT_CUSTOM_NAME_TAG)
+    if (compound.hasKey(customNameNbtTag)) customName = compound.getString(customNameNbtTag)
   }
 
   override def writeToNBT(compound: NBTTagCompound): NBTTagCompound = {
@@ -41,12 +41,12 @@ abstract class MyrmecologyTileEntityContainer(val name: String, invSize: Int) ex
     val tagList = new NBTTagList
     forEachOccupiedSlot(i => {
       val stackTag = new NBTTagCompound
-      stackTag.setByte(NBT_SLOT_TAG, i.toByte)
+      stackTag.setByte(slotNbtTag, i.toByte)
       getStackInSlot(i).writeToNBT(stackTag)
       tagList.appendTag(stackTag)
     })
-    compound.setTag(NBT_INVENTORY_TAG, tagList)
-    if (hasCustomName) compound.setString(NBT_CUSTOM_NAME_TAG, customName)
+    compound.setTag(inventoryNbtTag, tagList)
+    if (hasCustomName) compound.setString(customNameNbtTag, customName)
     compound
   }
 }

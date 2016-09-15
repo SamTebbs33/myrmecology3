@@ -13,7 +13,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry
   */
 class Proxy {
 
-  def registerModel(item: Item) {}
+  def registerModel(item: Item): Unit = {}
 
   def init(e: FMLInitializationEvent): Unit = {
     BlockRegistry.registerBlocks

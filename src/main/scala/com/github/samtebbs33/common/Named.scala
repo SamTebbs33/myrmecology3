@@ -9,9 +9,9 @@ trait Named {
 
   def shortName: String
 
-  def unlocalisedName(metadata: Int = 0) = Myrmecology.MOD_ID + "_" + shortName
+  def unlocalisedName(metadata: Int = 0) = Myrmecology.modID + "_" + shortName
 
-  def registryName = Myrmecology.MOD_ID + ":" + shortName
+  def registryName = Myrmecology.modID + ":" + shortName
 
   def resourceName(metadata: Int) = registryName
 

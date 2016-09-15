@@ -17,6 +17,8 @@ import scala.collection.JavaConversions._
   */
 class ClientProxy extends Proxy {
 
+  val modelResourceLocationType = "inventory"
+
   override def init(e: FMLInitializationEvent): Unit = {
     super.init(e)
     val itemColours = Minecraft.getMinecraft.getItemColors
@@ -36,8 +38,8 @@ class ClientProxy extends Proxy {
 
   private def registerModel(stack: ItemStack): Unit = {
     val location: ModelResourceLocation = stack.getItem match {
-      case item: MyrmecologyItem => new ModelResourceLocation(item.resourceName(stack.getMetadata), "inventory")
-      case item => new ModelResourceLocation(item.getRegistryName, "inventory")
+      case item: MyrmecologyItem => new ModelResourceLocation(item.resourceName(stack.getMetadata), modelResourceLocationType)
+      case item => new ModelResourceLocation(item.getRegistryName, modelResourceLocationType)
     }
     if (stack.getItem.getHasSubtypes) ModelBakery.registerItemVariants(stack.getItem, location)
     Minecraft.getMinecraft.getRenderItem.getItemModelMesher
