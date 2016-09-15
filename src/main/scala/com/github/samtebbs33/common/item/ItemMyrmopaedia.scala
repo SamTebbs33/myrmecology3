@@ -1,7 +1,8 @@
 package com.github.samtebbs33.common.item
 import com.github.samtebbs33.Myrmecology
-import com.github.samtebbs33.common.GuiHandler
+import com.github.samtebbs33.common.{CraftingRecipe, GuiHandler}
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.init.{Blocks, Items}
 import net.minecraft.item.ItemStack
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.{ActionResult, EnumActionResult, EnumFacing, EnumHand}
@@ -19,6 +20,11 @@ class ItemMyrmopaedia(name: String) extends MyrmecologyItem(name) {
     }
     ActionResult.newResult(EnumActionResult.PASS, itemStackIn)
   }
+
+
+  override def craftingRecipe: Option[CraftingRecipe] = Some(
+    new CraftingRecipe(new ItemStack(this, 1), Array("ggg", "rqr", "ggg"), Map('g' → new ItemStack(Blocks.GLASS_PANE), 'r' → new ItemStack(Items.REDSTONE), 'q' → new ItemStack(Items.QUARTZ)))
+  )
 
   override def onItemUse(stack: ItemStack, playerIn: EntityPlayer, worldIn: World, pos: BlockPos, hand: EnumHand, facing: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): EnumActionResult =
     onItemRightClick(stack, worldIn, playerIn, hand).getType
