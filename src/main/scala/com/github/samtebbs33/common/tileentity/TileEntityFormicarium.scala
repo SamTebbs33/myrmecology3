@@ -14,16 +14,16 @@ import net.minecraft.util.ITickable
 /**
   * Created by samtebbs on 09/08/2016.
   */
-class TileEntityFormicarium extends MyrmecologyTileEntityContainer(BlockRegistry.NAME_FORMICARIUM, 18) with ITickable {
+class TileEntityFormicarium extends MyrmecologyTileEntityContainer(BlockRegistry.formicariumName, 18) with ITickable {
 
-  val SLOT_ANT_END = 9
+  val antSlotEnd = 9
 
   val tracker = new ProgressTracker(1)
 
   override def getInventoryStackLimit: Int = 64
 
   override def isItemValidForSlot(index: Int, stack: ItemStack): Boolean = index match {
-    case x if x < SLOT_ANT_END ⇒ stack.getItem.isInstanceOf[ItemAnt] && stack.getMetadata == AntTypes.WORKER.id
+    case x if x < antSlotEnd ⇒ stack.getItem.isInstanceOf[ItemAnt] && stack.getMetadata == AntTypes.WORKER.id
     case _ ⇒ true
   }
 
@@ -40,7 +40,7 @@ class TileEntityFormicarium extends MyrmecologyTileEntityContainer(BlockRegistry
     if (tracker.done && !worldObj.isRemote) {
       tracker.reset
       // Group the ant stacks by their behaviour
-      val map = occupiedSlots(SLOT_ANT_END).map(getStackInSlot).groupBy(ItemAnt.getBehaviour)
+      val map = occupiedSlots(antSlotEnd).map(getStackInSlot).groupBy(ItemAnt.getBehaviour)
       map.foreach(entry ⇒ entry._1.ifDefined(behaviour ⇒ behaviour.ifDefined(_.execute(this, entry._2.map(stack ⇒ stack.stackSize).sum, entry._2))))
     }
   }

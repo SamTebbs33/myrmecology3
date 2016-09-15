@@ -22,7 +22,7 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
   setHasSubtypes(true)
   ItemRegistry.ants.add(this)
 
-  override def resourceName(metadata: Int): String = Myrmecology.MOD_ID + ":ant_" + getAntTypeString(metadata)
+  override def resourceName(metadata: Int): String = Myrmecology.modID + ":ant_" + getAntTypeString(metadata)
 
   override def getUnlocalizedName(stack: ItemStack): String = "item." + super.unlocalisedName(stack.getMetadata) + "_" + getAntTypeString(stack.getMetadata)
 

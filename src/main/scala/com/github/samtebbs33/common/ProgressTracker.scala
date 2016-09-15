@@ -9,7 +9,7 @@ class ProgressTracker(var targetTime: Int = Int.MaxValue) {
 
   var progress = 0
   var ticks = 0
-  final val TICKS_PER_SECOND = 20
+  final val ticksPerSecond = 20
 
   def reset: Unit = {
     progress = 0
@@ -18,7 +18,7 @@ class ProgressTracker(var targetTime: Int = Int.MaxValue) {
 
   def update = {
     ticks += 1
-    if (ticks >= TICKS_PER_SECOND) {
+    if (ticks >= ticksPerSecond) {
       progress += 1
       ticks = 0
     }

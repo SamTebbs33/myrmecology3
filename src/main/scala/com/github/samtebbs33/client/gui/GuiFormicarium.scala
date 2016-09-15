@@ -8,6 +8,6 @@ import net.minecraft.inventory.IInventory
 /**
   * Created by samtebbs on 09/08/2016.
   */
-class GuiFormicarium(playerInv: IInventory, te: TileEntityFormicarium) extends MyrmecologyGuiContainer(BlockRegistry.NAME_FORMICARIUM, new ContainerFormicarium(playerInv, te)) {
+class GuiFormicarium(playerInv: IInventory, te: TileEntityFormicarium) extends MyrmecologyGuiContainer(BlockRegistry.formicariumName, new ContainerFormicarium(playerInv, te)) {
 
 }
