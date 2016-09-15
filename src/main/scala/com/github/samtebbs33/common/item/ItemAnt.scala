@@ -73,7 +73,7 @@ object ItemAnt {
   def getSpecies(stack: ItemStack) = stack.getItem.asInstanceOf[ItemAnt].species
 
   def getBehaviour(itemStack: ItemStack) = itemStack.getItem match {
-    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Some(Behaviour.getBehaviour(itemStack.getTagCompound.getString(behaviourNbtTag)))
+    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Some(Behaviour.get(itemStack.getTagCompound.getString(behaviourNbtTag)))
     case _ ⇒ None
   }
   def assignBehaviour(antStack: ItemStack): Unit = {
