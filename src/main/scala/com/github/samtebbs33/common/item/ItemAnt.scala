@@ -48,7 +48,12 @@ class ItemAnt(val species: Species) extends MyrmecologyItem("ant_" + species.nam
 
   override def addInformation(stack: ItemStack, playerIn: EntityPlayer, tooltip: util.List[String], advanced: Boolean): Unit = {
     super.addInformation(stack, playerIn, tooltip, advanced)
-    tooltip.add(s"Behaviour: ${ItemAnt.getBehaviour(stack).fold("None")(_.get.name)}")
+    val behaviour = ItemAnt.getBehaviour(stack)
+    tooltip.add(s"Behaviour: ${
+      behaviour match {
+        case Some(beh) ⇒ beh.name
+        case None ⇒ "None"
+      }}")
   }
 
   override def onCreated(stack: ItemStack, worldIn: World, playerIn: EntityPlayer): Unit = {
@@ -72,8 +77,8 @@ object ItemAnt {
 
   def getSpecies(stack: ItemStack) = stack.getItem.asInstanceOf[ItemAnt].species
 
-  def getBehaviour(itemStack: ItemStack) = itemStack.getItem match {
-    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Some(Behaviour.get(itemStack.getTagCompound.getString(behaviourNbtTag)))
+  def getBehaviour(itemStack: ItemStack): Option[Behaviour] = itemStack.getItem match {
+    case _: ItemAnt if itemStack.getMetadata == AntTypes.WORKER.id ⇒ Behaviour.get(itemStack.getTagCompound.getString(behaviourNbtTag))
     case _ ⇒ None
   }
   def assignBehaviour(antStack: ItemStack): Unit = {
