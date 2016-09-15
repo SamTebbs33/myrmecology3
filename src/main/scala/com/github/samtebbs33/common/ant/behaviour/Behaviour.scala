@@ -42,6 +42,6 @@ object Behaviour {
 
   val behaviourDamageMobs = treeDamage.addBehaviour(new BehaviourDamageMobs("poison"))
 
-  def getBehaviour(name: String) = behaviourMap.get(name)
+  def get(name: String) = behaviourMap.get(name)
 
 }
