@@ -16,7 +16,7 @@ import net.minecraftforge.fml.common.{Mod, SidedProxy}
 object Myrmecology {
 
   final val modID = "myrmecology"
-  final val modVersion = "0.0.0"
+  final val modVersion = "0.0.0.1-beta"
   final val modName = "Myrmecology"
 
   @SidedProxy(clientSide = "com.github.samtebbs33.client.ClientProxy", serverSide = "com.github.samtebbs33.server.ServerProxy", modId = modID)
