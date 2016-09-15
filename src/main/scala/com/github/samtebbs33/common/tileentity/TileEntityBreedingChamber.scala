@@ -73,4 +73,6 @@ class TileEntityBreedingChamber extends MyrmecologyTileEntityContainer(BlockRegi
     super.readFromNBT(compound)
     tracker.readFromNBT(compound)
   }
+
+  override def closeInventory(player: EntityPlayer): Unit = {}
 }

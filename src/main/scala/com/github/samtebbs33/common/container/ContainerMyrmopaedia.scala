@@ -68,4 +68,5 @@ class MyrmopaediaInventory(itemStack: ItemStack) extends MyrmecologyInventory {
 
   override def hasCustomName: Boolean = false
 
+  override def closeInventory(player: EntityPlayer): Unit = {}
 }

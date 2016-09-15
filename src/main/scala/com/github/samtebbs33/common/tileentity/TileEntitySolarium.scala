@@ -87,4 +87,6 @@ class TileEntitySolarium extends MyrmecologyTileEntityContainer(BlockRegistry.so
     })
     compound
   }
+
+  override def closeInventory(player: EntityPlayer): Unit = {}
 }
