@@ -38,7 +38,7 @@ class BehaviourGrowCrops(name: String) extends Behaviour(name) {
         i += 1
       }
     })
-    bonemealSlots.takeWhile(_ => i < numAnts).foreach(cropLoop)
+    bonemealSlots.foreach(cropLoop)
   }
 
 }

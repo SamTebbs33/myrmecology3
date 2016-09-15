@@ -19,9 +19,8 @@ class BehaviourScavenge(name: String) extends Behaviour(name) {
     val pos = formicarium.getPos
     val items = formicarium.getWorld.getEntitiesWithinAABB(classOf[EntityItem], pos.toVec3i.toAABB(radius))
     var i = 0
-    items.map(entity => (entity, entity.getEntityItem))
-      .filter(pair => formicarium.canHoldStack(pair._2))
-      .foreach(pair => {
+    val entityPairs = items.map(entity => (entity, entity.getEntityItem)).filter(pair => formicarium.canHoldStack(pair._2))
+    entityPairs.foreach(pair => {
         if (i < numAnts) {
           formicarium.addStack(pair._2)
           pair._1.setDead()

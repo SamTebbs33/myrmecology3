@@ -63,7 +63,7 @@ trait MyrmecologyInventory extends IInventory {
     stackSize <= 0
   }
 
-  override def closeInventory(player: EntityPlayer): Unit = ???
+  override def closeInventory(player: EntityPlayer): Unit
 
   override def getSizeInventory: Int = inventory.length
 

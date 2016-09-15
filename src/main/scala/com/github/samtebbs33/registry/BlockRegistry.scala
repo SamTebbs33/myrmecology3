@@ -12,20 +12,20 @@ object BlockRegistry {
   final val blocks = new java.util.LinkedList[MyrmecologyBlock]()
   val antHills = new java.util.ArrayList[BlockAntHill]()
 
-  final val NAME_SOLARIUM = "solarium"
-  final val NAME_FORMICARIUM = "formicarium"
-  final val NAME_BREEDING_CHAMBER = "breeding_chamber"
+  final val solariumName = "solarium"
+  final val formicariumName = "formicarium"
+  final val breddingChamberName = "breeding_chamber"
 
-  final val solarium = new BlockSolarium(NAME_SOLARIUM)
-  final val breedingChamber = new BlockBreedingChamber(NAME_BREEDING_CHAMBER)
-  final val formicarium = new BlockFormicarium(NAME_FORMICARIUM)
+  final val solarium = new BlockSolarium(solariumName)
+  final val breedingChamber = new BlockBreedingChamber(breddingChamberName)
+  final val formicarium = new BlockFormicarium(formicariumName)
 
-  final val antHillPlains = new BlockAntHill(Registry.PLAINS, ItemRegistry.antPlains)
-  final val antHillForest = new BlockAntHill(Registry.FOREST, ItemRegistry.antForest)
-  val antHillDesert = new BlockAntHill(Registry.DESERT, ItemRegistry.antDesert)
-  val antHillSwamp = new BlockAntHill(Registry.SWAMP, ItemRegistry.antSwamp)
-  val antHillJungle = new BlockAntHill(Registry.JUNGLE, ItemRegistry.antJungle)
-  val antHillStone = new BlockAntHill(Registry.STONE, ItemRegistry.antStone)
+  final val antHillPlains = new BlockAntHill(Registry.plainsName, ItemRegistry.antPlains)
+  final val antHillForest = new BlockAntHill(Registry.forestName, ItemRegistry.antForest)
+  val antHillDesert = new BlockAntHill(Registry.desertName, ItemRegistry.antDesert)
+  val antHillSwamp = new BlockAntHill(Registry.swampName, ItemRegistry.antSwamp)
+  val antHillJungle = new BlockAntHill(Registry.jungleName, ItemRegistry.antJungle)
+  val antHillStone = new BlockAntHill(Registry.stoneName, ItemRegistry.antStone)
 
   def registerTileEntities(): Unit = {
     blocks.foreach[Unit] {

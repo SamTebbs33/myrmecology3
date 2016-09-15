@@ -15,24 +15,24 @@ import net.minecraftforge.fml.common.network.IGuiHandler
   */
 object GuiHandler extends IGuiHandler {
 
-  val ID_SOLARIUM = 0
-  val ID_BREEDING_CHAMBER = 1
-  val ID_FORMICARIUM = 2
-  val ID_MYRMOPAEDIA = 3
+  val solariumID = 0
+  val breedingChambedID = 1
+  val formicariumID = 2
+  val myrmopaediaID = 3
 
   def getTileEntity[T <: MyrmecologyTileEntityContainer](world: World, x: Int, y: Int, z: Int, clazz: Class[T]): T = clazz.cast(world.getTileEntity(new BlockPos(x, y, z)))
 
   override def getClientGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): GuiScreen = ID match {
-    case ID_SOLARIUM => new GuiSolarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntitySolarium]))
-    case ID_BREEDING_CHAMBER => new GuiBreedingChamber(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityBreedingChamber]))
-    case ID_FORMICARIUM ⇒ new GuiFormicarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityFormicarium]))
-    case ID_MYRMOPAEDIA => new GuiMyrmopaedia(player.inventory, player.getHeldItemMainhand)
+    case `solariumID` => new GuiSolarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntitySolarium]))
+    case `breedingChambedID` => new GuiBreedingChamber(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityBreedingChamber]))
+    case `formicariumID` ⇒ new GuiFormicarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityFormicarium]))
+    case `myrmopaediaID` => new GuiMyrmopaedia(player.inventory, player.getHeldItemMainhand)
   }
 
   override def getServerGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): Container = ID match {
-    case ID_SOLARIUM => new ContainerSolarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntitySolarium]))
-    case ID_BREEDING_CHAMBER => new ContainerBreedingChamber(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityBreedingChamber]))
-    case ID_FORMICARIUM ⇒ new ContainerFormicarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityFormicarium]))
-    case ID_MYRMOPAEDIA => new ContainerMyrmopaedia(player.inventory, player.getHeldItemMainhand)
+    case `solariumID` => new ContainerSolarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntitySolarium]))
+    case `breedingChambedID` => new ContainerBreedingChamber(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityBreedingChamber]))
+    case `formicariumID` ⇒ new ContainerFormicarium(player.inventory, getTileEntity(world, x, y, z, classOf[TileEntityFormicarium]))
+    case `myrmopaediaID` => new ContainerMyrmopaedia(player.inventory, player.getHeldItemMainhand)
   }
 }

@@ -8,7 +8,7 @@ import net.minecraft.inventory.IInventory
 /**
   * Created by samtebbs on 06/08/2016.
   */
-class GuiSolarium(playerInv: IInventory, te: TileEntitySolarium) extends MyrmecologyGuiContainer(BlockRegistry.NAME_SOLARIUM, new ContainerSolarium(playerInv, te)) {
+class GuiSolarium(playerInv: IInventory, te: TileEntitySolarium) extends MyrmecologyGuiContainer(BlockRegistry.solariumName, new ContainerSolarium(playerInv, te)) {
 
   override def drawGuiContainerBackgroundLayer(partialTicks: Float, mouseX: Int, mouseY: Int): Unit = {
     super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY)

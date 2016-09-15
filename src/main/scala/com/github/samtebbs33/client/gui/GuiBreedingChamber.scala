@@ -8,7 +8,7 @@ import net.minecraft.inventory.IInventory
 /**
   * Created by samtebbs on 08/08/2016.
   */
-class GuiBreedingChamber(playerInv: IInventory, te: TileEntityBreedingChamber) extends MyrmecologyGuiContainer(BlockRegistry.NAME_BREEDING_CHAMBER, new ContainerBreedingChamber(playerInv, te)) {
+class GuiBreedingChamber(playerInv: IInventory, te: TileEntityBreedingChamber) extends MyrmecologyGuiContainer(BlockRegistry.breddingChamberName, new ContainerBreedingChamber(playerInv, te)) {
 
   override def drawGuiContainerBackgroundLayer(partialTicks: Float, mouseX: Int, mouseY: Int): Unit = {
     super.drawGuiContainerBackgroundLayer(partialTicks, mouseX, mouseY)

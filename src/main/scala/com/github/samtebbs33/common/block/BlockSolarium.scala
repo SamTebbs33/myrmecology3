@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack
 /**
   * Created by samtebbs on 05/08/2016.
   */
-class BlockSolarium(name: String) extends MyrmecologyBlockContainer(Material.GLASS, name, GuiHandler.ID_SOLARIUM, classOf[TileEntitySolarium]) {
+class BlockSolarium(name: String) extends MyrmecologyBlockContainer(Material.GLASS, name, GuiHandler.solariumID, classOf[TileEntitySolarium]) {
   override def craftingRecipe: Option[CraftingRecipe] = Some(new CraftingRecipe(
     new ItemStack(this), Array("sss", "g g", "sls"), Map(
       's' → new ItemStack(Blocks.WOODEN_SLAB),
