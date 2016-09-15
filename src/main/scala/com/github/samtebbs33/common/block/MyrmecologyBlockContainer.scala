@@ -23,12 +23,14 @@ class MyrmecologyBlockContainer[T <: MyrmecologyTileEntity](material: Material, 
     super.onBlockPlacedBy(worldIn, pos, state, placer, stack)
     if (stack.hasDisplayName) worldIn.getTileEntity(pos) match {
       case te: MyrmecologyTileEntityContainer => te.customName = stack.getDisplayName
+      case _ ⇒
     }
   }
 
   override def breakBlock(worldIn: World, pos: BlockPos, state: IBlockState): Unit = {
     worldIn.getTileEntity(pos) match {
       case te: MyrmecologyTileEntityContainer => InventoryHelper.dropInventoryItems(worldIn, pos, te)
+      case _ ⇒
     }
     super.breakBlock(worldIn, pos, state)
   }
