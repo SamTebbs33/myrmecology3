@@ -20,7 +20,7 @@ class BehaviourMine(name: String) extends Behaviour(name) {
     val oreBlocks = world.getBlocksInRadius(formicarium.getPos, radius)
       .filter(_._2.getBlock.isInstanceOf[BlockOre])
       .filter(pair ⇒ pair._2.getBlock.getHarvestLevel(pair._2) < 2)
-      .map(pair ⇒ (pair._1, pair._2.getBlock.asInstanceOf[BlockOre]))
+    oreBlocks.map(pair ⇒ (pair._1, pair._2.getBlock.asInstanceOf[BlockOre]))
       .foreach(pair ⇒ {
         if (i < numAnts) {
           world.destroyBlock(pair._1, true)
